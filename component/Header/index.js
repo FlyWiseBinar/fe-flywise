@@ -1,11 +1,9 @@
 import React from "react";
-import Header from "../../component/Header";
 import Image from "next/image";
-import Link from "next/link";
 
-const index = () => {
+const Header = () => {
   return (
-    <>
+    <div>
       {/*awal navbar*/}
       <nav className="pt-4 shadow">
         <div className="container mx-auto">
@@ -356,8 +354,8 @@ const index = () => {
       </div>
       {/*awal card*/}
       {/*akhir section destinasi favorit*/}
-    </>
+    </div>
   );
 };
 
-export default index;
+export default Header;
