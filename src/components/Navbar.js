@@ -19,14 +19,14 @@ const Navbar = () => {
                         </p>
                     </div>
 
-                    <div className="bg-slate-300 w-full h-10 px-5 py-2 text-slate-600  rounded-xl flex gap-4 justify-between items-center">
-                        <input type="text" className='ring-0 outline-none w-full bg-slate-300' placeholder='Cari di sini...' />
+                    <div className="bg-slate-50 w-full h-10 px-5 py-2 text-black  rounded-xl flex gap-4 justify-between items-center">
+                        <input type="text" className='ring-0 outline-none w-full ' placeholder='Cari di sini...' />
                         <BsSearch className='text-2xl' />
                     </div>
                 </div>
 
                 <div className="w-full flex justify-end items-center">
-                    <button className='flex gap-5 items-center justify-center bg-main-orange p-4 rounded-xl text-white hover:scale-110 duration-300'>
+                    <button className='flex gap-5 items-center justify-center bg-main-orange py-3 px-4 rounded-xl text-white hover:scale-110 duration-300'>
                         <BiLogIn/>
                         <p>Masuk</p>
                     </button>

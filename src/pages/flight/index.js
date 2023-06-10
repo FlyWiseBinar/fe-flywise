@@ -1,9 +1,9 @@
-import MainFligth from '@/views/fligth/MainFligth'
+import MainFlight from '@/views/flight/MainFlight'
 
 const index = () => {
   return (
     <div>
-        <MainFligth/>
+        <MainFlight/>
     </div>
   )
 }

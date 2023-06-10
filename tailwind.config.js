@@ -14,6 +14,8 @@ module.exports = {
         "main-purple": "#7126B5",
         "main-cream": "#FFE9CA",
         "main-orange": "#f8945c",
+        "third-purple": "#B48DF1",
+        "main-green": "#73CA5C",
       }
     },
   },
