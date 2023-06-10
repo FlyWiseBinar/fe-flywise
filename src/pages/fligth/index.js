@@ -1,10 +1,9 @@
-import MainHome from '@/views/home/MainHome'
-
+import MainFligth from '@/views/fligth/MainFligth'
 
 const index = () => {
   return (
     <div>
-      <MainHome/>
+        <MainFligth/>
     </div>
   )
 }

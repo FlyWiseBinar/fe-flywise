@@ -1,3 +1,23 @@
 {
-  "extends": "next/core-web-vitals"
+  "extends": [
+    "next/babel",
+    "next/core-web-vitals",
+    "eslint:recommended",
+    "plugin:react/recommended"
+  ],
+  "parserOptions": {
+    "sourceType": "module"
+  },
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "amd": true,
+    "node": true
+  },
+  "rules": {
+    "keyword-spacing": 2,
+    "semi": ["error", "never"],
+    "quotes": ["error", "double"]
+  },
+  "plugins": ["react"]
 }
