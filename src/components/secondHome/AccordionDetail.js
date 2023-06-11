@@ -28,7 +28,7 @@ const AccordionDetail = ({
   return (
     <>
       <div
-        className={`${styles.mainCol} w-1/2 mx-auto border-2 rounded-lg border-third-purple mb-1`}
+        className={`${styles.mainCol}  w-1/2 mx-auto border-2 rounded-lg border-third-purple mb-1`}
       >
         <button
           className="flex items-center justify-between w-full p-4 text-lg font-medium text-left bg-white cursor-pointer rounded-lg b"

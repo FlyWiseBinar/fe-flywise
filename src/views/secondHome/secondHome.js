@@ -1,12 +1,11 @@
-import React from "react";
-import Button from "@/components/secondHome/Button";
-import DateRow from "@/components/secondHome/DateRow";
-import FilterSort from "@/components/secondHome/FilterSort";
-import Loading from "@/components/secondHome/Loading";
-import Empty from "@/components/secondHome/Empty";
-import AccordionDetail from "@/components/secondHome/AccordionDetail";
-import ImportAccordion from "@/components/secondHome/ImportAccordion";
-import ImportDateRow from "@/components/secondHome/ImportDateRow";
+import React from "react"
+import Button from "@/components/secondHome/Button"
+import FilterSort from "@/components/secondHome/FilterSort"
+import Loading from "@/components/secondHome/Loading"
+import Empty from "@/components/secondHome/Empty"
+import SoldOut from "@/components/secondHome/TicketSoldOut"
+import ImportAccordion from "@/components/secondHome/ImportAccordion"
+import ImportDateRow from "@/components/secondHome/ImportDateRow"
 
 const secondHome = () => {
   return (

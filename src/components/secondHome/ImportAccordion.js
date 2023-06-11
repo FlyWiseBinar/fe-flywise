@@ -3,7 +3,7 @@ import AccordionDetail from "./AccordionDetail"
 
 const ImportAccordion = () => {
   return (
-    <div className="container mx-auto mt-5">
+    <div className="container w-1/2 mx-auto mt-5">
     <AccordionDetail
       hourAttendate="07:00"
       hourTo="09:00"
