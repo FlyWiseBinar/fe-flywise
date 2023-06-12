@@ -1,12 +1,16 @@
-import React from "react"
+import Head from 'next/head'
+import Login from './login'
+import Register from './register'
 
-const index = () => {
+export default function Home() {
   return (
-    <div className="text-2xl text-red-500">
-      index hello world
-      <div>Index 1</div>
+    <div>
+      <Head>
+        <title>Login</title>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <Login />
     </div>
-  )
+  );
 }
 
-export default index
