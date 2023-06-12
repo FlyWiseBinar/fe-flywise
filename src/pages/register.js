@@ -3,8 +3,8 @@ import React from "react";
 
 const Register = () => {
   return (
-    <div className="h-screen flex">
-      <div className="flex w-1/2 bg-orange-400 i justify-around items-center">
+    <div className="flex flex-col md:flex-row h-screen">
+      <div className="flex w-full md:w-1/2 bg-orange-400 justify-around items-center">
         <div className="flex items-center justify-center py-2 px-5">
           <Image src="/pesawat.png" width={70} height={70} alt="Logo" />
           <div className="ml-5 flex flex-col">
