@@ -72,10 +72,10 @@ const Otp = () => {
                 </div>
               </div>
 
-              <div className="items-center px-32 pt-9">
+              <div className="items-center mx-4 sm:px-32 sm:pt-9">
                 <button
                   type="submit"
-                  className="flex w-64 justify-center rounded-2xl bg-black px-24 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-slate-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                  className="flex w-full sm:w-64 justify-center rounded-2xl bg-black px-6 sm:px-24 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-slate-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                 >
                   Simpan
                 </button>
