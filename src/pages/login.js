@@ -3,8 +3,8 @@ import React from "react";
 
 const Login = () => {
   return (
-    <div className="h-screen flex">
-      <div className="flex w-1/2 bg-orange-400 i justify-around items-center">
+    <div className="flex flex-col md:flex-row h-screen">
+      <div className="flex w-full md:w-1/2 bg-orange-400 justify-around items-center">
         <div className="flex items-center justify-center py-2 px-5">
           <Image src="/pesawat.png" width={70} height={70} alt="Logo" />
           <div className="ml-5 flex flex-col">
@@ -18,7 +18,7 @@ const Login = () => {
         </div>
       </div>
 
-      <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+      <div className="flex flex-1 flex-col justify-center px-6 py-12 md:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <h2 className="mt-10 text-left text-2xl font-bold leading-9 tracking-tight text-gray-900">
             Masuk
