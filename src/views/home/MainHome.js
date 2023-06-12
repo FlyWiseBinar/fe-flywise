@@ -1,3 +1,4 @@
+import React from 'react'
 import Banner from '@/components/main-home/Banner'
 import CardOrder from '@/components/main-home/CardOrder'
 import Favorit from '@/components/main-home/Favorit'
