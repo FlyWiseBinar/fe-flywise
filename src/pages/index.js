@@ -1,3 +1,4 @@
+import React from 'react'
 import MainHome from '@/views/home/MainHome'
 
 const index = () => {
