@@ -1,11 +1,10 @@
-import MainHome from '@/views/home/MainHome'
-import SecondHome from "@/views/secondHome/secondHome"
-
+import MainHome from "@/views/home/MainHome"
+import React from "react"
 
 const index = () => {
   return (
     <div>
-    <SecondHome/>
+    <MainHome/>
     </div>
   )
 }

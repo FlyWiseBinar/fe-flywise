@@ -1,6 +1,7 @@
-import { styles } from '@/styles/styles'
-import { BsSearch } from 'react-icons/bs'
-import { BiLogIn } from 'react-icons/bi'
+import React from "react"
+import { styles } from "@/styles/styles"
+import { BsSearch } from "react-icons/bs"
+import { BiLogIn } from "react-icons/bi"
 
 
 const Navbar = () => {

@@ -1,9 +1,9 @@
-import MainFlight from '@/views/flight/MainFlight'
+import MainHome from "@/views/home/MainHome"
 
 const index = () => {
   return (
     <div>
-        <MainFlight/>
+        <MainHome/>
     </div>
   )
 }

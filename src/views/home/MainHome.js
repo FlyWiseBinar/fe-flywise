@@ -1,5 +1,5 @@
-import Banner from '@/components/main-home/Banner'
-import CardOrder from '@/components/main-home/CardOrder'
+import Banner from "@/components/main-home/Banner"
+import CardOrder from "@/components/main-home/CardOrder"
 
 const MainHome = () => {
     return (

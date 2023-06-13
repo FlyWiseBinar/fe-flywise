@@ -1,6 +1,6 @@
-import React from "react";
-import DateRow from "./DateRow";
-import { styles } from "@/styles/styles";
+import React from "react"
+import DateRow from "./DateRow"
+import { styles } from "@/styles/styles"
 
 const ImportDateRow = () => {
   return (
@@ -17,7 +17,7 @@ const ImportDateRow = () => {
         <div className="w-7/12 border-t-2 border-slate-200"></div>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default ImportDateRow;
+export default ImportDateRow

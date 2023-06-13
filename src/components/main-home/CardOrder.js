@@ -1,8 +1,8 @@
-import { styles } from '@/styles/styles'
-import { LuPlaneTakeoff, LuPlaneLanding } from 'react-icons/lu'
-import { MdDateRange } from 'react-icons/md'
-import { BsRepeat } from 'react-icons/bs'
-import { CiUser } from 'react-icons/ci'
+import { styles } from "@/styles/styles"
+import { LuPlaneTakeoff, LuPlaneLanding } from "react-icons/lu"
+import { MdDateRange } from "react-icons/md"
+import { BsRepeat } from "react-icons/bs"
+import { CiUser } from "react-icons/ci"
 
 
 const CardOrder = () => {

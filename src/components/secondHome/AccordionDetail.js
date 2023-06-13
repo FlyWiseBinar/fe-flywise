@@ -1,10 +1,10 @@
-import React from "react";
-import { useState } from "react";
-import { LuChevronDown } from "react-icons/lu";
-import { LuChevronUp } from "react-icons/lu";
-import { LuSend } from "react-icons/lu";
-import { LuBaggageClaim } from "react-icons/lu";
-import { styles } from "@/styles/styles";
+import React from "react"
+import { useState } from "react"
+import { LuChevronDown } from "react-icons/lu"
+import { LuChevronUp } from "react-icons/lu"
+import { LuSend } from "react-icons/lu"
+import { LuBaggageClaim } from "react-icons/lu"
+import { styles } from "@/styles/styles"
 
 const AccordionDetail = ({
   hourAttendate,
@@ -20,18 +20,18 @@ const AccordionDetail = ({
   airPortTo,
   codeAirFlight,
 }) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false)
 
   const toggleAccordion = () => {
-    setIsOpen(!isOpen);
-  };
+    setIsOpen(!isOpen)
+  }
   return (
     <>
       <div
-        className={`${styles.mainCol}  w-1/2 mx-auto border-2 rounded-lg border-third-purple mb-1`}
+        className={`${styles.mainCol} w-1/2 mx-auto border-2 rounded-xl border-third-purple mb-1`}
       >
         <button
-          className="flex items-center justify-between w-full p-4 text-lg font-medium text-left bg-white cursor-pointer rounded-lg b"
+          className="flex items-center justify-between w-full p-4 text-lg font-medium text-left bg-white cursor-pointer rounded-xl b"
           onClick={toggleAccordion}
         >
           <span className="flex items-center gap-2 text-sm">
@@ -50,7 +50,7 @@ const AccordionDetail = ({
             )}
           </span>
         </button>
-        <div className="flex items-center justify-center gap-4 w-full p-4 text-lg font-medium bg-white cursor-pointer rounded-lg b">
+        <div className="flex items-center justify-center gap-4 w-full p-4 text-lg font-medium bg-white cursor-pointer rounded-xl b">
           <span>
             <div>{hourAttendate}</div>
             <div>{Departure}</div>
@@ -123,7 +123,7 @@ const AccordionDetail = ({
         )}
       </div>
     </>
-  );
-};
+  )
+}
 
-export default AccordionDetail;
+export default AccordionDetail
