@@ -1,20 +1,20 @@
-import { styles } from "@/styles/styles";
-import { LuArrowLeft, LuSearch, LuFilter, LuX } from "react-icons/lu";
-import { AiOutlineSearch } from "react-icons/ai";
-import { useState } from "react";
+import { styles } from "@/styles/styles"
+import { LuArrowLeft, LuSearch, LuFilter, LuX } from "react-icons/lu"
+import { AiOutlineSearch } from "react-icons/ai"
+import { useState } from "react"
 
-import React from "react";
+import React from "react"
 
 const Button = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false)
 
   const openModal = () => {
-    setIsOpen(true);
-  };
+    setIsOpen(true)
+  }
 
   const closeModal = () => {
-    setIsOpen(false);
-  };
+    setIsOpen(false)
+  }
 
   return (
     <>
@@ -48,7 +48,7 @@ const Button = () => {
         <div className="w-7/12 border-t-2 border-slate-200"></div>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default Button;
+export default Button

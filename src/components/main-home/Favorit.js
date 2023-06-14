@@ -1,6 +1,6 @@
-import React from 'react'
-import { styles } from '@/styles/styles'
-import { BiSearchAlt2 } from 'react-icons/bi'
+import React from "react"
+import { styles } from "@/styles/styles"
+import { BiSearchAlt2 } from "react-icons/bi"
 
 const Favorit = () => {
   return (
@@ -61,12 +61,12 @@ const Favorit = () => {
           />
           <div className='px-6 py-4'>
             <div className='font-semibold text-xl mb-2'>
-              Jakarta -{'>'} Bangkok
+              Jakarta -{">"} Bangkok
             </div>
             <p className='font-bold text-purple-800 text-base'>Airasia</p>
             <p className='text-black'>10-10-2023</p>
             <p className='text-black'>
-              Mulai Dari <span style={{ color: 'red' }}>Rp. 950.000</span>
+              Mulai Dari <span style={{ color: "red" }}>Rp. 950.000</span>
             </p>
           </div>
         </div>
@@ -78,12 +78,12 @@ const Favorit = () => {
           />
           <div className='px-6 py-4'>
             <div className='font-semibold text-xl mb-2'>
-              Jakarta -{'>'} Bangkok
+              Jakarta -{">"} Bangkok
             </div>
             <p className='font-bold text-purple-800 text-base'>Airasia</p>
             <p className='text-black'>10-10-2023</p>
             <p className='text-black'>
-              Mulai Dari <span style={{ color: 'red' }}>Rp. 950.000</span>
+              Mulai Dari <span style={{ color: "red" }}>Rp. 950.000</span>
             </p>
           </div>
         </div>
@@ -95,12 +95,12 @@ const Favorit = () => {
           />
           <div className='px-6 py-4'>
             <div className='font-semibold text-xl mb-2'>
-              Jakarta -{'>'} Bangkok
+              Jakarta -{">"} Bangkok
             </div>
             <p className='font-bold text-purple-800 text-base'>Airasia</p>
             <p className='text-black'>10-10-2023</p>
             <p className='text-black'>
-              Mulai Dari <span style={{ color: 'red' }}>Rp. 950.000</span>
+              Mulai Dari <span style={{ color: "red" }}>Rp. 950.000</span>
             </p>
           </div>
         </div>

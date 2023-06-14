@@ -1,5 +1,5 @@
-import React from 'react'
-import MainFligth from '@/views/fligth/MainFligth'
+import React from "react"
+import MainFligth from "@/views/fligth/MainFligth"
 
 const index = () => {
   return (

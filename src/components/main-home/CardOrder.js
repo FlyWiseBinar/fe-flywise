@@ -1,9 +1,9 @@
 
-import React from 'react'
-import { styles } from '@/styles/styles'
-import { LuPlaneTakeoff, LuPlaneLanding } from 'react-icons/lu'
-import { MdDateRange, MdOutlineAirlineSeatReclineNormal } from 'react-icons/md'
-import { BsRepeat } from 'react-icons/bs'
+import React from "react"
+import { styles } from "@/styles/styles"
+import { LuPlaneTakeoff, LuPlaneLanding } from "react-icons/lu"
+import { MdDateRange, MdOutlineAirlineSeatReclineNormal } from "react-icons/md"
+import { BsRepeat } from "react-icons/bs"
 
 const CardOrder = () => {
   return (
@@ -13,7 +13,7 @@ const CardOrder = () => {
       >
         <div className='flex flex-col bg-white items-center justify-center lg:w-[750px] md:w-[700px] w-[350px] gap-5 rounded-xl shadow-xl p-5 border-solid border-[1px] border-slate-400'>
           <h3 className='self-start font-bold text-xl'>
-            Pilih Jadwal Penerbangan spesial di{' '}
+            Pilih Jadwal Penerbangan spesial di{" "}
             <span className='text-main-purple'>FlyWise!</span>
           </h3>
 

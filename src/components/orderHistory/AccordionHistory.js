@@ -1,14 +1,13 @@
-import React from "react";
-import { useState, useEffect } from "react";
-import { styles } from "@/styles/styles";
+import React from "react"
+import { useState, useEffect } from "react"
+import { styles } from "@/styles/styles"
 import {
   LuSend,
-  LuBaggageClaim,
   LuChevronDown,
   LuChevronUp,
-} from "react-icons/lu";
-import { MdLocationOn } from "react-icons/md";
-import axios from "axios";
+} from "react-icons/lu"
+import { MdLocationOn } from "react-icons/md"
+import axios from "axios"
 
 export default function AccordionHistory({
   orders,
@@ -30,33 +29,33 @@ export default function AccordionHistory({
   namePassenger,
   idPassenger,
 }) {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false)
 
-  const [data, setData] = useState(null);
+  const [data, setData] = useState(null)
 
   useEffect(() => {
-    fetchData();
-  }, []);
+    fetchData()
+  }, [])
 
   const fetchData = async () => {
     try {
       const response = await fetch(
         "http://localhost:5000/v1/api/order/history"
-      );
-      const { orders } = await response.json();
-      const jsonData = orders;
-      setData(jsonData);
-      console.log("====================================");
-      console.log(jsonData);
-      console.log("====================================");
+      )
+      const { orders } = await response.json()
+      const jsonData = orders
+      setData(jsonData)
+      console.log("====================================")
+      console.log(jsonData)
+      console.log("====================================")
     } catch (error) {
-      console.log("Error fetching data:", error);
+      console.log("Error fetching data:", error)
     }
-  };
+  }
 
   const toggleAccordion = () => {
-    setIsOpen(!isOpen);
-  };
+    setIsOpen(!isOpen)
+  }
   return (
     <>
       {data?.map((item, index) => (
@@ -197,7 +196,7 @@ export default function AccordionHistory({
               </div>
               <div className="flex justify-between text-lg font-bold">
                 <p>Total</p>
-                <p className="text-main-purple">IDR {item.order.totalPrice.toLocaleString('id-ID')}</p>
+                <p className="text-main-purple">IDR {item.order.totalPrice.toLocaleString("id-ID")}</p>
               </div>
               <div className="flex justify-end mt-5">
                 <button className="px-16 py-3 rounded-2xl bg-main-purple hover:bg-second-purple text-white">
@@ -209,5 +208,5 @@ export default function AccordionHistory({
         </div>
       ))}
     </>
-  );
+  )
 }

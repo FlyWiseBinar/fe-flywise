@@ -1,3 +1,4 @@
+import React from "react"
 import { styles } from "@/styles/styles"
 
 const Banner = () => {
@@ -9,15 +10,15 @@ const Banner = () => {
       >
         <div className="text-4xl font-bold px-[5%] py-5 w-full flex flex-col text-white gap-5 ">
           <i>Diskon Hari Ini</i>
-          <p className="text-main-orange">{'85%'}</p>
+          <p className="text-main-orange">{"85%"}</p>
         </div>
 
         <div
           className="w-full h-[232px] flex justify-end "
           style={{
-            backgroundImage: `url('/assets/banner.png')`,
-            backgroundRepeat: 'no-repeat',
-            backgroundPosition: 'right',
+            backgroundImage: "url('/assets/banner.png')",
+            backgroundRepeat: "no-repeat",
+            backgroundPosition: "right",
           }}
         >
           <div className="w-full h-auto bg-gradient-to-r  from-main-purple to-transparent"></div>

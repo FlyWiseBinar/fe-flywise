@@ -1,7 +1,7 @@
 
-import React from 'react'
-import Navbar from '@/components/Navbar'
-import '@/styles/globals.css'
+import React from "react"
+import Navbar from "@/components/Navbar"
+import "@/styles/globals.css"
 
 
 // eslint-disable-next-line react/prop-types
