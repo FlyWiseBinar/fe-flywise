@@ -1,5 +1,5 @@
-import Image from "next/image";
-import React from "react";
+import Image from "next/image"
+import React from "react"
 
 const Forgotpassword = () => {
   return (
@@ -86,7 +86,7 @@ const Forgotpassword = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Forgotpassword;
+export default Forgotpassword

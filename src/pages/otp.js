@@ -1,22 +1,22 @@
-import React, {useState} from "react";
-import axios from 'axios'
-import {useRouter} from "next/router";
-import {useSearchParams} from 'next/navigation'
+import React, {useState} from "react"
+import axios from "axios"
+import {useRouter} from "next/router"
+import {useSearchParams} from "next/navigation"
 
 const Otp = () => {
 	const router = useRouter()
 	const searchParams = useSearchParams()
-	const email = searchParams?.get('email')
+	const email = searchParams?.get("email")
 	const initialOtp = {
-		first: '',
-		second: '',
-		third: '',
-		fourth: '',
-		fifth: '',
-		sixth: '',
+		first: "",
+		second: "",
+		third: "",
+		fourth: "",
+		fifth: "",
+		sixth: "",
 	}
 	const [otp, setOtp] = useState(initialOtp)
-	const [errors, setErrors] = useState('')
+	const [errors, setErrors] = useState("")
 
 	const handleChange = (e) => {
 		setOtp({
@@ -27,14 +27,14 @@ const Otp = () => {
 	const handleSubmit = async (e) => {
 		e.preventDefault()
 		try {
-			const response = await axios.post('https://be-flywise-stagging-jcbxz3zpbq-as.a.run.app/v1/api/auth/verify-otp', {
+			const response = await axios.post("https://be-flywise-stagging-jcbxz3zpbq-as.a.run.app/v1/api/auth/verify-otp", {
 				email: email,
 				otp: otp.first + otp.second + otp.third + otp.fourth + otp.fifth + otp.sixth
 			})
-			if(response.status == 200) {
-				router.push('/login')
+			if (response.status == 200) {
+				router.push("/login")
 			}
-		} catch(error) {
+		} catch (error) {
 			console.log(error)
 			setErrors(error.response.data.message)
 		}
@@ -68,7 +68,7 @@ const Otp = () => {
 											className="m-2 border h-10 w-10 text-center form-control rounded"
 											type="text"
 											id="first"
-											maxlength="1"
+											maxLength="1"
 											value={otp.first}
 											onChange={handleChange}
 										/>
@@ -76,7 +76,7 @@ const Otp = () => {
 											className="m-2 border h-10 w-10 text-center form-control rounded"
 											type="text"
 											id="second"
-											maxlength="1"
+											maxLength="1"
 											value={otp.second}
 											onChange={handleChange}
 										/>
@@ -84,7 +84,7 @@ const Otp = () => {
 											className="m-2 border h-10 w-10 text-center form-control rounded"
 											type="text"
 											id="third"
-											maxlength="1"
+											maxLength="1"
 											value={otp.third}
 											onChange={handleChange}
 										/>
@@ -92,7 +92,7 @@ const Otp = () => {
 											className="m-2 border h-10 w-10 text-center form-control rounded"
 											type="text"
 											id="fourth"
-											maxlength="1"
+											maxLength="1"
 											value={otp.fourth}
 											onChange={handleChange}
 										/>
@@ -100,7 +100,7 @@ const Otp = () => {
 											className="m-2 border h-10 w-10 text-center form-control rounded"
 											type="text"
 											id="fifth"
-											maxlength="1"
+											maxLength="1"
 											value={otp.fifth}
 											onChange={handleChange}
 										/>
@@ -108,7 +108,7 @@ const Otp = () => {
 											className="m-2 border h-10 w-10 text-center form-control rounded"
 											type="text"
 											id="sixth"
-											maxlength="1"
+											maxLength="1"
 											value={otp.sixth}
 											onChange={handleChange}
 										/>
@@ -138,7 +138,7 @@ const Otp = () => {
 				</div>
 			</form>
 		</div>
-	);
-};
+	)
+}
 
-export default Otp;
+export default Otp

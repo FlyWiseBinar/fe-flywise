@@ -1,17 +1,17 @@
-import Image from "next/image";
-import React from "react";
-import axios from "axios";
-import {useState} from "react";
-import {useRouter} from "next/router";
+import Image from "next/image"
+import React from "react"
+import axios from "axios"
+import {useState} from "react"
+import {useRouter} from "next/router"
 
 const Register = () => {
 	const router = useRouter()
 	const [errors, setErrors] = useState([])
 	const initialForm = {
-		fullName: '',
-		email: '',
-		password: '',
-		telephone: '',
+		fullName: "",
+		email: "",
+		password: "",
+		telephone: "",
 	}
 	const [form, setForm] = useState(initialForm)
 
@@ -25,15 +25,15 @@ const Register = () => {
 	const handleSubmit = async (e) => {
 		e.preventDefault()
 		try {
-			const response = await axios.post('https://be-flywise-stagging-jcbxz3zpbq-as.a.run.app/v1/api/auth/register', form)
+			const response = await axios.post("https://be-flywise-stagging-jcbxz3zpbq-as.a.run.app/v1/api/auth/register", form)
 			setForm(initialForm)
-			if(response.status == 201) {
-				await axios.post('https://be-flywise-stagging-jcbxz3zpbq-as.a.run.app/v1/api/auth/send-otp', {
+			if (response.status == 201) {
+				await axios.post("https://be-flywise-stagging-jcbxz3zpbq-as.a.run.app/v1/api/auth/send-otp", {
 					email: form.email
 				})
 				router.push(`/otp?email=${form.email}`)
 			}
-		} catch(error) {
+		} catch (error) {
 			setErrors(error.response.data.errors)
 		}
 	}
@@ -82,7 +82,7 @@ const Register = () => {
 
 								{
 									errors && errors.map(err => (
-										err.field == 'fullName' ? <p className="text-red-500">{err.message}</p> : ''
+										err.field == "fullName" ? <p className="text-red-500">{err.message}</p> : ""
 									))
 								}
 
@@ -110,7 +110,7 @@ const Register = () => {
 								/>
 								{
 									errors && errors.map(err => (
-										err.field == 'email' ? <p className="text-red-500">{err.message}</p> : ''
+										err.field == "email" ? <p className="text-red-500">{err.message}</p> : ""
 									))
 								}
 							</div>
@@ -133,7 +133,7 @@ const Register = () => {
 								/>
 								{
 									errors && errors.map(err => (
-										err.field == 'telephone' ? <p className="text-red-500">{err.message}</p> : ''
+										err.field == "telephone" ? <p className="text-red-500">{err.message}</p> : ""
 									))
 								}
 							</div>
@@ -156,7 +156,7 @@ const Register = () => {
 								/>
 								{
 									errors && errors.map(err => (
-										err.field == 'password' ? <p className="text-red-500">{err.message}</p> : ''
+										err.field == "password" ? <p className="text-red-500">{err.message}</p> : ""
 									))
 								}
 							</div>
@@ -183,7 +183,7 @@ const Register = () => {
 				</div>
 			</div>
 		</div>
-	);
-};
+	)
+}
 
-export default Register;
+export default Register

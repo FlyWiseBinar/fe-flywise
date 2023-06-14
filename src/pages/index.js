@@ -1,8 +1,10 @@
-import Head from 'next/head'
-import Login from './login'
-import Register from './register'
+import Head from "next/head"
+import Login from "./login"
+import Register from "./register"
+import MainHome from "@/views/home/MainHome"
+import React from "react"
 
-export default function Home() {
+export default function index() {
   return (
     <div>
       <Head>
@@ -11,6 +13,5 @@ export default function Home() {
       </Head>
       <Login />
     </div>
-  );
+  )
 }
-

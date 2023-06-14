@@ -1,15 +1,15 @@
-import Image from "next/image";
-import React, {useState} from "react";
-import axios from "axios";
-import {useRouter} from "next/router";
-import {setCookie} from "cookies-next";
+import Image from "next/image"
+import React, {useState} from "react"
+import axios from "axios"
+import {useRouter} from "next/router"
+import {setCookie} from "cookies-next"
 
 const Login = () => {
 	const router = useRouter()
 	const [errors, setErrors] = useState([])
 	const initialForm = {
-		email: '',
-		password: '',
+		email: "",
+		password: "",
 	}
 	const [form, setForm] = useState(initialForm)
 
@@ -23,20 +23,20 @@ const Login = () => {
 	const handleSubmit = async (e) => {
 		e.preventDefault()
 		try {
-			const response = await axios.post('https://be-flywise-stagging-jcbxz3zpbq-as.a.run.app/v1/api/auth/login', {
+			const response = await axios.post("https://be-flywise-stagging-jcbxz3zpbq-as.a.run.app/v1/api/auth/login", {
 				email: form.email,
 				password: form.password,
 			})
-			if(response.status == 200) {
+			if (response.status == 200) {
 				console.log("berhasil login")
 				console.log(response.data)
 				setCookie(
-					'accessToken',
+					"accessToken",
 					response.data.accessToken,
 					{expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 10)}
 				)
 			}
-		} catch(error) {
+		} catch (error) {
 			setErrors(error.response.data.errors)
 			console.log(error)
 			console.log("gagal login")
@@ -85,7 +85,7 @@ const Login = () => {
 								/>
 								{
 									errors && errors.map(err => (
-										err.field == 'email' ? <p className="text-red-500">{err.message}</p> : ''
+										err.field == "email" ? <p className="text-red-500">{err.message}</p> : ""
 									))
 								}
 							</div>
@@ -120,7 +120,7 @@ const Login = () => {
 								/>
 								{
 									errors && errors.map(err => (
-										err.field == 'password' ? <p className="text-red-500">{err.message}</p> : ''
+										err.field == "password" ? <p className="text-red-500">{err.message}</p> : ""
 									))
 								}
 							</div>
@@ -148,7 +148,7 @@ const Login = () => {
 				</div>
 			</div>
 		</div>
-	);
-};
+	)
+}
 
-export default Login;
+export default Login
