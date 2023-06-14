@@ -3,3 +3,4 @@ export const styles = {
     mainCol : "flex flex-col justify-center items-center w-full",
     mainMaxWidth : "w-full max-w-[1440px]",
 }
+
