@@ -3,7 +3,7 @@ import AccordionHistory from "./AccordionHistory"
 
 const ImportAccordion = () => {
   return (
-    <div className=" mx-auto w-1/2 mt-5">
+    <div className=" mx-auto w-2/3 mt-5">
     <AccordionHistory
       hourAttendate="07:00"
       hourTo="09:00"
