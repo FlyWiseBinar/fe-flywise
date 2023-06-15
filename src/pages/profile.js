@@ -8,7 +8,7 @@ import {LuLogOut} from "react-icons/lu";
 
 import React from "react"
 
-const Button = () => {
+const Profile = () => {
   const [isOpen, setIsOpen] = useState(false)
 
   const openModal = () => {
@@ -80,4 +80,4 @@ const Button = () => {
   )
 }
 
-export default Button
+export default Profile
