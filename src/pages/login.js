@@ -4,8 +4,8 @@ import axios from "axios"
 import {useRouter} from "next/router"
 import {setCookie} from "cookies-next"
 import {PropagateLoader} from "react-spinners"
-import {ToastContainer, toast} from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import {ToastContainer, toast} from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 const Login = () => {
 	const router = useRouter()
@@ -21,8 +21,8 @@ const Login = () => {
 		setForm({
 			...form,
 			[e.target.name]: e.target.value,
-		});
-	};
+		})
+	}
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
