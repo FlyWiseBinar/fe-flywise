@@ -48,6 +48,24 @@ const Login = () => {
 			setErrors(error.response.data.errors)
 			console.log(error)
 			console.log("gagal login")
+			if(error.response.status == 403) {
+				toast.error(`${error.response.data.message}, redirect in 3s...`, {
+					position: "bottom-center",
+					autoClose: 2000,
+					hideProgressBar: true,
+					closeOnClick: true,
+					pauseOnHover: true,
+					draggable: true,
+					progress: undefined,
+					theme: "colored",
+				});
+				await axios.post("https://be-flywise-stagging-jcbxz3zpbq-as.a.run.app/v1/api/auth/send-otp", {
+					email: form.email
+				})
+				setTimeout(() => {
+					router.push(`/otp-register?email=${form.email}`)
+				}, 3000)
+			}
 		}
 	};
 

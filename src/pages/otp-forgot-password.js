@@ -5,7 +5,6 @@ import {useSearchParams} from "next/navigation"
 import {ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-
 const Otp = () => {
 	const router = useRouter()
 	const searchParams = useSearchParams()
@@ -80,6 +79,16 @@ const Otp = () => {
 				});
 			}
 		} catch(error) {
+			toast.error(error.response.data.message, {
+				position: "bottom-center",
+				autoClose: 2000,
+				hideProgressBar: true,
+				closeOnClick: true,
+				pauseOnHover: true,
+				draggable: true,
+				progress: undefined,
+				theme: "colored",
+			})
 			console.log(error)
 		}
 	}
@@ -171,7 +180,7 @@ const Otp = () => {
 									<div className="flex justify-center text-center mt-5">
 										<div onClick={handleResendOtp} className="flex items-center text-black hover:text-violet-600 cursor-pointer">
 											<span className="font-medium">
-												Kirim ulang OTP dalam 60 detik
+												Kirim ulang OTP
 											</span>
 											<i className="bx bx-caret-right ml-1"></i>
 										</div>

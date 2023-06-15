@@ -52,10 +52,22 @@ const Forgotpassword = () => {
 			}
 		} catch(error) {
 			setLoading(false)
+			console.log(error)
+			if(error.response.status == 403) {
+				toast.error(error.response.data.message, {
+					position: "bottom-center",
+					autoClose: 2000,
+					hideProgressBar: true,
+					closeOnClick: true,
+					pauseOnHover: true,
+					draggable: true,
+					progress: undefined,
+					theme: "colored",
+				});
+			}
 			setErrors(error.response.data.errors)
 		}
 	}
-	console.log(form)
 	return (
 		<div className="flex flex-col md:flex-row h-screen">
 			<div className="flex w-full md:w-1/2 bg-orange-400 justify-around items-center">
