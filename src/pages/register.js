@@ -3,10 +3,13 @@ import React from "react"
 import axios from "axios"
 import {useState} from "react"
 import {useRouter} from "next/router"
+import {PropagateLoader} from "react-spinners"
 
 const Register = () => {
 	const router = useRouter()
 	const [errors, setErrors] = useState([])
+	const [loading, setLoading] = useState(false)
+
 	const initialForm = {
 		fullName: "",
 		email: "",
@@ -24,16 +27,19 @@ const Register = () => {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault()
+		setLoading(true)
 		try {
 			const response = await axios.post("https://be-flywise-stagging-jcbxz3zpbq-as.a.run.app/v1/api/auth/register", form)
 			setForm(initialForm)
-			if (response.status == 201) {
+			if(response.status == 201) {
 				await axios.post("https://be-flywise-stagging-jcbxz3zpbq-as.a.run.app/v1/api/auth/send-otp", {
 					email: form.email
 				})
 				router.push(`/otp?email=${form.email}`)
 			}
-		} catch (error) {
+			setLoading(false)
+		} catch(error) {
+			setLoading(false)
 			setErrors(error.response.data.errors)
 		}
 	}
@@ -109,7 +115,7 @@ const Register = () => {
 									onChange={handleChange}
 								/>
 								{
-									errors && errors.map((err,index) => (
+									errors && errors.map((err, index) => (
 										err.field == "email" ? <p key={index} className="text-red-500">{err.message}</p> : ""
 									))
 								}
@@ -132,7 +138,7 @@ const Register = () => {
 									onChange={handleChange}
 								/>
 								{
-									errors && errors.map((err,index) => (
+									errors && errors.map((err, index) => (
 										err.field == "telephone" ? <p key={index} className="text-red-500">{err.message}</p> : ""
 									))
 								}
@@ -155,7 +161,7 @@ const Register = () => {
 									onChange={handleChange}
 								/>
 								{
-									errors && errors.map((err,index) => (
+									errors && errors.map((err, index) => (
 										err.field == "password" ? <p key={index} className="text-red-500">{err.message}</p> : ""
 									))
 								}
@@ -163,12 +169,16 @@ const Register = () => {
 						</div>
 
 						<div>
-							<button
-								type="submit"
-								className="flex w-full justify-center rounded-2xl bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-							>
-								Daftar
-							</button>
+							{
+								!loading ?
+									<button type="submit" className="flex w-full justify-center rounded-2xl bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+										Daftar
+									</button>
+									:
+									<div className="flex justify-center">
+										<PropagateLoader color="#d6b136" speedMultiplier={4} />
+									</div>
+							}
 						</div>
 					</form>
 					<p className="mt-10 text-center text-sm text-gray-500">
