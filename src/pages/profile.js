@@ -58,8 +58,8 @@ const Button = () => {
         </div>
 
 <div className="w-full pt-4">
-<div class="flex rounded-t-lg bg-third-purple py-1 px-28">
-<h3 class="font-medium text-white left-2">Data Diri</h3>
+<div className="flex rounded-t-lg bg-third-purple py-1 px-28">
+<h3 className="font-medium text-white">Data Diri</h3>
 
 
 
