@@ -5,7 +5,7 @@ import ImportAccordion from "@/components/orderHistory/ImportAccordion"
 const MainOrderHistory = () => {
   return (
     <div className="mb-16">
-      <div className="w-3/6 flex justify-center">
+      <div className="w-1/2 flex justify-center">
         <div className={"py-10 font-bold text-xl"}>Riwayat Pemesanan</div>
       </div>
       <Button/>

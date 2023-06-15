@@ -3,9 +3,10 @@ import MainOrderHistory from "@/views/orderHistory/MainOrderHistory"
 
 const index = () => {
   return (
-    <div>
-      <MainOrderHistory/>
-    </div>
+    <>
+    <MainOrderHistory/>
+    </>
+
   )
 }
 
