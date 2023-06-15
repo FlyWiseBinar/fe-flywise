@@ -54,11 +54,11 @@ const Otp = () => {
 							<div className="w-full">
 								<div className="bg-white h-64 py-3 rounded text-center">
 									<h1 className="text-2xl mx-14 text-left font-medium">
-										Masukkan OTP
+										Register
 									</h1>
 									<div className="flex flex-col mt-4">
 										<span>Ketik 6 digit kode yang dikirimkan ke</span>
-										<span className="font-bold">******@gmail.com</span>
+										<span className="font-bold">{email??'******@yourdomain'}</span>
 									</div>
 									<div
 										id="otp"
