@@ -8,7 +8,6 @@ import {getCookie} from "cookies-next"
 import axios from "axios"
 
 const Profile = () => {
-	const [user, setUser] = useState({})
 	const token = getCookie('accessToken');
 	const [form, setForm] = useState({
 		fullName: '',
@@ -21,19 +20,40 @@ const Profile = () => {
 				Authorization: `Bearer ${token}`
 			}
 		}).then(res => {
-			setUser(res.data.data)
+
 			setForm({
-				...form,
 				email: res.data.data.email,
 				fullName: res.data.data.fullName,
-				telephone: res.data.data.email,
+				telephone: res.data.data.telephone,
 			})
 		})
 	}, [])
 
-	const handleSubmit = () => {
 
+  const handleChange = (e) => {
+		setForm({
+			...form,
+			[e.target.name]: e.target.value,
+		})
 	}
+
+	const handleSubmit = async (e) => {
+
+    e.preventDefault() //untuk menghindari refresh laman
+
+    await axios.put("https://be-flywise-stagging-jcbxz3zpbq-as.a.run.app/v1/api/auth/profile",{
+      fullName:form.fullName,
+      telephone:form.telephone,
+      email:form.email,
+    }, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    },
+    ).then(res=>console.log(res))
+	}
+
+ console.log(form)
 
 	return (
 		<>
@@ -79,27 +99,32 @@ const Profile = () => {
 							<div className="rounded-t-lg bg-third-purple py-2 pl-4 font-medium text-white mb-3">Data Diri</div>
 							<div className="pl-4 pt-2 pb-1 text-second-purple text-sm font-bold">Nama Lengkap</div>
 							<input
+              onChange={handleChange}
 								className="ml-4 pl-4 border border-gray-300 rounded-md py-2 hover:border-main-purple outline-none"
 								type="text"
-								placeholder="John Doe"
 								id="fullname"
 								value={form.fullName}
+                name="fullName"
 							/>
 							<div className="pl-4 pt-2 pb-1 text-second-purple text-sm font-bold">Nomor Telepon</div>
 							<input
+              onChange={handleChange}
 								className="ml-4 pl-4 border border-gray-300 rounded-md py-2 hover:border-main-purple outline-none"
 								type="text"
 								placeholder="+6213486777"
 								id="telephone"
 								value={form.telephone}
+                name="telephone"
 							/>
 							<div className="pl-4 pt-2 pb-1 text-second-purple text-sm font-bold">Email</div>
 							<input
+              onChange={handleChange}
 								className="ml-4 pl-4 border border-gray-300 rounded-md py-2 hover:border-main-purple outline-none"
 								type="text"
 								placeholder="JohnDoe@gmail.com"
 								id="email"
 								value={form.email}
+                name="email"
 							/>
 							<div className="flex self-center pt-7"><button className="bg-second-purple hover:bg-main-purple px-8 py-1.5 rounded-lg text-white">Simpan</button></div>
 						</div>
