@@ -2,6 +2,8 @@ import React, {useState} from "react"
 import axios from "axios"
 import {useRouter} from "next/router"
 import {useSearchParams} from "next/navigation"
+import {ToastContainer, toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Otp = () => {
 	const router = useRouter()
@@ -16,7 +18,6 @@ const Otp = () => {
 		sixth: "",
 	}
 	const [otp, setOtp] = useState(initialOtp)
-	const [errors, setErrors] = useState("")
 
 	const handleChange = (e) => {
 		setOtp({
@@ -27,23 +28,85 @@ const Otp = () => {
 	const handleSubmit = async (e) => {
 		e.preventDefault()
 		try {
-			const response = await axios.post("https://be-flywise-stagging-jcbxz3zpbq-as.a.run.app/v1/api/auth/verify-otp", {
+			const response = await axios.post("https://be-flywise-stagging-jcbxz3zpbq-as.a.run.app/v1/api/auth/reset-password/verify-otp", {
 				email: email,
 				otp: otp.first + otp.second + otp.third + otp.fourth + otp.fifth + otp.sixth
 			})
-			if (response.status == 200) {
-				router.push("/login")
+			if(response.status == 200) {
+				setTimeout(() => {
+					router.push(`/forgotpassword?email=${email}`)
+				}, 3000)
+				toast.success(`${response.data.message}, will redirect 3s...`, {
+					position: "bottom-center",
+					autoClose: 2000,
+					hideProgressBar: true,
+					closeOnClick: true,
+					pauseOnHover: true,
+					draggable: true,
+					progress: undefined,
+					theme: "colored",
+				});
 			}
-		} catch (error) {
+		} catch(error) {
 			console.log(error)
-			setErrors(error.response.data.message)
+			toast.error(error.response.data.message, {
+				position: "bottom-center",
+				autoClose: 2000,
+				hideProgressBar: true,
+				closeOnClick: true,
+				pauseOnHover: true,
+				draggable: true,
+				progress: undefined,
+				theme: "colored",
+			})
 		}
 	}
-	
-	console.log(errors)
+	const handleResendOtp = async () => {
+		try {
+			const response = await axios.post('https://be-flywise-stagging-jcbxz3zpbq-as.a.run.app/v1/api/auth/reset-password/resend-otp', {
+				email
+			})
+			if(response.status == 201) {
+				toast.success(`${response.data.message}, check your email`, {
+					position: "bottom-center",
+					autoClose: 2000,
+					hideProgressBar: true,
+					closeOnClick: true,
+					pauseOnHover: true,
+					draggable: true,
+					progress: undefined,
+					theme: "colored",
+				});
+			}
+		} catch(error) {
+			toast.error(error.response.data.message, {
+				position: "bottom-center",
+				autoClose: 2000,
+				hideProgressBar: true,
+				closeOnClick: true,
+				pauseOnHover: true,
+				draggable: true,
+				progress: undefined,
+				theme: "colored",
+			})
+			console.log(error)
+		}
+	}
 
 	return (
 		<div className="fixed z-50 top-4 bg-white w-full">
+			<ToastContainer
+				position="bottom-center"
+				autoClose={2000}
+				hideProgressBar
+				newestOnTop={false}
+				closeOnClick
+				rtl={false}
+				pauseOnFocusLoss
+				draggable
+				pauseOnHover
+				theme="light"
+			/>
 			<div className="container flex z-50 mx-28">
 				<img src="/logo.png" alt="logo" />
 			</div>
@@ -54,11 +117,11 @@ const Otp = () => {
 							<div className="w-full">
 								<div className="bg-white h-64 py-3 rounded text-center">
 									<h1 className="text-2xl mx-14 text-left font-medium">
-										Masukkan OTP
+										Reset Password
 									</h1>
 									<div className="flex flex-col mt-4">
 										<span>Ketik 6 digit kode yang dikirimkan ke</span>
-										<span className="font-bold">******@gmail.com</span>
+										<span className="font-bold">{email ?? '******@yourdomain'}</span>
 									</div>
 									<div
 										id="otp"
@@ -115,12 +178,12 @@ const Otp = () => {
 									</div>
 
 									<div className="flex justify-center text-center mt-5">
-										<a className="flex items-center text-black hover:text-violet-600 cursor-pointer">
+										<div onClick={handleResendOtp} className="flex items-center text-black hover:text-violet-600 cursor-pointer">
 											<span className="font-medium">
-												Kirim ulang OTP dalam 60 detik
+												Kirim ulang OTP
 											</span>
 											<i className="bx bx-caret-right ml-1"></i>
-										</a>
+										</div>
 									</div>
 								</div>
 

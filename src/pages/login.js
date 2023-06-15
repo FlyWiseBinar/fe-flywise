@@ -4,6 +4,8 @@ import axios from "axios"
 import {useRouter} from "next/router"
 import {setCookie} from "cookies-next"
 import {PropagateLoader} from "react-spinners"
+import {ToastContainer, toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Login = () => {
 	const router = useRouter()
@@ -46,9 +48,73 @@ const Login = () => {
 			setErrors(error.response.data.errors)
 			console.log(error)
 			console.log("gagal login")
+			if(error.response.status == 403) {
+				toast.error(`${error.response.data.message}, redirect in 3s...`, {
+					position: "bottom-center",
+					autoClose: 2000,
+					hideProgressBar: true,
+					closeOnClick: true,
+					pauseOnHover: true,
+					draggable: true,
+					progress: undefined,
+					theme: "colored",
+				});
+				await axios.post("https://be-flywise-stagging-jcbxz3zpbq-as.a.run.app/v1/api/auth/send-otp", {
+					email: form.email
+				})
+				setTimeout(() => {
+					router.push(`/otp-register?email=${form.email}`)
+				}, 3000)
+			}
 		}
 	};
 
+	const handleForgotPassword = async () => {
+		if(!form.email) {
+			toast.error('email is required to reset password', {
+				position: "bottom-center",
+				autoClose: 2000,
+				hideProgressBar: true,
+				closeOnClick: true,
+				pauseOnHover: true,
+				draggable: true,
+				progress: undefined,
+				theme: "colored",
+			});
+		} else {
+			try {
+				const response = await axios.post('https://be-flywise-stagging-jcbxz3zpbq-as.a.run.app/v1/api/auth/reset-password/send-otp', {
+					email: form.email
+				})
+				if(response.status == 201) {
+					setTimeout(() => {
+						router.push(`/otp-forgot-password?email=${form.email}`)
+					}, 3000)
+					toast.success(`${response.data.message}, will redirect 3s...`, {
+						position: "bottom-center",
+						autoClose: 2000,
+						hideProgressBar: true,
+						closeOnClick: true,
+						pauseOnHover: true,
+						draggable: true,
+						progress: undefined,
+						theme: "colored",
+					});
+				}
+			} catch(error) {
+				toast.error('email not found', {
+					position: "bottom-center",
+					autoClose: 2000,
+					hideProgressBar: true,
+					closeOnClick: true,
+					pauseOnHover: true,
+					draggable: true,
+					progress: undefined,
+					theme: "colored",
+				})
+			}
+		}
+	}
 	return (
 		<div className="flex flex-col md:flex-row h-screen">
 			<div className="flex w-full md:w-1/2 bg-orange-400 justify-around items-center">
@@ -110,12 +176,24 @@ const Login = () => {
 									Password
 								</label>
 								<div className="text-sm">
-									<a
-										href="/forgotpassword"
-										className="font-semibold text-indigo-600 hover:text-indigo-500"
+									<div
+										className="font-semibold text-indigo-600 hover:text-indigo-500 cursor-pointer"
+										onClick={handleForgotPassword}
 									>
 										Lupa Kata Sandi
-									</a>
+									</div>
+									<ToastContainer
+										position="bottom-center"
+										autoClose={2000}
+										hideProgressBar
+										newestOnTop={false}
+										closeOnClick
+										rtl={false}
+										pauseOnFocusLoss
+										draggable
+										pauseOnHover
+										theme="light"
+									/>
 								</div>
 							</div>
 							<div className="mt-2">
