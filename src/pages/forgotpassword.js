@@ -4,16 +4,16 @@ import axios from "axios"
 import {useRouter} from "next/router"
 import {useSearchParams} from "next/navigation"
 import {PropagateLoader} from "react-spinners"
-import {ToastContainer, toast} from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import {ToastContainer, toast} from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"
 
 const Forgotpassword = () => {
 	const router = useRouter()
 	const searchParams = useSearchParams()
 	const email = searchParams?.get("email")
 	const initialForm = {
-		password: '',
-		confirm_password: ''
+		password: "",
+		confirm_password: ""
 	}
 	const [form, setForm] = useState(initialForm)
 	const [errors, setErrors] = useState([])
@@ -29,15 +29,15 @@ const Forgotpassword = () => {
 		e.preventDefault()
 		setLoading(true)
 		try {
-			const response = await axios.put('https://be-flywise-stagging-jcbxz3zpbq-as.a.run.app/v1/api/auth/reset-password/reset', {
+			const response = await axios.put("https://be-flywise-stagging-jcbxz3zpbq-as.a.run.app/v1/api/auth/reset-password/reset", {
 				email,
 				password: form.password,
 				confirm_password: form.confirm_password
 			})
-			if(response.status == 200) {
+			if (response.status == 200) {
 				setLoading(false)
 				setTimeout(() => {
-					router.push('/login')
+					router.push("/login")
 				}, 3000)
 				toast.success(`${response.data.message}, redirect login in 3s...`, {
 					position: "bottom-center",
@@ -48,12 +48,12 @@ const Forgotpassword = () => {
 					draggable: true,
 					progress: undefined,
 					theme: "colored",
-				});
+				})
 			}
-		} catch(error) {
+		} catch (error) {
 			setLoading(false)
 			console.log(error)
-			if(error.response.status == 403) {
+			if (error.response.status == 403) {
 				toast.error(error.response.data.message, {
 					position: "bottom-center",
 					autoClose: 2000,
@@ -63,7 +63,7 @@ const Forgotpassword = () => {
 					draggable: true,
 					progress: undefined,
 					theme: "colored",
-				});
+				})
 			}
 			setErrors(error.response.data.errors)
 		}

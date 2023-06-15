@@ -31,14 +31,14 @@ const Register = () => {
 		try {
 			const response = await axios.post("https://be-flywise-stagging-jcbxz3zpbq-as.a.run.app/v1/api/auth/register", form)
 			setForm(initialForm)
-			if(response.status == 201) {
+			if (response.status == 201) {
 				await axios.post("https://be-flywise-stagging-jcbxz3zpbq-as.a.run.app/v1/api/auth/send-otp", {
 					email: form.email
 				})
 				router.push(`/otp-register?email=${form.email}`)
 			}
 			setLoading(false)
-		} catch(error) {
+		} catch (error) {
 			setLoading(false)
 			setErrors(error.response.data.errors)
 		}

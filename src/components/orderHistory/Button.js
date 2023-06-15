@@ -15,20 +15,20 @@ const Button = () => {
     reference.current()
   }
   const openModal = () => {
-    setIsOpen(true);
-  };
+    setIsOpen(true)
+  }
 
   const closeModal = () => {
-    setIsOpen(false);
-  };
+    setIsOpen(false)
+  }
 
   const [value, setValue] = useState({
     startDate: new Date(),
     endDate: new Date().setMonth(11),
-  });
+  })
 
   const handleValueChange = (newValue) => {
-    console.log("newValue:", newValue);
+    console.log("newValue:", newValue)
     setValue(newValue)
   }
 
@@ -95,7 +95,7 @@ const Button = () => {
         <div className="w-7/12 border-t-2 border-slate-200"></div>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default Button;
+export default Button

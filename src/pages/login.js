@@ -4,8 +4,8 @@ import axios from "axios"
 import {useRouter} from "next/router"
 import {setCookie} from "cookies-next"
 import {PropagateLoader} from "react-spinners"
-import {ToastContainer, toast} from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import {ToastContainer, toast} from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"
 
 const Login = () => {
 	const router = useRouter()
@@ -21,11 +21,11 @@ const Login = () => {
 		setForm({
 			...form,
 			[e.target.name]: e.target.value,
-		});
-	};
+		})
+	}
 
 	const handleSubmit = async (e) => {
-		e.preventDefault();
+		e.preventDefault()
 		try {
 			setLoading(true)
 			const response = await axios.post(
@@ -34,21 +34,34 @@ const Login = () => {
 					email: form.email,
 					password: form.password,
 				}
-			);
-			if(response.status == 200) {
+			)
+			if (response.status == 200) {
 				console.log("berhasil login")
 				console.log(response.data)
 				setCookie("accessToken", response.data.accessToken, {
 					expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 10),
-				});
+				})
+				toast.success("login success, redirect in 3s...", {
+					position: "bottom-center",
+					autoClose: 2000,
+					hideProgressBar: true,
+					closeOnClick: true,
+					pauseOnHover: true,
+					draggable: true,
+					progress: undefined,
+					theme: "colored",
+				})
+				setTimeout(() => {
+					router.push("/home")
+				}, 3000)
 			}
 			setLoading(false)
-		} catch(error) {
+		} catch (error) {
 			setLoading(false)
 			setErrors(error.response.data.errors)
 			console.log(error)
 			console.log("gagal login")
-			if(error.response.status == 403) {
+			if (error.response.status == 403) {
 				toast.error(`${error.response.data.message}, redirect in 3s...`, {
 					position: "bottom-center",
 					autoClose: 2000,
@@ -58,7 +71,7 @@ const Login = () => {
 					draggable: true,
 					progress: undefined,
 					theme: "colored",
-				});
+				})
 				await axios.post("https://be-flywise-stagging-jcbxz3zpbq-as.a.run.app/v1/api/auth/send-otp", {
 					email: form.email
 				})
@@ -67,11 +80,11 @@ const Login = () => {
 				}, 3000)
 			}
 		}
-	};
+	}
 
 	const handleForgotPassword = async () => {
-		if(!form.email) {
-			toast.error('email is required to reset password', {
+		if (!form.email) {
+			toast.error("email is required to reset password", {
 				position: "bottom-center",
 				autoClose: 2000,
 				hideProgressBar: true,
@@ -80,13 +93,13 @@ const Login = () => {
 				draggable: true,
 				progress: undefined,
 				theme: "colored",
-			});
+			})
 		} else {
 			try {
-				const response = await axios.post('https://be-flywise-stagging-jcbxz3zpbq-as.a.run.app/v1/api/auth/reset-password/send-otp', {
+				const response = await axios.post("https://be-flywise-stagging-jcbxz3zpbq-as.a.run.app/v1/api/auth/reset-password/send-otp", {
 					email: form.email
 				})
-				if(response.status == 201) {
+				if (response.status == 201) {
 					setTimeout(() => {
 						router.push(`/otp-forgot-password?email=${form.email}`)
 					}, 3000)
@@ -99,10 +112,10 @@ const Login = () => {
 						draggable: true,
 						progress: undefined,
 						theme: "colored",
-					});
+					})
 				}
-			} catch(error) {
-				toast.error('email not found', {
+			} catch (error) {
+				toast.error("email not found", {
 					position: "bottom-center",
 					autoClose: 2000,
 					hideProgressBar: true,

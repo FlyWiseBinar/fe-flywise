@@ -2,8 +2,8 @@ import { styles } from "@/styles/styles"
 import { LuArrowLeft, LuSearch, LuFilter, LuX } from "react-icons/lu"
 import { useState } from "react"
 import Navbar from "@/components/Navbar"
-import {HiOutlinePencil} from "react-icons/hi";
-import {LuLogOut} from "react-icons/lu";
+import {HiOutlinePencil} from "react-icons/hi"
+import {LuLogOut} from "react-icons/lu"
 
 import React from "react"
 
