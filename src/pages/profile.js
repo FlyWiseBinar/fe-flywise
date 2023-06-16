@@ -8,6 +8,8 @@ import axios from "axios"
 import {ToastContainer, toast} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import Head from "next/head"
+import Navbar from "@/components/Navbar"
+import Link from "next/link"
 
 const Profile = () => {
 	const token = getCookie('accessToken');
@@ -90,6 +92,7 @@ const Profile = () => {
 				<title>Profile | FlyWise</title>
 				<link rel="icon" href="./logo.svg" />
 			</Head>
+      <Navbar/>
 			<ToastContainer
 				position="bottom-center"
 				autoClose={2000}
@@ -107,10 +110,10 @@ const Profile = () => {
 			</div>
 			<div className={`${styles.mainRow} gap-3`}>
 				<div>
-					<button className="flex gap-5 md:justify-end items-center bg-third-purple p-3 md:ml-auto rounded-xl text-white hover:bg-main-purple md:pr-100 duration-75">
+					<Link href="/" className="flex gap-5 md:justify-end items-center bg-third-purple p-3 md:ml-auto rounded-xl text-white hover:bg-main-purple md:pr-100 duration-75">
 						{" "}
 						<LuArrowLeft /> Beranda
-					</button>
+					</Link>
 				</div>
 			</div>
 			<div className="flex justify-center pt-3">
@@ -119,17 +122,17 @@ const Profile = () => {
 			<div className="flex flex-rows justify-center gap-20 pt-10">
 				<ul className="flex flex-col">
 					<li className="flex items-center gap-3 cursor-pointer hover:scale-105">
-						<div className="text-main-purple text-lg">
+						<Link href="/profile" className="flex items-center gap-2"><div className="text-main-purple text-lg">
 							<HiOutlinePencil />
 						</div>
-						Ubah Profil
+						Ubah Profil</Link>
 					</li>
 					<div className="border-b w-60 pt-2 border-gray-300"></div>
 					<li className="flex items-center pt-4 gap-3 cursor-pointer hover:scale-105">
-						<div className="text-main-purple text-lg">
+						<Link href="/login" className="flex items-center gap-2"><div className="text-main-purple text-lg">
 							<LuLogOut />
 						</div>
-						Keluar
+						Keluar</Link>
 					</li>
 					<div className="border-b w-60 pt-2 border-gray-300 shadow-md"></div>
 				</ul>
@@ -190,4 +193,4 @@ const Profile = () => {
 	)
 }
 
-export default Profile;
+export default Profile

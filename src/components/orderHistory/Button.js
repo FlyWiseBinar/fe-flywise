@@ -73,7 +73,7 @@ const Button = () => {
           <AiOutlineSearch />
         </div>
         {isOpen && (
-          <div className="fixed inset-0 bg-opacity-50 bg-black flex items-center justify-center">
+          <div className="fixed inset-0 bg-opacity-70 bg-black flex items-center justify-center">
             <div className="absolute bg-white rounded-lg shadow-2xl w-96 h-72">
               <div className="flex gap-3 items-center p-4 ">
                 <input
