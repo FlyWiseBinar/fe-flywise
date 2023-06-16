@@ -6,6 +6,7 @@ import {setCookie} from "cookies-next"
 import {PropagateLoader} from "react-spinners"
 import {ToastContainer, toast} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import Head from "next/head"
 
 const Login = () => {
 	const router = useRouter()
@@ -130,6 +131,10 @@ const Login = () => {
 	}
 	return (
 		<div className="flex flex-col md:flex-row h-screen">
+		<Head>
+        <title>Login | FlyWise</title>
+        <link rel="icon" href="./logo.svg" />
+      </Head>
 			<div className="flex w-full md:w-1/2 bg-orange-400 justify-around items-center">
 				<div className="flex items-center justify-center py-2 px-5">
 					<Image src="/pesawat.png" width={70} height={70} alt="Logo" />

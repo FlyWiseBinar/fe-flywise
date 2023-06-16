@@ -4,6 +4,7 @@ import { styles } from "@/styles/styles"
 import { LuPlaneTakeoff, LuPlaneLanding } from "react-icons/lu"
 import { MdDateRange, MdOutlineAirlineSeatReclineNormal } from "react-icons/md"
 import { BsRepeat } from "react-icons/bs"
+import Link from "next/link"
 
 const CardOrder = () => {
   return (
@@ -111,9 +112,9 @@ const CardOrder = () => {
             </div>
           </div>
           <div className='flex w-full justify-center'>
-            <button className='bg-purple-800 text-white flex rounded-xl items-center justify-center w-full py-3 hover:scale-105 duration-100'>
+            <Link href="home/search" className='bg-purple-800 text-white flex rounded-xl items-center justify-center w-full py-3 hover:scale-105 duration-100'>
               <span className='text-lg'>Lihat Jadwal Penerbangan</span>
-            </button>
+            </Link>
           </div>
         </div>
       </div>

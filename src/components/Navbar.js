@@ -2,6 +2,7 @@
 import React from "react"
 import { styles } from "@/styles/styles"
 import { BiLogIn } from "react-icons/bi"
+import Link from "next/link"
 
 const Navbar = () => {
   return (
@@ -15,10 +16,10 @@ const Navbar = () => {
         </div>
 
         <div className='w-full flex justify-end items-center'>
-          <button className='flex gap-5 items-center justify-center bg-main-orange p-4 rounded-xl text-white hover:scale-110 duration-300'>
+          <Link href="/login" className='flex gap-5 items-center justify-center bg-main-orange p-4 rounded-xl text-white hover:scale-110 duration-300'>
             <BiLogIn />
             <p>Masuk</p>
-          </button>
+          </Link>
         </div>
       </div>
     </div>
