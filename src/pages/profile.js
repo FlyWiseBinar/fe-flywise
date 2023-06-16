@@ -71,12 +71,12 @@ const Profile = () => {
         <title>Profile | FlyWise</title>
         <link rel="icon" href="./logo.svg" />
       </Head>
-      <div className="py-5 font-bold text-xl w-1/2 flex justify-center">
+      <div className="py-5 mt-5 font-bold text-xl w-1/2 flex justify-center">
         Akun
       </div>
-      <div className={`${styles.mainRow} gap-3`}>
-        <div>
-          <Link href="/home" className="flex gap-5 md:justify-end items-center bg-third-purple p-3 md:ml-auto rounded-xl text-white hover:bg-main-purple hover:font-bold md:pr-100 duration-75">
+      <div className={`${styles.mainRow} pt-4`}>
+        <div className="w-1/2">
+          <Link href="/home" className="flex gap-5 md:justify-start items-center bg-third-purple p-3 md:ml-auto rounded-xl text-white hover:bg-main-purple hover:font-bold md:pr-100 duration-75">
             {" "}
             <LuArrowLeft /> Beranda
           </Link>
