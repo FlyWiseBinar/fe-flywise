@@ -4,6 +4,7 @@ import {useRouter} from "next/router"
 import {useSearchParams} from "next/navigation"
 import {ToastContainer, toast} from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
+import Head from "next/head"
 
 const Otp = () => {
 	const router = useRouter()
@@ -106,6 +107,10 @@ const Otp = () => {
 				theme="light"
 			/>
 			<div className="container flex z-50 mx-28">
+			<Head>
+			<title>Forgot Password | FlyWise</title>
+			<link rel="icon" href="./logo.svg" />
+		  </Head>
 				<img src="/logo.png" alt="logo" />
 			</div>
 			<form onSubmit={handleSubmit}>

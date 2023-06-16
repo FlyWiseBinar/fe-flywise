@@ -7,6 +7,7 @@ import {getCookie} from "cookies-next"
 import axios from "axios"
 import {ToastContainer, toast} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import Head from "next/head"
 
 const Profile = () => {
 	const token = getCookie('accessToken');
@@ -85,6 +86,10 @@ const Profile = () => {
 
 	return (
 		<>
+			<Head>
+				<title>Profile | FlyWise</title>
+				<link rel="icon" href="./logo.svg" />
+			</Head>
 			<ToastContainer
 				position="bottom-center"
 				autoClose={2000}
@@ -185,5 +190,4 @@ const Profile = () => {
 		</>
 	)
 }
-
 export default Profile

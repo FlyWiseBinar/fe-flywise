@@ -5,6 +5,7 @@ import {useState} from "react"
 import {useRouter} from "next/router"
 import {PropagateLoader} from "react-spinners"
 import Link from "next/link"
+import Head from "next/head"
 
 const Register = () => {
 	const router = useRouter()
@@ -47,6 +48,10 @@ const Register = () => {
 
 	return (
 		<div className="flex flex-col md:flex-row h-screen">
+		<Head>
+        <title>Register | FlyWise</title>
+        <link rel="icon" href="./logo.svg" />
+      </Head>
 			<div className="flex w-full md:w-1/2 bg-orange-400 justify-around items-center">
 				<div className="flex items-center justify-center py-2 px-5">
 					<Image src="/pesawat.png" width={70} height={70} alt="Logo" />

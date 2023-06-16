@@ -4,6 +4,7 @@ import {useRouter} from "next/router"
 import {useSearchParams} from "next/navigation"
 import {ToastContainer, toast} from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
+import Head from "next/head"
 
 const Otp = () => {
 	const router = useRouter()
@@ -82,6 +83,10 @@ const Otp = () => {
 
 	return (
 		<div className="fixed z-50 top-4 bg-white w-full">
+		<Head>
+        <title>Register | FlyWise</title>
+        <link rel="icon" href="./logo.svg" />
+      </Head>
 			<ToastContainer
 				position="bottom-center"
 				autoClose={2000}
