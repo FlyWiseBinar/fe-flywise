@@ -116,7 +116,6 @@ const Profile = () => {
 			<div className="flex justify-center pt-3">
 				<div className="w-7/12 border-t-2 border-slate-200"></div>
 			</div>
-
 			<div className="flex flex-rows justify-center gap-20 pt-10">
 				<ul className="flex flex-col">
 					<li className="flex items-center gap-3 cursor-pointer hover:scale-105">
@@ -190,4 +189,5 @@ const Profile = () => {
 		</>
 	)
 }
-export default Profile
+
+export default Profile;

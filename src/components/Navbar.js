@@ -8,15 +8,15 @@ const Navbar = () => {
   return (
     <div className={`${styles.mainRow} shadow-lg`}>
       <div
-        className={`${styles.mainMaxWidth} ${styles.mainRow} !justify-between px-8`}
+        className={` ${styles.mainRow} bg-white z-50 !justify-between px-12`}
       >
-        <div className='w-full flex-col justify-start p-5'>
+        <div className='w-full flex-col justify-start p-3'>
           <p className='text-2xl font-bold text-main-purple'>FlyWise</p>
           <p className='text-lg text-main-purple'>Your Traveling Parner</p>
         </div>
 
         <div className='w-full flex justify-end items-center'>
-          <Link href="/login" className='flex gap-5 items-center justify-center bg-main-orange p-4 rounded-xl text-white hover:scale-110 duration-300'>
+          <Link href="/login" className='flex gap-2  items-center justify-center bg-main-orange py-3 px-4 rounded-xl text-white hover:scale-110 duration-300'>
             <BiLogIn />
             <p>Masuk</p>
           </Link>
