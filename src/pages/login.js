@@ -6,6 +6,7 @@ import {setCookie} from "cookies-next"
 import {PropagateLoader} from "react-spinners"
 import {ToastContainer, toast} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import Link from "next/link"
 
 const Login = () => {
 	const router = useRouter()
@@ -35,9 +36,7 @@ const Login = () => {
 					password: form.password,
 				}
 			)
-			if (response.status == 200) {
-				console.log("berhasil login")
-				console.log(response.data)
+			if(response.status == 200) {
 				setCookie("accessToken", response.data.accessToken, {
 					expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 10),
 				})
@@ -56,12 +55,10 @@ const Login = () => {
 				}, 3000)
 			}
 			setLoading(false)
-		} catch (error) {
+		} catch(error) {
 			setLoading(false)
 			setErrors(error.response.data.errors)
-			console.log(error)
-			console.log("gagal login")
-			if (error.response.status == 403) {
+			if(error.response.status == 403) {
 				toast.error(`${error.response.data.message}, redirect in 3s...`, {
 					position: "bottom-center",
 					autoClose: 2000,
@@ -83,7 +80,7 @@ const Login = () => {
 	}
 
 	const handleForgotPassword = async () => {
-		if (!form.email) {
+		if(!form.email) {
 			toast.error("email is required to reset password", {
 				position: "bottom-center",
 				autoClose: 2000,
@@ -99,7 +96,7 @@ const Login = () => {
 				const response = await axios.post("https://be-flywise-stagging-jcbxz3zpbq-as.a.run.app/v1/api/auth/reset-password/send-otp", {
 					email: form.email
 				})
-				if (response.status == 201) {
+				if(response.status == 201) {
 					setTimeout(() => {
 						router.push(`/otp-forgot-password?email=${form.email}`)
 					}, 3000)
@@ -114,7 +111,7 @@ const Login = () => {
 						theme: "colored",
 					})
 				}
-			} catch (error) {
+			} catch(error) {
 				toast.error("email not found", {
 					position: "bottom-center",
 					autoClose: 2000,
@@ -171,11 +168,7 @@ const Login = () => {
 								/>
 								{errors &&
 									errors.map((err, index) =>
-										err.field == "email" ? (
-											<p key={index} className="text-red-500">{err.message}</p>
-										) : (
-											""
-										)
+										err.field == "email" && <p key={index} className="text-red-500">{err.message}</p>
 									)}
 							</div>
 						</div>
@@ -220,12 +213,8 @@ const Login = () => {
 									onChange={handleChange}
 								/>
 								{errors &&
-									errors.map((err) =>
-										err.field == "password" ? (
-											<p className="text-red-500">{err.message}</p>
-										) : (
-											""
-										)
+									errors.map((err, index) =>
+										err.field == "password" && <p key={index} className="text-red-500">{err.message}</p>
 									)}
 							</div>
 						</div>
@@ -246,12 +235,12 @@ const Login = () => {
 
 					<p className="mt-10 text-center text-sm text-gray-500">
 						Belum punya akun?{" "}
-						<a
+						<Link
 							href="/register"
 							className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500"
 						>
 							Daftar di sini
-						</a>
+						</Link>
 					</p>
 				</div>
 			</div>

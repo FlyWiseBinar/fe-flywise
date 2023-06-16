@@ -34,7 +34,7 @@ const Forgotpassword = () => {
 				password: form.password,
 				confirm_password: form.confirm_password
 			})
-			if (response.status == 200) {
+			if(response.status == 200) {
 				setLoading(false)
 				setTimeout(() => {
 					router.push("/login")
@@ -50,10 +50,9 @@ const Forgotpassword = () => {
 					theme: "colored",
 				})
 			}
-		} catch (error) {
+		} catch(error) {
 			setLoading(false)
-			console.log(error)
-			if (error.response.status == 403) {
+			if(error.response.status == 403) {
 				toast.error(error.response.data.message, {
 					position: "bottom-center",
 					autoClose: 2000,
@@ -110,11 +109,7 @@ const Forgotpassword = () => {
 								/>
 								{errors &&
 									errors.map((err, index) =>
-										err.field == "password" ? (
-											<p key={index} className="text-red-500">{err.message}</p>
-										) : (
-											""
-										)
+										err.field == "password" && <p key={index} className="text-red-500">{err.message}</p>
 									)}
 							</div>
 						</div>
@@ -134,16 +129,12 @@ const Forgotpassword = () => {
 									name="confirm_password"
 									type="password"
 									className="block w-full rounded-2xl border-0 py-1.5 pl-4  text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:outline-none  focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-									value={form.confirm_pasword}
+									value={form.confirm_password}
 									onChange={handleChange}
 								/>
 								{errors &&
 									errors.map((err, index) =>
-										err.field == "confirm_password" ? (
-											<p key={index} className="text-red-500">{err.message}</p>
-										) : (
-											""
-										)
+										err.field == "confirm_password" && <p key={index} className="text-red-500">{err.message}</p>
 									)}
 							</div>
 						</div>

@@ -48,7 +48,6 @@ const Otp = () => {
 				})
 			}
 		} catch (error) {
-			console.log(error)
 			toast.error(error.response.data.message, {
 				position: "bottom-center",
 				autoClose: 2000,
@@ -89,7 +88,6 @@ const Otp = () => {
 				progress: undefined,
 				theme: "colored",
 			})
-			console.log(error)
 		}
 	}
 

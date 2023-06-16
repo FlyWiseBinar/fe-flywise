@@ -1,14 +1,16 @@
 import React, {useEffect, useState} from "react"
 import {styles} from "@/styles/styles"
 import {LuArrowLeft} from "react-icons/lu"
-import Navbar from "@/components/Navbar"
 import {HiOutlinePencil} from "react-icons/hi"
 import {LuLogOut} from "react-icons/lu"
 import {getCookie} from "cookies-next"
 import axios from "axios"
+import {ToastContainer, toast} from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 const Profile = () => {
 	const token = getCookie('accessToken');
+	const [errors, setErrors] = useState([])
 	const [form, setForm] = useState({
 		fullName: '',
 		telephone: '',
@@ -20,7 +22,6 @@ const Profile = () => {
 				Authorization: `Bearer ${token}`
 			}
 		}).then(res => {
-
 			setForm({
 				email: res.data.data.email,
 				fullName: res.data.data.fullName,
@@ -29,8 +30,7 @@ const Profile = () => {
 		})
 	}, [])
 
-
-  const handleChange = (e) => {
+	const handleChange = (e) => {
 		setForm({
 			...form,
 			[e.target.name]: e.target.value,
@@ -38,26 +38,65 @@ const Profile = () => {
 	}
 
 	const handleSubmit = async (e) => {
-
-    e.preventDefault() //untuk menghindari refresh laman
-
-    await axios.put("https://be-flywise-stagging-jcbxz3zpbq-as.a.run.app/v1/api/auth/profile",{
-      fullName:form.fullName,
-      telephone:form.telephone,
-      email:form.email,
-    }, {
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
-    },
-    ).then(res=>console.log(res))
+		e.preventDefault() //untuk menghindari refresh laman
+		try {
+			const response = await axios.put("https://be-flywise-stagging-jcbxz3zpbq-as.a.run.app/v1/api/auth/profile",
+				{
+					fullName: form.fullName,
+					telephone: form.telephone,
+					email: form.email,
+				},
+				{
+					headers: {
+						Authorization: `Bearer ${token}`
+					}
+				},
+			)
+			if(response.status == 200) {
+				toast.success(response.data.message, {
+					position: "bottom-center",
+					autoClose: 2000,
+					hideProgressBar: true,
+					closeOnClick: true,
+					pauseOnHover: true,
+					draggable: true,
+					progress: undefined,
+					theme: "colored",
+				})
+			}
+		} catch(error) {
+			if(error.response.status == 400) {
+				setErrors(error.response.data.errors)
+			}
+			if(error.response.status == 500) {
+				toast.error(response.data.message, {
+					position: "bottom-center",
+					autoClose: 2000,
+					hideProgressBar: true,
+					closeOnClick: true,
+					pauseOnHover: true,
+					draggable: true,
+					progress: undefined,
+					theme: "colored",
+				})
+			}
+		}
 	}
-
- console.log(form)
 
 	return (
 		<>
-			<Navbar />
+			<ToastContainer
+				position="bottom-center"
+				autoClose={2000}
+				hideProgressBar
+				newestOnTop={false}
+				closeOnClick
+				rtl={false}
+				pauseOnFocusLoss
+				draggable
+				pauseOnHover
+				theme="light"
+			/>
 			<div className="py-5 font-bold text-xl w-1/2 flex justify-center">
 				Akun
 			</div>
@@ -74,23 +113,23 @@ const Profile = () => {
 			</div>
 
 			<div className="flex flex-rows justify-center gap-20 pt-10">
-				<div className="flex flex-col">
-					<div className="flex items-center gap-3">
+				<ul className="flex flex-col">
+					<li className="flex items-center gap-3 cursor-pointer hover:scale-105">
 						<div className="text-main-purple text-lg">
 							<HiOutlinePencil />
 						</div>
 						Ubah Profil
-					</div>
+					</li>
 					<div className="border-b w-60 pt-2 border-gray-300"></div>
-					<div className="flex items-center pt-4 gap-3">
+					<li className="flex items-center pt-4 gap-3 cursor-pointer hover:scale-105">
 						<div className="text-main-purple text-lg">
 							<LuLogOut />
 						</div>
 						Keluar
-					</div>
+					</li>
 					<div className="border-b w-60 pt-2 border-gray-300 shadow-md"></div>
-				</div>
-				<div className="flex flex-col border-2 rounded-lg py-10 px-7">
+				</ul>
+				<div className="flex flex-col border-2 rounded-lg py-10 px-7 mb-5">
 					<div className="py-1 font-bold text-lg">
 						Ubah Data Profil
 					</div>
@@ -99,33 +138,45 @@ const Profile = () => {
 							<div className="rounded-t-lg bg-third-purple py-2 pl-4 font-medium text-white mb-3">Data Diri</div>
 							<div className="pl-4 pt-2 pb-1 text-second-purple text-sm font-bold">Nama Lengkap</div>
 							<input
-              onChange={handleChange}
-								className="ml-4 pl-4 border border-gray-300 rounded-md py-2 hover:border-main-purple outline-none"
+								onChange={handleChange}
+								className="ml-4 pl-4 border border-gray-300 rounded-md py-2 focus:border-main-purple outline-none"
 								type="text"
 								id="fullname"
 								value={form.fullName}
-                name="fullName"
+								name="fullName"
 							/>
+							{errors &&
+								errors.map((err, index) =>
+									err.field == "fullName" && <p key={index} className="text-red-500">{err.message}</p>
+								)}
 							<div className="pl-4 pt-2 pb-1 text-second-purple text-sm font-bold">Nomor Telepon</div>
 							<input
-              onChange={handleChange}
-								className="ml-4 pl-4 border border-gray-300 rounded-md py-2 hover:border-main-purple outline-none"
+								onChange={handleChange}
+								className="ml-4 pl-4 border border-gray-300 rounded-md py-2 focus:border-main-purple outline-none"
 								type="text"
 								placeholder="+6213486777"
 								id="telephone"
 								value={form.telephone}
-                name="telephone"
+								name="telephone"
 							/>
+							{errors &&
+								errors.map((err, index) =>
+									err.field == "telephone" && <p key={index} className="text-red-500">{err.message}</p>
+								)}
 							<div className="pl-4 pt-2 pb-1 text-second-purple text-sm font-bold">Email</div>
 							<input
-              onChange={handleChange}
-								className="ml-4 pl-4 border border-gray-300 rounded-md py-2 hover:border-main-purple outline-none"
+								onChange={handleChange}
+								className="ml-4 pl-4 border border-gray-300 rounded-md py-2 focus:border-main-purple outline-none"
 								type="text"
 								placeholder="JohnDoe@gmail.com"
 								id="email"
 								value={form.email}
-                name="email"
+								name="email"
 							/>
+							{errors &&
+								errors.map((err, index) =>
+									err.field == "email" && <p key={index} className="text-red-500">{err.message}</p>
+								)}
 							<div className="flex self-center pt-7"><button className="bg-second-purple hover:bg-main-purple px-8 py-1.5 rounded-lg text-white">Simpan</button></div>
 						</div>
 					</form>

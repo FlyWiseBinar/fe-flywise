@@ -4,6 +4,7 @@ import axios from "axios"
 import {useState} from "react"
 import {useRouter} from "next/router"
 import {PropagateLoader} from "react-spinners"
+import Link from "next/link"
 
 const Register = () => {
 	const router = useRouter()
@@ -31,14 +32,14 @@ const Register = () => {
 		try {
 			const response = await axios.post("https://be-flywise-stagging-jcbxz3zpbq-as.a.run.app/v1/api/auth/register", form)
 			setForm(initialForm)
-			if (response.status == 201) {
+			if(response.status == 201) {
 				await axios.post("https://be-flywise-stagging-jcbxz3zpbq-as.a.run.app/v1/api/auth/send-otp", {
 					email: form.email
 				})
 				router.push(`/otp-register?email=${form.email}`)
 			}
 			setLoading(false)
-		} catch (error) {
+		} catch(error) {
 			setLoading(false)
 			setErrors(error.response.data.errors)
 		}
@@ -86,11 +87,10 @@ const Register = () => {
 									onChange={handleChange}
 								/>
 
-								{
-									errors && errors.map((err, index) => (
-										err.field == "fullName" ? <p key={index} className="text-red-500">{err.message}</p> : ""
-									))
-								}
+								{errors &&
+									errors.map((err, index) =>
+										err.field == "fullName" && <p key={index} className="text-red-500">{err.message}</p>
+									)}
 
 							</div>
 						</div>
@@ -114,11 +114,10 @@ const Register = () => {
 									value={form.email}
 									onChange={handleChange}
 								/>
-								{
-									errors && errors.map((err, index) => (
-										err.field == "email" ? <p key={index} className="text-red-500">{err.message}</p> : ""
-									))
-								}
+								{errors &&
+									errors.map((err, index) =>
+										err.field == "email" && <p key={index} className="text-red-500">{err.message}</p>
+									)}
 							</div>
 						</div>
 						<div>
@@ -137,11 +136,10 @@ const Register = () => {
 									value={form.telephone}
 									onChange={handleChange}
 								/>
-								{
-									errors && errors.map((err, index) => (
-										err.field == "telephone" ? <p key={index} className="text-red-500">{err.message}</p> : ""
-									))
-								}
+								{errors &&
+									errors.map((err, index) =>
+										err.field == "telephone" && <p key={index} className="text-red-500">{err.message}</p>
+									)}
 							</div>
 						</div>
 						<div>
@@ -160,11 +158,10 @@ const Register = () => {
 									value={form.password}
 									onChange={handleChange}
 								/>
-								{
-									errors && errors.map((err, index) => (
-										err.field == "password" ? <p key={index} className="text-red-500">{err.message}</p> : ""
-									))
-								}
+								{errors &&
+									errors.map((err, index) =>
+										err.field == "password" && <p key={index} className="text-red-500">{err.message}</p>
+									)}
 							</div>
 						</div>
 
@@ -183,12 +180,12 @@ const Register = () => {
 					</form>
 					<p className="mt-10 text-center text-sm text-gray-500">
 						Sudah punya akun?{" "}
-						<a
+						<Link
 							href="/login"
 							className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500"
 						>
 							Masuk di sini
-						</a>
+						</Link>
 					</p>
 				</div>
 			</div>
