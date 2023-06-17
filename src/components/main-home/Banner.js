@@ -9,7 +9,7 @@ const Banner = () => {
         className={`${styles.mainMaxWidth} flex justify-between items-center absolute h-[232px] z-10 top-44 w-[75%] rounded-3xl bg-main-purple`}
       >
         <div className="text-4xl font-bold px-[5%] py-5 w-full flex flex-col text-white gap-5 ">
-          <i>Diskon Hari Ini</i>
+          <i className="">Diskon Hari Ini</i>
           <p className="text-main-orange">{"85%"}</p>
         </div>
 

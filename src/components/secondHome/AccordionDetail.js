@@ -31,7 +31,9 @@ const AccordionDetail = ({
         className={`${styles.mainCol} w-1/2 mx-auto border-2 rounded-xl border-third-purple mb-1`}
       >
         <button
-          className="flex items-center justify-between w-full p-4 text-lg font-medium text-left bg-white cursor-pointer rounded-xl b"
+          className={
+            "flex items-center justify-between w-full p-4 text-lg font-medium text-left bg-white cursor-pointer rounded-xl b"
+          }
           onClick={toggleAccordion}
         >
           <span className="flex items-center gap-2 text-sm">
