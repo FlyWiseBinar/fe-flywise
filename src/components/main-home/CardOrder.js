@@ -1,10 +1,38 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { styles } from '@/styles/styles'
-import { LuPlaneTakeoff, LuPlaneLanding } from 'react-icons/lu'
+import { LuPlaneTakeoff, LuPlaneLanding, LuX } from 'react-icons/lu'
 import { MdDateRange, MdOutlineAirlineSeatReclineNormal } from 'react-icons/md'
 import { BsRepeat } from 'react-icons/bs'
 
 const CardOrder = () => {
+  const [isOpenFrom, setIsOpenFrom] = useState(false)
+  const [isOpenTo, setIsOpenTo] = useState(false)
+
+  const [from, setFrom] = useState()
+  const [to, setTo] = useState()
+
+  const onChangefrom = (e) => {
+    setFrom(e.target.value)
+    console.log('target', e.target.value)
+  }
+
+  const onChangeto = (e) => {
+    setTo(e.target.value)
+    console.log('target', e.target.value)
+  }
+  const openModalFrom = () => {
+    setIsOpenFrom(true)
+  }
+
+  const openModalTo = () => {
+    setIsOpenTo(true)
+  }
+
+  const closeModal = () => {
+    setIsOpenTo(false)
+    setIsOpenFrom(false)
+  }
+
   return (
     <div className={`${styles.mainCol} `}>
       <div
@@ -27,9 +55,32 @@ const CardOrder = () => {
                   <div className='flex flex-col gap-2 w-full'>
                     <input
                       className=' hover:bg-slate-50 focus:outline-none w-full bg-transparent hover:bg-transparent'
+                      onClick={openModalFrom}
+                      value={from}
                       placeholder='Jakarta (JKT)'
                     />
                     <hr className='w-full' />
+                    {isOpenFrom && (
+                      <div className='fixed z-20 inset-0 bg-opacity-70 bg-black flex items-center justify-center'>
+                        <div className='absolute bg-white rounded-lg shadow-2xl w-96 h-72'>
+                          <div className='flex gap-3 items-center p-4 '>
+                            <input
+                              type='text'
+                              placeholder='  Masukkan Asal Penerbangan'
+                              onChange={(e) => onChangefrom(e)}
+                              className='py-1 px-3 border-2 w-full rounded-lg border-gray-300'
+                            />{' '}
+                            <div
+                              className='text-2xl hover:text-gray-400'
+                              onClick={closeModal}
+                            >
+                              <LuX />
+                            </div>
+                          </div>
+                          <hr className='bg-black' />
+                        </div>
+                      </div>
+                    )}
                   </div>
                 </div>
 
@@ -76,9 +127,32 @@ const CardOrder = () => {
                   <div className='flex flex-col gap-2 w-full'>
                     <input
                       className=' hover:bg-slate-50 focus:outline-none w-full bg-transparent hover:bg-transparent'
+                      onClick={openModalTo}
+                      value={to}
                       placeholder='Melbourne (MLB)'
                     />
                     <hr className='w-full' />
+                    {isOpenTo && (
+                      <div className='fixed z-20 inset-0 bg-opacity-70 bg-black flex items-center justify-center'>
+                        <div className='absolute bg-white rounded-lg shadow-2xl w-96 h-72'>
+                          <div className='flex gap-3 items-center p-4 '>
+                            <input
+                              type='text'
+                              placeholder='Masukkan Tujuan Penerbangan'
+                              onChange={(e) => onChangeto(e)}
+                              className='py-1 px-3 border-2 w-full rounded-lg border-gray-300'
+                            />{' '}
+                            <div
+                              className='text-2xl hover:text-gray-400'
+                              onClick={closeModal}
+                            >
+                              <LuX />
+                            </div>
+                          </div>
+                          <hr className='bg-black' />
+                        </div>
+                      </div>
+                    )}
                   </div>
                 </div>
 
