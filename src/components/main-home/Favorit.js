@@ -8,7 +8,7 @@ const Favorit = () => {
       <div
         className={`${styles.mainMaxWidth}  w-full p-5 flex items-center justify-center`}
       >
-        <div className=" flex flex-col bg-white items-center justify-center lg:w-[750px] md:w-[700px] w-[350px] gap-5 p-5 ">
+        <div className="flex flex-col bg-white items-center justify-center lg:w-[1000px] md:w-[700px] w-[350px] gap-5 p-5 ">
           <h3 className="self-start font-bold text-xl">
             Destinasi Favorit <span className="text-main-purple">FlyWise!</span>
           </h3>
@@ -52,7 +52,7 @@ const Favorit = () => {
           </div>
         </div>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:w-[750px] md:w-[700px] w-[350px] gap-5 p-5">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:w-[1000px] md:w-[700px] w-[350px] gap-5 p-5">
         <div className="max-w-sm w-full rounded-lg overflow-hidden shadow-lg">
           <img
             className="w-full"
