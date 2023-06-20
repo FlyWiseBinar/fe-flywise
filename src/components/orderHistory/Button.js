@@ -42,13 +42,13 @@ const Button = () => {
 					</button>
 					<Datepicker
 						inputId="datepicker"
-						inputClassName={'bg-white focus:outline-none opacity-0 pointer-events-none'}
+						inputClassName={'absolute bg-white focus:outline-none opacity-0 pointer-events-none'}
 						primaryColor={"violet"}
 						showFooter={true}
 						useRange={false}
 						value={value}
 						placeholder={" "}
-						toggleClassName={"opacity-0 pointer-events-none	"}
+						toggleClassName={"absolute opacity-0 pointer-events-none "}					
 						onChange={(e)=>setValue(e.target.value)}
 						configs={{
 							footer: {
