@@ -1,6 +1,3 @@
-# Halo Cok
-# Info Songgoriti / Sarkem
-
 ## Endpoint
 
 ### beranda
