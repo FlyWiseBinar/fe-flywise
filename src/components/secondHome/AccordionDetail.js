@@ -5,6 +5,7 @@ import { LuChevronUp } from "react-icons/lu"
 import { LuSend } from "react-icons/lu"
 import { LuBaggageClaim } from "react-icons/lu"
 import { styles } from "@/styles/styles"
+import Link from "next/link"
 
 const AccordionDetail = ({
   hourAttendate,
@@ -71,9 +72,9 @@ const AccordionDetail = ({
           <span className="pl-16 text-center">
             <div className="font-bold">IDR {price}</div>
             <div>
-              <button className="py-1 px-8 bg-main-purple hover:bg-second-purple rounded-xl font-normal text-white">
+              <Link href="/payment" className="py-1 px-8 bg-main-purple hover:bg-second-purple rounded-xl font-normal text-white">
                 Pilih
-              </button>
+              </Link>
             </div>
           </span>
         </div>

@@ -7,6 +7,7 @@ import { AiOutlineMinus, AiOutlinePlus, AiOutlineSearch } from "react-icons/ai"
 import { BsRepeat } from "react-icons/bs"
 import { IoMdMan, IoMdWoman } from "react-icons/io"
 import { BiChild } from "react-icons/bi"
+import Link from "next/link"
 
 const CardOrder = () => {
   const [departureDate, setDepartureDate] = useState(null)
@@ -396,9 +397,9 @@ const CardOrder = () => {
             </div>
           </div>
           <div className='flex w-full justify-center'>
-            <button className='bg-purple-800 text-white flex rounded-xl items-center justify-center w-full py-3 hover:scale-105 duration-100'>
+            <Link href="/home/search" className='bg-purple-800 text-white flex rounded-xl items-center justify-center w-full py-3 hover:scale-105 duration-100'>
               <span className='text-lg'>Lihat Jadwal Penerbangan</span>
-            </button>
+            </Link>
           </div>
         </div>
       </div>

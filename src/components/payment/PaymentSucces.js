@@ -4,6 +4,7 @@ import Image from "next/image"
 import { LuPlaneTakeoff, LuPlaneLanding } from "react-icons/lu"
 import { MdDateRange, MdOutlineAirlineSeatReclineNormal } from "react-icons/md"
 import { BsRepeat } from "react-icons/bs"
+import Link from "next/link"
 
 const PaymentSuccess = () => {
   return (
@@ -72,8 +73,8 @@ const PaymentSuccess = () => {
           </button>
         </div>
         <div className="flex justify-center items-center mb-5">
-          <button className="bg-white text-purple-900 border border-solid-2 border-purple-900 w-80 font-semibold text-xl text-sm p-3 rounded-lg hover:bg-purple-700 hover:text-white transition-colors duration-300 ease-in-out">
-            Cari Penerbangan Lain
+          <button href="/home" className="bg-white text-purple-900 border border-solid-2 border-purple-900 w-80 font-semibold text-xl text-sm p-3 rounded-lg hover:bg-purple-700 hover:text-white transition-colors duration-300 ease-in-out">
+            <Link href="/home">Cari Penerbangan Lain</Link>
           </button>
         </div>
       </div>
