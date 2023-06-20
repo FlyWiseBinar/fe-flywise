@@ -170,10 +170,10 @@ export default function AccordionHistory({
                     <LuSend />
                   </div>
                   <div className="flex flex-col">
-                    {item.order.passengers.map((passenger) => (
+                    {item.order.passengers.map((passenger, index) => (
                       <>
-                        <p className="font-bold" key={passenger.id}>Informasi</p><p className="text-second-purple">
-                          Penumpang 1: {passenger.name}{" "}
+                        <p className="font-bold" key={index}>Informasi</p><p className="text-second-purple">
+                          Penumpang {index + 1}: {passenger.name}{" "}
                         </p><p>ID: {passenger.id} </p>
                       </>
                     ))}
