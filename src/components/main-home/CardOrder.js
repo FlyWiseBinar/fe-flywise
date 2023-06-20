@@ -19,7 +19,7 @@ const CardOrder = () => {
   const [isOpenFrom, setIsOpenFrom] = useState(false)
   const [isOpenTo, setIsOpenTo] = useState(false)
   const [isOpenPass, setIsOpenPass] = useState(false)
-  const [isOpenClass, setIsOpenClass] = useState(false)
+
   const [count, setCount] = useState(0)
 
   const decreaseCount = () => {
@@ -63,15 +63,10 @@ const CardOrder = () => {
     setIsOpenPass(true)
   }
 
-  const openModalClass = () => {
-    setIsOpenClass(true)
-  }
-
   const closeModal = () => {
     setIsOpenTo(false)
     setIsOpenFrom(false)
     setIsOpenPass(false)
-    setIsOpenClass(false)
   }
 
   const handleOptionChange = (option) => {
@@ -385,121 +380,16 @@ const CardOrder = () => {
                   </div>
                   <div className='flex w-full flex-col gap-2'>
                     <p>Seat Class</p>
-                    <input
-                      className=' hover:bg-slate-50 focus:outline-none w-full bg-transparent hover:bg-transparent'
-                      onClick={openModalClass}
-                    />
+                    <select
+                      name='option'
+                      value={selectedOption}
+                      onChange={(e) => handleOptionChange(e.target.value)}
+                    >
+                      <option value='Ekonomi'>Ekonomi</option>
+                      <option value='Business'>Business</option>
+                      <option value='First Class'>First Class</option>
+                    </select>
                     <hr className='w-full' />
-                    {isOpenClass && (
-                      <div className='fixed z-20 inset-0 bg-opacity-70 bg-black flex items-center justify-center'>
-                        <div className='absolute bg-white rounded-lg shadow-2xl w-96 h-auto'>
-                          <div className='flex gap-3 items-center p-4 '>
-                            <div className='flex flex-col gap-2 w-full'></div>
-                            <div
-                              className='text-2xl hover:text-gray-400'
-                              onClick={closeModal}
-                            >
-                              <LuX />
-                            </div>
-                          </div>
-                          <hr className='bg-black' />
-                          <div className='flex flex-col p-3 gap-5'>
-                            <div className=' flex flex-row justify-between'>
-                              <div className='flex flex-row justify-between items-center'>
-                                <input
-                                  type='radio'
-                                  name='option'
-                                  id='ekonomi'
-                                  value='Ekonomi'
-                                  checked={selectedOption === 'Ekonomi'}
-                                  onChange={() => handleOptionChange('Ekonomi')}
-                                />
-                                <div className='p-1'>
-                                  <h2 className='font-bold'>Ekonomi</h2>
-                                  <p>IDR.4.950.000</p>
-                                </div>
-                              </div>
-                            </div>
-                            <hr className='bg-black' />
-                            <div className='flex flex-row justify-between'>
-                              <div className='flex'>
-                                <div className='flex flex-row justify-between items-center'>
-                                  <input
-                                    type='radio'
-                                    name='option'
-                                    id='premiumEkonomi'
-                                    value='Premium Ekonomi'
-                                    checked={
-                                      selectedOption === 'Premium Ekonomi'
-                                    }
-                                    onChange={() =>
-                                      handleOptionChange('Premium Ekonomi')
-                                    }
-                                  />
-                                  <div className='p-1'>
-                                    <h2 className='font-bold'>
-                                      Premium Ekonomi
-                                    </h2>
-                                    <p>IDR.7.550.000</p>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                            <hr className='bg-black' />
-                            <div className=' flex flex-row justify-between'>
-                              <div className='flex'>
-                                <div className='flex flex-row justify-between items-center'>
-                                  <input
-                                    type='radio'
-                                    name='option'
-                                    id='business'
-                                    value='Business'
-                                    checked={selectedOption === 'Business'}
-                                    onChange={() =>
-                                      handleOptionChange('Business')
-                                    }
-                                  />
-
-                                  <div className='p-1'>
-                                    <h2 className='font-bold'>Business</h2>
-                                    <p>IDR.29.220.000</p>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                            <hr className='bg-black' />
-                            <div className=' flex flex-row justify-between'>
-                              <div className='flex'>
-                                <div className='flex flex-row justify-between items-center'>
-                                  <input
-                                    type='radio'
-                                    name='option'
-                                    id='firstClass'
-                                    value='First Class'
-                                    checked={selectedOption === 'First Class'}
-                                    onChange={() =>
-                                      handleOptionChange('First Class')
-                                    }
-                                  />
-                                  <div className='p-1'>
-                                    <h2 className='font-bold'>First Class</h2>
-                                    <p>IDR.87.620.000</p>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                            <hr className='bg-black' />
-                            <div className='flex flex-row justify-end'>
-                              <div className='flex flex-row justify-between items-center'>
-                                <button className='bg-purple-800 text-white flex rounded-xl items-center justify- w-full py-3 p-5 hover:scale-105 duration-100'>
-                                  <span className='text-lg'>Simpan</span>
-                                </button>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    )}
                   </div>
                 </div>
               </div>
