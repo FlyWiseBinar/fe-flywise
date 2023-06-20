@@ -1,14 +1,37 @@
-import React from "react"
-import { styles } from "@/styles/styles"
-import { BiSearchAlt2 } from "react-icons/bi"
+import { styles } from '@/styles/styles'
+import { BiLogIn, BiSearchAlt2 } from 'react-icons/bi'
+import CardFavorite from './CardFavorite'
 
 const Favorit = () => {
+  const arrayDummy = [
+    {
+      destination: 'Jakarta',
+      arrive: "Bangkok",
+      airline: "Air Asia",
+      date: "20 - 30 Maret 2023",
+      price: "Rp.950.000",
+    },
+    {
+      destination: 'Bali',
+      arrive: "Yogyakarta",
+      airline: "Lion Air",
+      date: "20 - 30 Maret 2023",
+      price: "Rp.1.000.000",
+    },
+    {
+      destination: 'Malang',
+      arrive: "Palembang",
+      airline: "Sukhoi",
+      date: "20 - 30 Maret 2023",
+      price: "Rp.2.000.000",
+    },
+  ]
   return (
     <div className={`${styles.mainCol} `}>
       <div
         className={`${styles.mainMaxWidth}  w-full p-5 flex items-center justify-center`}
       >
-        <div className="flex flex-col bg-white items-center justify-center lg:w-[1000px] md:w-[700px] w-[350px] gap-5 p-5 ">
+        <div className=" flex flex-col bg-white items-center justify-center lg:w-[750px] md:w-[700px] w-[350px] gap-5 p-5 ">
           <h3 className="self-start font-bold text-xl">
             Destinasi Favorit <span className="text-main-purple">FlyWise!</span>
           </h3>
@@ -52,59 +75,17 @@ const Favorit = () => {
           </div>
         </div>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:w-[1000px] md:w-[700px] w-[350px] gap-5 p-5">
-        <div className="max-w-sm w-full rounded-lg overflow-hidden shadow-lg">
-          <img
-            className="w-full"
-            src="https://www.tripsavvy.com/thmb/8ZvQjzLoXGk6jt1Fr3oKNYjKvkg=/6016x4016/filters:no_upscale():max_bytes(150000):strip_icc()/bangkok-grand-palace-5aadb03e8e1b6e0037023644.jpg"
-            alt="Bangkok Grand Palace"
-          />
-          <div className="px-6 py-4">
-            <div className="font-semibold text-xl mb-2">
-              Jakarta -{">"} Bangkok
-            </div>
-            <p className="font-bold text-purple-800 text-base">Airasia</p>
-            <p className="text-black">10-10-2023</p>
-            <p className="text-black">
-              Mulai Dari <span style={{ color: "red" }}>Rp. 950.000</span>
-            </p>
-          </div>
-        </div>
-        <div className="max-w-sm w-full rounded-lg overflow-hidden shadow-lg">
-          <img
-            className="w-full"
-            src="https://www.tripsavvy.com/thmb/8ZvQjzLoXGk6jt1Fr3oKNYjKvkg=/6016x4016/filters:no_upscale():max_bytes(150000):strip_icc()/bangkok-grand-palace-5aadb03e8e1b6e0037023644.jpg"
-            alt="Bangkok Grand Palace"
-          />
-          <div className="px-6 py-4">
-            <div className="font-semibold text-xl mb-2">
-              Jakarta -{">"} Bangkok
-            </div>
-            <p className="font-bold text-purple-800 text-base">Airasia</p>
-            <p className="text-black">10-10-2023</p>
-            <p className="text-black">
-              Mulai Dari <span style={{ color: "red" }}>Rp. 950.000</span>
-            </p>
-          </div>
-        </div>
-        <div className="max-w-sm w-full rounded-lg overflow-hidden shadow-lg">
-          <img
-            className="w-full"
-            src="https://www.tripsavvy.com/thmb/8ZvQjzLoXGk6jt1Fr3oKNYjKvkg=/6016x4016/filters:no_upscale():max_bytes(150000):strip_icc()/bangkok-grand-palace-5aadb03e8e1b6e0037023644.jpg"
-            alt="Bangkok Grand Palace"
-          />
-          <div className="px-6 py-4">
-            <div className="font-semibold text-xl mb-2">
-              Jakarta -{">"} Bangkok
-            </div>
-            <p className="font-bold text-purple-800 text-base">Airasia</p>
-            <p className="text-black">10-10-2023</p>
-            <p className="text-black">
-              Mulai Dari <span style={{ color: "red" }}>Rp. 950.000</span>
-            </p>
-          </div>
-        </div>
+
+      <div className="flex gap-5 flex-wrap items-center justify-center">
+        {
+          arrayDummy?.map((item) => (
+            <>
+              <CardFavorite item={item} />
+            </>
+          ))
+        }
       </div>
+
     </div>
   )
 }
