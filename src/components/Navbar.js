@@ -42,7 +42,7 @@ const Navbar = () => {
   return (
     <>
       <ToastContainer
-        position='bottom-center'
+        position="bottom-center"
         autoClose={2000}
         hideProgressBar
         newestOnTop={false}
@@ -51,69 +51,68 @@ const Navbar = () => {
         pauseOnFocusLoss
         draggable
         pauseOnHover
-        theme='light'
+        theme="light"
       />
       <div className={`${styles.mainRow} shadow-lg`}>
         <div
           className={` ${styles.mainRow} bg-white z-20 !justify-between px-12 lg:px-20 md:px-20`}
         >
-          <div className='w-full flex-col justify-start p-3'>
-            <p className='text-2xl font-bold text-main-purple'>FlyWise</p>
-            <p className='text-lg text-main-purple'>Your Traveling Partner</p>
+          <div className="w-full flex-col justify-start p-3">
+            <p className="text-2xl font-bold text-main-purple">FlyWise</p>
+            <p className="text-lg text-main-purple">Your Traveling Partner</p>
           </div>
 
-          <div className='w-full flex justify-end items-center'>
-            <div className='md:hidden'>
-              <button className='focus:outline-none' onClick={toggleSidebar}>
+          <div className="w-full flex justify-end items-center">
+            <div className="md:hidden">
+              <button className="focus:outline-none" onClick={toggleSidebar}>
                 <svg
-                  className='w-6 h-6 text-main-purple'
-                  fill='none'
-                  viewBox='0 0 24 24'
-                  stroke='currentColor'
+                  className="w-6 h-6 text-main-purple"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
                 >
                   <path
-                    strokeLinecap='round'
-                    strokeLinejoin='round'
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                     strokeWidth={2}
-                    d='M4 6h16M4 12h16M4 18h16'
+                    d="M4 6h16M4 12h16M4 18h16"
                   />
                 </svg>
               </button>
             </div>
-            <div className='hidden md:flex gap-2 items-center'>
+            <div className="hidden md:flex gap-2 items-center">
               {isLogin ? (
-                <>
+                <div className="flex gap-6">
                   <div>
                     <Link
-                      href='orderHistory'
-                      className='flex items-center justify-center bg-main-orange py-3 px-4 rounded-xl text-white hover:scale-110 duration-300'
+                      href="orderHistory"
+                      className="flex items-center justify-center text-black hover:text-main-purple text-2xl hover:scale-110 duration-300"
                     >
                       <AiOutlineBars />
                     </Link>
                   </div>
                   <div>
                     <Link
-                      href='/profile'
-                      className='flex items-center justify-center bg-main-orange py-3 px-4 rounded-xl text-white hover:scale-110 duration-300'
+                      href="/profile"
+                      className="flex items-center justify-center text-black hover:text-main-purple text-2xl hover:scale-110 duration-300"
                     >
                       <CgProfile />
                     </Link>
                   </div>
-                  <div className='ms-10'>
+                  <div>
                     <div
-                      className='cursor-pointer flex items-center justify-center bg-main-orange py-3 px-4 rounded-xl text-white hover:scale-110 duration-300'
+                      className=" cursor-pointer flex items-center justify-center text-black hover:text-main-purple text-2xl hover:scale-110 duration-300"
                       onClick={handleClickLogout}
                     >
                       <BiLogOut />
-                      <p>Keluar</p>
                     </div>
                   </div>
-                </>
+                </div>
               ) : (
                 <div>
                   <Link
-                    href='/login'
-                    className='flex items-center justify-center bg-main-orange py-3 px-4 rounded-xl text-white hover:scale-110 duration-300'
+                    href="/login"
+                    className="flex items-center justify-center text-black hover:text-main-purple text-2xl hover:scale-110 duration-300"
                   >
                     <BiLogIn />
                     <p>Masuk</p>
@@ -130,52 +129,57 @@ const Navbar = () => {
               : "translate-x-full"
           }`}
         >
-          <div className='flex justify-end p-4 '>
-            <button className='focus:outline-none' onClick={toggleSidebar}>
+          <div className="flex justify-end p-4 ">
+            <button className="focus:outline-none" onClick={toggleSidebar}>
               <svg
-                className='w-6 h-6 text-main-purple'
-                fill='none'
-                viewBox='0 0 24 24'
-                stroke='currentColor'
+                className="w-6 h-6 text-main-purple"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
               >
                 <path
-                  strokeLinecap='round'
-                  strokeLinejoin='round'
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                   strokeWidth={2}
-                  d='M6 18L18 6M6 6l12 12'
+                  d="M6 18L18 6M6 6l12 12"
                 />
               </svg>
             </button>
           </div>
-          <div className='px-4 pb-8'>
-            <ul className='space-y-4'>
+          <div className="px-4 pb-8">
+            <ul className="space-y-2">
               {isLogin ? (
                 <>
-                  <li className='flex justify-center'>
+                <div className="w-full justify-center">
+                <div className="border-b border-gray-400"></div>
+              </div>
+                  <li className="flex justify-center">
                     <Link
-                      href='orderHistory'
-                      className='flex items-center w-1/2 bg-main-orange py-3 px-4 rounded-xl text-white hover:scale-110 duration-300'
+                      href="/orderHistory"
+                      className="flex items-center gap-3 w-1/2 text-lg text-black hover:text-main-purple hover:font-semibold hover:scale-110 duration-300"
                     >
-                      <AiOutlineBars className='mx-auto py-auto' />
+                      <AiOutlineBars />
                       <p>History</p>
                     </Link>
                   </li>
-                  <li className='flex justify-center  '>
+                  <div className="w-full justify-center">
+                    <div className="border-b border-gray-400"></div>
+                  </div>
+                  <li className="flex justify-center  ">
                     <Link
-                      href='/profile'
-                      className='flex items-center gap-1 w-1/2 bg-main-orange py-3 px-4 rounded-xl text-white hover:scale-110 duration-300'
+                      href="/profile"
+                      className="flex items-center gap-3 w-1/2 text-lg rounded-xl text-black hover:text-main-purple hover:font-semibold hover:scale-110 duration-300"
                     >
                       <CgProfile />
                       <p>Profile</p>
                     </Link>
                   </li>
-                  <br />
-                  <hr />
-                  <br />
-                  <br />
+                  <div className="w-full justify-center">
+                    <div className="border-b border-gray-400"></div>
+                  </div>
                   <li>
                     <div
-                      className='cursor-pointer flex items-center justify-center bg-main-orange py-3 px-4 rounded-xl text-white hover:scale-110 duration-300'
+                      className="mt-[450px] gap-3 text-lg cursor-pointer bg-orange-500 py-2 rounded-lg flex items-center justify-center hover:font-semibold text-white hover:bg-orange-600 hover:text-xl hover:scale-110 duration-300"
                       onClick={handleClickLogout}
                     >
                       <BiLogOut />
@@ -187,8 +191,8 @@ const Navbar = () => {
                 <li>
                   <div>
                     <Link
-                      href='/login'
-                      className='flex items-center gap-2 text-main-purple'
+                      href="/login"
+                      className="flex items-center gap-2 text-main-purple"
                     >
                       <BiLogIn />
                       <p>Masuk</p>
