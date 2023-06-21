@@ -1,6 +1,7 @@
 import React from "react"
 import Button from "@/components/orderHistory/Button"
 import ImportAccordion from "@/components/orderHistory/ImportAccordion"
+import EmptyHistory from "@/components/orderHistory/EmptyHistory"
 
 const MainOrderHistory = () => {
   return (
@@ -10,6 +11,7 @@ const MainOrderHistory = () => {
       </div>
       <Button/>
       <ImportAccordion/>
+      <EmptyHistory/>
     </div>
   )
 }
