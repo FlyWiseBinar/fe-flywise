@@ -85,7 +85,7 @@ const Otp = () => {
 		<div className="fixed z-50 top-4 bg-white w-full">
 		<Head>
         <title>Register | FlyWise</title>
-        <link rel="icon" href="./logo.svg" />
+        <link rel="icon" href="../logo.svg" />
       </Head>
 			<ToastContainer
 				position="bottom-center"

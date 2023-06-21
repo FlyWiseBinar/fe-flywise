@@ -8,7 +8,7 @@ const index = () => {
     <div>
     <Head>
     <title>Homepage | FlyWise</title>
-    <link rel="icon" href="./logo.svg" />
+    <link rel="icon" href="../logo.svg" />
     </Head>
     <Navbar/>
         <MainHome/>

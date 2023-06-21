@@ -98,7 +98,7 @@ const Profile = () => {
     <>
       <Head>
         <title>Profile | FlyWise</title>
-        <link rel="icon" href="./logo.svg" />
+        <link rel="icon" href="../logo.svg" />
       </Head>
       <Navbar />
       <ToastContainer

@@ -122,7 +122,7 @@ const Otp = () => {
       <div className="container flex z-50 mx-28">
         <Head>
           <title>Forgot Password | FlyWise</title>
-          <link rel="icon" href="./logo.svg" />
+          <link rel="icon" href="../logo.svg" />
         </Head>
         <div className="md:block hidden">
 		<Image src="/pesawat.png" width={70} height={70} alt="Logo" />
