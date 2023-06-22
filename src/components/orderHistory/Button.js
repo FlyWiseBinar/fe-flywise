@@ -42,17 +42,17 @@ const Button = ({onSearch}) => {
 	return (
 		<>
 			<div
-				className="flex flex-row justify-center items-center md:w-full md:gap-3 gap-2"
+				className="flex flex-row justify-center items-center md:w-full w-full md:gap-3 gap-2"
 			>
-				<div className="">
+				<>
 					<Link
 						href="/"
-						className="flex gap-5 md:justify-end items-center bg-third-purple p-3 md:ml-auto rounded-xl text-white hover:bg-main-purple lg:pr-100 md:pr-96 pr-28 duration-75"
+						className="flex gap-5 md:justify-end items-center bg-third-purple p-3 rounded-xl text-white hover:bg-main-purple lg:pr-100 md:pr-96 pr-24 duration-75"
 					>
 						{" "}
 						<LuArrowLeft /> Beranda
 					</Link>
-				</div>
+				</>
 				<div>
 					<button
 						className="flex gap-2 md:justify-end items-center border border-main-purple py-1 rounded-full duration-75 md:px-5 px-3"
@@ -116,11 +116,11 @@ const Button = ({onSearch}) => {
 									<Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
 										<Dialog.Title
 											as="h3"
-											className="text-lg font-medium leading-6 text-gray-900"
+											className="items-center md:gap-28 mb-2  flex md:text-lg font-medium leading-6 text-gray-900"
 										>
 											Pencarian Riwayat Pesanan
 											<div
-												className="text-2xl hover:text-gray-400 cursor-pointer flex justify-end"
+												className="text-2xl md:ml-2 ml-14 hover:text-third-purple text-main-purple cursor-pointer flex justify-end"
 												onClick={handleClickModal}
 											>
 												<LuX />
@@ -130,7 +130,7 @@ const Button = ({onSearch}) => {
 											<input
 												type="text"
 												placeholder="  Masukkan Nomor Penerbangan"
-												className="py-1 px-3 border-2 w-full rounded-lg md:text-base text-sm border-gray-300"
+												className="py-1 px-3 border-2 hover:border-main-purple outline-none w-full rounded-lg md:text-base text-sm border-gray-300"
 												value={searchQuery}
 												onChange={handleInputChange}
 											/>{" "}

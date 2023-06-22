@@ -44,7 +44,7 @@ export default function AccordionHistory({ orders, loading }) {
   }
   return (
     <>
-      <div className=" mx-auto lg:w-3/5 w-11/12 mt-5">
+      <div className=" mx-auto lg:w-3/5 w-full px-2 md:px-0 mt-5">
         {loading ? (<Loading />) : (<div>      {orders?.map((item, index) => (
           <div
             className={`flex flex-col justify-center items-center w-full md:${styles.mainMaxWidth} border-2 rounded-xl border-gray-400 hover:border-main-purple mb-2`}
