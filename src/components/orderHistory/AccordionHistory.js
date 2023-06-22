@@ -30,23 +30,13 @@ export default function AccordionHistory({ orders, loading }) {
     return formatter.format(number)
   }
 
-  const calculateDuration = (departureTime, arrivalTime) => {
-    const [departureHour, departureMinute, departureSecond] = departureTime.split(":")
-    const [arrivalHour, arrivalMinute, arrivalSecond] = arrivalTime.split(":")
+  function duration(second) {
+    const hour = Math.floor(second / 3600)
+    const remainingSecond = second % 3600
+    const minute = Math.floor(remainingSecond / 60)
+    second = remainingSecond % 60
 
-    const departure = new Date()
-    departure.setHours(departureHour, departureMinute, departureSecond)
-
-    const arrival = new Date()
-    arrival.setHours(arrivalHour, arrivalMinute, arrivalSecond)
-
-    const durationMs = arrival - departure
-
-    const hours = Math.floor(durationMs / (1000 * 60 * 60))
-    const minutes = Math.floor((durationMs / (1000 * 60)) % 60)
-
-
-    return `${hours} hours ${minutes} minutes`
+    return hour + " jam " + minute + " menit "
   }
 
   const toggleAccordion = () => {
@@ -89,7 +79,7 @@ export default function AccordionHistory({ orders, loading }) {
                 <p className="md:text-base text-sm">{formatTime(item.schedule.departureTime)}</p>
               </div>
               <span className="text-center font-normal text-sm text-gray-400">
-                <div className="w-80 border-b-2 ">{calculateDuration(item.schedule.departureTime, item.schedule.arrivedTime)}</div>
+                <div className="md:w-80 w-10 border-b-2 ">{duration(item.schedule.durationInSecond)}</div>
                 <div>{""}</div>
               </span>
               <div className="flex self-start items-center text-gray-400 md:text-4xl">
