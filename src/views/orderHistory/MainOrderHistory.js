@@ -1,4 +1,7 @@
 import React from "react"
+import Image from "next/image"
+import { styles } from "@/styles/styles"
+import Link from "next/link"
 import Button from "@/components/orderHistory/Button"
 import AccordionHistory from "@/components/orderHistory/AccordionHistory"
 import { useState, useEffect } from "react"
@@ -6,15 +9,22 @@ import { useState, useEffect } from "react"
 const MainOrderHistory = () => {
   const [loading, setLoading] = useState(true)
   const [data, setData] = useState([])
+  const [showAlert, setShowAlert] = useState(false)
 
   useEffect(() => {
-    fetchData()
+    const timer = setTimeout(() => {
+      fetchData()
+    }, 300) // Tunda pengecekan kondisi showAlert selama 300 milidetik
+
+    return () => {
+      clearTimeout(timer)
+    }
   }, [])
 
   const fetchData = async () => {
     try {
       const response = await fetch(
-        "https://be-flywise-stagging-jcbxz3zpbq-as.a.run.app/v1/api/order/history"
+        "http://localhost:5000/v1/api/order/history"
       )
       const { orders } = await response.json()
       const jsonData = orders
@@ -27,7 +37,7 @@ const MainOrderHistory = () => {
 
   const fetchFilteredOrders = async (searchQuery) => {
     try {
-      const response = await fetch(`https://be-flywise-stagging-jcbxz3zpbq-as.a.run.app/v1/api/order/historysearch?orderCode=${searchQuery}`)
+      const response = await fetch(`http://localhost:5000/v1/api/order/historysearch?orderCode=${searchQuery}`)
       const { orders } = await response.json()
       const data = orders
       setData(data)
@@ -37,11 +47,16 @@ const MainOrderHistory = () => {
   }
 
   const handleSearch = async (searchQuery) => {
-    if (searchQuery.trim() !== "") {
+    if (searchQuery.trim() !== "" && data.length !== 0) {
+      console.log(data)
       await fetchFilteredOrders(searchQuery)
-    } else {
+      setShowAlert(false)
+    } else if (searchQuery === "") {
       setLoading(true)
       fetchData()
+      setShowAlert(false)
+    } else {
+      setShowAlert(searchQuery.trim() !== "" && data.length == 0)
     }
   }
 
@@ -53,6 +68,16 @@ const MainOrderHistory = () => {
       <Button
         onSearch={handleSearch}
       />
+      {showAlert && (
+        <div>
+          <div className={`${styles.mainCol} pt-10`}>
+            <Image src="../empty_history.svg" width={150} height={150} alt="empty" />
+            <p className="text-main-purple pt-3 text-sm">Oops Riwayat Pesanan Kosong!</p>
+            <p className="text-sm">Anda belum melakukan pemesanan penerbangan</p>
+            <Link href="/home" className="py-3 px-24 rounded-xl mt-8 cursor-pointer bg-main-purple hover:bg-second-purple hover:font-semibold text-white">Cari Penerbangan</Link>
+          </div>
+        </div>
+      )}
       <AccordionHistory
         orders={data}
         loading={loading}
