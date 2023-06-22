@@ -1,16 +1,18 @@
-import { styles } from "@/styles/styles"
-import { LuArrowLeft, LuSearch, LuFilter, LuX } from "react-icons/lu"
-import { AiOutlineSearch } from "react-icons/ai"
-import { useState } from "react"
+import {styles} from "@/styles/styles"
+import {LuArrowLeft, LuSearch, LuFilter, LuX} from "react-icons/lu"
+import {AiOutlineSearch} from "react-icons/ai"
+import {useState} from "react"
 import Datepicker from "react-tailwindcss-datepicker"
 import Head from "next/head"
+import {Fragment} from "react"
+import {Dialog, Transition} from '@headlessui/react'
 
 
 import React from "react"
 import Link from "next/link"
 
 
-const Button = ({ onSearch }) => {
+const Button = ({onSearch}) => {
 	const [isOpenModal, setIsOpenModal] = useState(false)
 
 	const [searchQuery, setSearchQuery] = useState("")
@@ -87,30 +89,59 @@ const Button = ({ onSearch }) => {
 				>
 					<AiOutlineSearch />
 				</div>
-				{isOpenModal && (
-					<div className="fixed inset-0 bg-opacity-70 bg-black flex items-center justify-center">
-						<div className="absolute bg-white rounded-lg shadow-2xl md:w-96 w-80 md:h-72 h-64">
-							<div className="flex gap-3 items-center p-4 cursor-pointer">
-								<form onSubmit={handleFormSubmit} className="w-full">
-									<input
-										type="text"
-										placeholder="  Masukkan Nomor Penerbangan"
-										className="py-1 px-3 border-2 w-full rounded-lg md:text-base text-sm border-gray-300"
-										value={searchQuery}
-										onChange={handleInputChange}
-									/>{" "}
-								</form>
-								<div
-									className="text-2xl hover:text-gray-400 cursor-pointer"
-									onClick={handleClickModal}
+				<Transition appear show={isOpenModal} as={Fragment}>
+					<Dialog as="div" className="relative z-10" onClose={handleClickModal}>
+						<Transition.Child
+							as={Fragment}
+							enter="ease-out duration-300"
+							enterFrom="opacity-0"
+							enterTo="opacity-100"
+							leave="ease-in duration-200"
+							leaveFrom="opacity-100"
+							leaveTo="opacity-0"
+						>
+							<div className="fixed inset-0 bg-black bg-opacity-25" />
+						</Transition.Child>
+						<div className="fixed inset-0 overflow-y-auto">
+							<div className="flex min-h-full items-center justify-center p-4 text-center">
+								<Transition.Child
+									as={Fragment}
+									enter="ease-out duration-300"
+									enterFrom="opacity-0 scale-95"
+									enterTo="opacity-100 scale-100"
+									leave="ease-in duration-200"
+									leaveFrom="opacity-100 scale-100"
+									leaveTo="opacity-0 scale-95"
 								>
-									<LuX />
-								</div>
+									<Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+										<Dialog.Title
+											as="h3"
+											className="text-lg font-medium leading-6 text-gray-900"
+										>
+											Pencarian Riwayat Pesanan
+											<div
+												className="text-2xl hover:text-gray-400 cursor-pointer flex justify-end"
+												onClick={handleClickModal}
+											>
+												<LuX />
+											</div>
+										</Dialog.Title>
+										<form onSubmit={handleFormSubmit} className="w-full">
+											<input
+												type="text"
+												placeholder="  Masukkan Nomor Penerbangan"
+												className="py-1 px-3 border-2 w-full rounded-lg md:text-base text-sm border-gray-300"
+												value={searchQuery}
+												onChange={handleInputChange}
+											/>{" "}
+										</form>
+
+									</Dialog.Panel>
+								</Transition.Child>
 							</div>
-							<hr className="bg-black" />
 						</div>
-					</div>
-				)}
+					</Dialog>
+				</Transition>
 			</div>
 			<div className="flex justify-center mt-3">
 				<div className="lg:w-7/12 w-11/12 border-t-2 border-slate-300"></div>
