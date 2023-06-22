@@ -58,8 +58,8 @@ const Navbar = () => {
           className={` ${styles.mainRow} bg-white z-20 !justify-between px-12 lg:px-20 md:px-20`}
         >
           <div className="w-full flex-col justify-start p-3">
-            <p className="text-2xl font-bold text-main-purple">FlyWise</p>
-            <p className="text-lg text-main-purple">Your Traveling Partner</p>
+            <p className="md:text-2xl text-xl font-bold text-main-purple">FlyWise</p>
+            <p className="md:text-lg text-base text-main-purple">Your Traveling Partner</p>
           </div>
 
           <div className="w-full flex justify-end items-center">
