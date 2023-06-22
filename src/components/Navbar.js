@@ -178,13 +178,15 @@ const Navbar = () => {
                     <div className="border-b border-gray-400"></div>
                   </div>
                   <li>
-                    <div
-                      className="mt-[450px] gap-3 text-lg cursor-pointer bg-orange-500 py-2 rounded-lg flex items-center justify-center hover:font-semibold text-white hover:bg-orange-600 hover:text-xl hover:scale-110 duration-300"
-                      onClick={handleClickLogout}
-                    >
-                      <BiLogOut />
-                      <p>Keluar</p>
-                    </div>
+                   <div className="justify-center flex">
+                     <div
+                       className="fixed bottom-0 mb-8 px-10 gap-3 text-lg cursor-pointer bg-orange-500 py-2 rounded-lg flex items-center justify-center hover:font-semibold text-white hover:bg-orange-600 hover:text-xl hover:scale-110 duration-300"
+                       onClick={handleClickLogout}
+                     >
+                       <BiLogOut />
+                       <p>Keluar</p>
+                     </div>
+                   </div>
                   </li>
                 </>
               ) : (
