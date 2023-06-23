@@ -125,11 +125,11 @@ const Navbar = () => {
         <div
           className={`md:hidden bg-white z-50 fixed top-0 right-0 w-3/5 h-screen overflow-y-auto ease-in-out transition-all duration-300 transform ${
             isSidebarOpen
-              ? "translate-x-0 shadow-lg border"
+              ? "translate-x-0 md:filter-none drop-shadow-[0_200px_200px_rgba(0,0,0,1)] border"
               : "translate-x-full"
           }`}
         >
-          <div className="flex justify-end p-4 ">
+          <div className="flex justify-end p-4">
             <button className="focus:outline-none" onClick={toggleSidebar}>
               <svg
                 className="w-6 h-6 text-main-purple"
