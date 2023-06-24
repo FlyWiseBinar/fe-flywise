@@ -5,7 +5,7 @@ import Link from "next/link"
 const Detail = () => {
   return (
     <div className=" flex flex-col bg-white rounded-xl justify-center items-center content-start p-5 lg:mt-0 md:mt-0 mt-10">
-      <div className="w-[400px]">
+      <div className="w-[200px] lg:w-[400px] md:w-[400px] sm:w-[400px]">
         <div className="flex flex-row ">
           <h2 className="font-bold text-xl">Detail Penerbangan</h2>
         </div>

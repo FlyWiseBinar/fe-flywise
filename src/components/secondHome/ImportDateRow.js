@@ -5,7 +5,7 @@ import { styles } from "@/styles/styles"
 const ImportDateRow = () => {
   return (
     <>
-      <div className={`${styles.mainRow}`}>
+      <div className={`${styles.mainRow} text-xs lg:text-base md:text-base xstext-xs:text-sm`}>
         <DateRow day="Senin" date="12/12/2023" />
         <DateRow day="Selasa" date="12/12/2023" />
         <DateRow day="Rabu" date="12/12/2023" />
