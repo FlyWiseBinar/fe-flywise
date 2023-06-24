@@ -1,6 +1,6 @@
 import { LuArrowLeft, LuSearch, LuFilter, LuX } from "react-icons/lu"
 import { AiOutlineSearch } from "react-icons/ai"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Datepicker from "react-tailwindcss-datepicker"
 import { Fragment } from "react"
 import { Dialog, Transition } from "@headlessui/react"
@@ -8,10 +8,10 @@ import { Dialog, Transition } from "@headlessui/react"
 import React from "react"
 import Link from "next/link"
 
-const Button = ({ onSearch }) => {
+const Button = ({ onSearch, onSubmit }) => {
   const [isOpenModal, setIsOpenModal] = useState(false)
-
   const [searchQuery, setSearchQuery] = useState("")
+  const [value, setValue] = useState("")
 
   const handleInputChange = (e) => {
     setSearchQuery(e.target.value)
@@ -30,10 +30,15 @@ const Button = ({ onSearch }) => {
     setIsOpenModal(!isOpenModal)
   }
 
-  const [value, setValue] = useState({
-    startDate: new Date(),
-    endDate: new Date().setMonth(11),
-  })
+  const handleDateChange = (date) => {
+    setValue(date)
+  }
+
+  useEffect(() => {
+    if (value !== "") {
+      onSubmit(value)
+    }
+  }, [value])
 
   return (
     <>
@@ -67,7 +72,7 @@ const Button = ({ onSearch }) => {
             value={value}
             placeholder={" "}
             toggleClassName={"absolute opacity-0 pointer-events-none "}
-            onChange={(e) => setValue(e.target.value)}
+            onChange={handleDateChange}
             configs={{
               footer: {
                 cancel: "Batal",
