@@ -10,6 +10,7 @@ import "react-toastify/dist/ReactToastify.css"
 import Head from "next/head"
 import Navbar from "@/components/Navbar"
 import Link from "next/link"
+import { api } from "@/configs/api"
 
 const Profile = () => {
   const token = getCookie("accessToken")
@@ -23,7 +24,7 @@ const Profile = () => {
   useEffect(() => {
     axios
       .get(
-        "https://be-flywise-stagging-jcbxz3zpbq-as.a.run.app/v1/api/auth/whoami",
+        api.apiWhoAmI,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -50,7 +51,7 @@ const Profile = () => {
     e.preventDefault() // untuk menghindari refresh laman
     try {
       const response = await axios.put(
-        "https://be-flywise-stagging-jcbxz3zpbq-as.a.run.app/v1/api/auth/profile",
+        api.apiUpdateProfile,
         {
           fullName: form.fullName,
           telephone: form.telephone,
@@ -133,7 +134,7 @@ const Profile = () => {
         <div className="flex justify-center">
           <ul className="flex flex-col ml-5">
             <li className="flex items-center gap-3 cursor-pointer hover:scale-105">
-              <Link href="/profile" className="flex items-center gap-2">
+              <Link href="profile/profile" className="flex items-center gap-2">
                 <div className="text-main-purple text-lg">
                   <HiOutlinePencil />
                 </div>
@@ -142,7 +143,7 @@ const Profile = () => {
             </li>
             <div className="border-b w-60 pt-2 border-gray-300"></div>
             <li className="flex items-center pt-4 gap-3 cursor-pointer hover:scale-105">
-              <Link href="/login" className="flex items-center gap-2">
+              <Link href="login/login" className="flex items-center gap-2">
                 <div className="text-main-purple text-lg">
                   <LuLogOut />
                 </div>

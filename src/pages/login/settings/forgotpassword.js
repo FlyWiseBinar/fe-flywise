@@ -41,7 +41,7 @@ const Forgotpassword = () => {
       if (response.status == 200) {
         setLoading(false)
         setTimeout(() => {
-          router.push("/login")
+          router.push("login")
         }, 3000)
         toast.success(`${response.data.message}, redirect login in 3s...`, {
           position: "bottom-center",
