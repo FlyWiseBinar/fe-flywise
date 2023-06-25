@@ -6,12 +6,11 @@ import Head from "next/head"
 const index = () => {
   return (
     <div>
-    <Head>
-    <title>Search | Flywise</title>
-    <link rel="icon" href="../logo.svg" />
-    </Head>
-    <Navbar/>
-      <SecondHome/>
+      <Head>
+        <title>Search | Flywise</title>
+        <link rel="icon" href="../logo.svg" />
+      </Head>
+      <SecondHome />
     </div>
   )
 }

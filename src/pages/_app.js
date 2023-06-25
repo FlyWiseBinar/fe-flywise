@@ -1,6 +1,7 @@
 import React from "react"
 import "@/styles/globals.css"
 import Head from "next/head"
+import Navbar from "@/components/Navbar"
 
 // eslint-disable-next-line react/prop-types
 export default function App({ Component, pageProps }) {
@@ -14,6 +15,7 @@ export default function App({ Component, pageProps }) {
           rel="stylesheet"
         />
       </Head>
+      <Navbar />
       <Component {...pageProps} />
     </>
   )

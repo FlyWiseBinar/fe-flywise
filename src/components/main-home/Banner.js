@@ -6,10 +6,10 @@ const Banner = () => {
     <div className={`${styles.mainCol} py-5`}>
       <div className="w-full bg-main-orange opacity-60 h-[150px] absolute z-0 top-52"></div>
       <div
-        className={`${styles.mainMaxWidth} flex justify-between items-center absolute h-[232px] z-10 top-44 w-[75%] rounded-3xl bg-main-purple`}
+        className={`${styles.mainMaxWidth} flex justify-between items-center absolute h-[232px] z-10 top-44 lg:w-[90%] w-[80%] rounded-3xl bg-main-purple`}
       >
-        <div className="text-4xl font-bold px-[5%] py-5 w-full flex flex-col text-white gap-5 ">
-          <i className="">Diskon Hari Ini</i>
+        <div className="text-4xl font-bold px-[5%] py-5 w-full flex flex-col text-white  gap-5 ">
+          <i className="font-bold">Diskon Hari Ini</i>
           <p className="text-main-orange">{"85%"}</p>
         </div>
 

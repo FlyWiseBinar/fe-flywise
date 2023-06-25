@@ -20,21 +20,46 @@ const CardOrder = () => {
   const [isOpenFrom, setIsOpenFrom] = useState(false)
   const [isOpenTo, setIsOpenTo] = useState(false)
   const [isOpenPass, setIsOpenPass] = useState(false)
+  const [from, setFrom] = useState()
+  const [to, setTo] = useState()
 
-  const [count, setCount] = useState(0)
+  const [CountAdult, setCountAdult] = useState(0)
+  const [CountChild, setCountChild] = useState(0)
+  const [CountBaby, setCountBaby] = useState(0)
 
-  const decreaseCount = () => {
-    if (count > 0) {
-      setCount(count - 1)
+  const decreaseCount = (where) => {
+    if (where === 'baby') {
+      if (CountBaby > 0) {
+        setCountBaby(CountBaby - 1)
+      }
+    } else if (where === 'child') {
+      if (CountChild > 0) {
+        setCountChild(CountChild - 1)
+      }
+    } else {
+      if (CountAdult > 0) {
+        setCountAdult(CountAdult - 1)
+      }
     }
   }
 
-  const increaseCount = () => {
-    setCount(count + 1)
+
+  const increaseCount = (where) => {
+    if (where === 'baby') {
+      if (CountBaby >= 0) {
+        setCountBaby(CountBaby + 1)
+      }
+    } else if (where === 'child') {
+      if (CountChild >= 0) {
+        setCountChild(CountChild + 1)
+      }
+    } else {
+      if (CountAdult >= 0) {
+        setCountAdult(CountAdult + 1)
+      }
+    }
   }
 
-  const [from, setFrom] = useState()
-  const [to, setTo] = useState()
 
   const handleRepeatClick = () => {
     const temp = from
@@ -44,12 +69,10 @@ const CardOrder = () => {
 
   const onChangefrom = (e) => {
     setFrom(e.target.value)
-    console.log("target", e.target.value)
   }
 
   const onChangeto = (e) => {
     setTo(e.target.value)
-    console.log("target", e.target.value)
   }
 
   const openModalFrom = () => {
@@ -73,12 +96,24 @@ const CardOrder = () => {
   const handleOptionChange = (option) => {
     setSelectedOption(option)
   }
+
+  const onSubmit = () => {
+    console.log('from', from);
+    console.log('to', to);
+    console.log('deptdate', departureDate?.startDate);
+    console.log('retdate', returnDate?.startDate);
+    console.log('child', CountChild);
+    console.log('baby', CountBaby);
+    console.log('adult', CountAdult);
+  }
+
+
   return (
     <div className={`${styles.mainCol} `}>
       <div
         className={`${styles.mainMaxWidth}  w-full p-5 flex items-center justify-center`}
       >
-        <div className='flex flex-col bg-white items-center justify-center lg:w-[1000px] md:w-[700px] w-[350px] gap-5 rounded-xl shadow-xl p-5 border-solid border-[1px] border-slate-400'>
+        <div className='flex flex-col bg-white items-center justify-center lg:w-[1000px] md:w-[800px] w-[350px] gap-5 rounded-xl shadow-xl p-5 border-solid border-[1px] border-slate-400'>
           <h3 className='self-start font-bold text-xl'>
             Pilih Jadwal Penerbangan spesial di{" "}
             <span className='text-main-purple'>FlyWise!</span>
@@ -161,14 +196,14 @@ const CardOrder = () => {
                       <p>Return</p>
                       {isReturnActive ? (
                         <Datepicker
-                          primaryColor={"orange"}
                           asSingle={true}
                           value={returnDate}
+                          primaryColor={"orange"}
                           selected={returnDate}
-                          onChange={(date) => setReturnDate(date)}
-                          placeholder='Return'
                           inputClassName={"bg-white text-black w-[130px]"}
-                          className='hover:bg-slate-50 focus:outline-none w-full bg-transparent bg-white text-black hover:bg-transparent'
+                          onChange={(date) => setReturnDate(date)}
+                          placeholder='Departure'
+                          className='hover:bg-slate-50 focus:outline-none w-full bg-transparent hover:bg-transparent'
                         />
                       ) : (
                         <input
@@ -263,7 +298,8 @@ const CardOrder = () => {
                     <p>Passengers</p>
                     <input
                       onClick={openModalPass}
-                      className=' hover:bg-slate-50 focus:outline-none w-full bg-transparent hover:bg-transparent'
+                      className='hover:bg-slate-50 focus:outline-none w-full bg-transparent hover:bg-transparent'
+                      value={CountAdult + CountBaby + CountChild}
                     />
                     <hr className='w-full' />
                     {isOpenPass && (
@@ -293,16 +329,16 @@ const CardOrder = () => {
                               <div className='flex px-2 gap-3 items-center'>
                                 <button
                                   className='text-purple-700 rounded-md flex items-center justify-center hover:scale-105 duration-100 border-2 border-purple-700 p-2'
-                                  onClick={decreaseCount}
+                                  onClick={() => decreaseCount('adult')}
                                 >
                                   <AiOutlineMinus className='text-xl' />
                                 </button>
                                 <div className='text-2xl font-semibold p-2'>
-                                  {count}
+                                  {CountAdult}
                                 </div>
                                 <button
                                   className='text-purple-700 rounded-md flex items-center justify-center hover:scale-105 duration-100 border-2 border-purple-700 p-2'
-                                  onClick={increaseCount}
+                                  onClick={() => increaseCount('adult')}
                                 >
                                   <AiOutlinePlus className='text-xl' />
                                 </button>
@@ -322,16 +358,16 @@ const CardOrder = () => {
                               <div className='flex px-2 gap-3 items-center'>
                                 <button
                                   className='text-purple-700 rounded-md flex items-center justify-center hover:scale-105 duration-100 border-2 border-purple-700 p-2'
-                                  onClick={decreaseCount}
+                                  onClick={() => decreaseCount('child')}
                                 >
                                   <AiOutlineMinus className='text-xl' />
                                 </button>
                                 <div className='text-2xl font-semibold p-2'>
-                                  {count}
+                                  {CountChild}
                                 </div>
                                 <button
                                   className='text-purple-700 rounded-md flex items-center justify-center hover:scale-105 duration-100 border-2 border-purple-700 p-2'
-                                  onClick={increaseCount}
+                                  onClick={() => increaseCount('child')}
                                 >
                                   <AiOutlinePlus className='text-xl' />
                                 </button>
@@ -351,16 +387,16 @@ const CardOrder = () => {
                               <div className='flex px-2 gap-3 items-center'>
                                 <button
                                   className='text-purple-700 rounded-md flex items-center justify-center hover:scale-105 duration-100 border-2 border-purple-700 p-2'
-                                  onClick={decreaseCount}
+                                  onClick={() => decreaseCount('baby')}
                                 >
                                   <AiOutlineMinus className='text-xl' />
                                 </button>
                                 <div className='text-2xl font-semibold p-2'>
-                                  {count}
+                                  {CountBaby}
                                 </div>
                                 <button
                                   className='text-purple-700 rounded-md flex items-center justify-center hover:scale-105 duration-100 border-2 border-purple-700 p-2'
-                                  onClick={increaseCount}
+                                  onClick={() => increaseCount('baby')}
                                 >
                                   <AiOutlinePlus className='text-xl' />
                                 </button>
@@ -369,7 +405,7 @@ const CardOrder = () => {
                             <hr className='bg-black' />
                             <div className='flex flex-row justify-end'>
                               <div className='flex flex-row justify-between items-center'>
-                                <button className='bg-purple-800 text-white flex rounded-xl items-center justify- w-full py-3 p-5 hover:scale-105 duration-100'>
+                                <button onClick={closeModal} className='bg-purple-800 text-white flex rounded-xl items-center justify- w-full py-3 p-5 hover:scale-105 duration-100'>
                                   <span className='text-lg'>Simpan</span>
                                 </button>
                               </div>
@@ -397,9 +433,9 @@ const CardOrder = () => {
             </div>
           </div>
           <div className='flex w-full justify-center'>
-            <Link href="/home/search" className='bg-purple-800 text-white flex rounded-xl items-center justify-center w-full py-3 hover:scale-105 duration-100'>
-              <span className='text-lg'>Lihat Jadwal Penerbangan</span>
-            </Link>
+            <button onClick={() => onSubmit()} className='w-full flex items-center justify-center'>
+              <span className='text-lg bg-purple-800 text-white w-[95%] flex rounded-xl items-center justify-center py-3 hover:scale-105 duration-300'>Lihat Jadwal Penerbangan</span>
+            </button>
           </div>
         </div>
       </div>

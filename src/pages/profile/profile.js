@@ -101,7 +101,6 @@ const Profile = () => {
         <title>Profile | FlyWise</title>
         <link rel="icon" href="../logo.svg" />
       </Head>
-      <Navbar />
       <ToastContainer
         position="bottom-center"
         autoClose={2000}

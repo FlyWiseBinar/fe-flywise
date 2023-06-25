@@ -10,7 +10,6 @@ const index = () => {
         <title>Payment | FlyWise</title>
         <link rel="icon" href="../logo.svg" />
       </Head>
-      <Navbar />
       <Payment />
     </div>
   )
