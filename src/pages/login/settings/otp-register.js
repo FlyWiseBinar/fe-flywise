@@ -1,10 +1,11 @@
-import React, {useState} from "react"
+import React, { useState } from "react"
 import axios from "axios"
-import {useRouter} from "next/router"
-import {useSearchParams} from "next/navigation"
-import {ToastContainer, toast} from "react-toastify"
+import { useRouter } from "next/router"
+import { useSearchParams } from "next/navigation"
+import { ToastContainer, toast } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 import Head from "next/head"
+import { api } from "@/configs/api"
 
 const Otp = () => {
 	const router = useRouter()
@@ -29,12 +30,12 @@ const Otp = () => {
 	const handleSubmit = async (e) => {
 		e.preventDefault()
 		try {
-			const response = await axios.post("https://be-flywise-stagging-jcbxz3zpbq-as.a.run.app/v1/api/auth/verify-otp", {
+			const response = await axios.post(api.apiVerifyOtp, {
 				email: email,
 				otp: otp.first + otp.second + otp.third + otp.fourth + otp.fifth + otp.sixth
 			})
 			if (response.status == 200) {
-				router.push("/login")
+				router.push("login")
 			}
 		} catch (error) {
 			toast.error(error.response.data.message, {
@@ -52,7 +53,7 @@ const Otp = () => {
 
 	const handleResendOtp = async () => {
 		try {
-			const response = await axios.post("https://be-flywise-stagging-jcbxz3zpbq-as.a.run.app/v1/api/auth/resend-otp", {
+			const response = await axios.post(api.apiResendOtp, {
 				email: email
 			})
 			if (response.status == 200) {
@@ -83,10 +84,10 @@ const Otp = () => {
 
 	return (
 		<div className="fixed z-50 top-4 bg-white w-full">
-		<Head>
-        <title>Register | FlyWise</title>
-        <link rel="icon" href="../logo.svg" />
-      </Head>
+			<Head>
+				<title>Register | FlyWise</title>
+				<link rel="icon" href="../logo.svg" />
+			</Head>
 			<ToastContainer
 				position="bottom-center"
 				autoClose={2000}

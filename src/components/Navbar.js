@@ -36,7 +36,7 @@ const Navbar = () => {
       theme: "colored",
     })
     setTimeout(() => {
-      router.push("/login")
+      router.push("login")
     }, 1500)
   }
   return (
@@ -111,7 +111,7 @@ const Navbar = () => {
               ) : (
                 <div>
                   <Link
-                    href="/login"
+                    href="login"
                     className="flex items-center justify-center text-black hover:text-main-purple text-2xl hover:scale-110 duration-300"
                   >
                     <BiLogIn />
@@ -123,11 +123,11 @@ const Navbar = () => {
           </div>
         </div>
         <div
-          className={`md:hidden bg-white z-50 fixed top-0 right-0 w-3/5 h-screen overflow-y-auto ease-in-out transition-all duration-300 transform ${
-            isSidebarOpen
-              ? "translate-x-0 md:filter-none shadow-[0_0_100vw_rgba(37,37,37,1)] border"
-              : "translate-x-full"
-          }`}
+
+          className={`md:hidden bg-white z-50 fixed top-0 right-0 w-3/5 h-screen overflow-y-auto ease-in-out transition-all duration-300 transform ${isSidebarOpen
+            ? "translate-x-0 md:filter-none shadow-[0_0_500px_rgba(37,37,37,1)] border"
+            : "translate-x-full"
+            }`}
         >
           <div className="flex justify-end p-4">
             <button className="focus:outline-none" onClick={toggleSidebar}>
@@ -150,9 +150,9 @@ const Navbar = () => {
             <ul className="space-y-2">
               {isLogin ? (
                 <>
-                <div className="w-full justify-center">
-                <div className="border-b border-gray-400"></div>
-              </div>
+                  <div className="w-full justify-center">
+                    <div className="border-b border-gray-400"></div>
+                  </div>
                   <li className="flex justify-center">
                     <Link
                       href="/orderHistory"
@@ -178,22 +178,22 @@ const Navbar = () => {
                     <div className="border-b border-gray-400"></div>
                   </div>
                   <li>
-                   <div className="justify-center flex">
-                     <div
-                       className="fixed bottom-0 mb-8 px-10 gap-3 text-lg cursor-pointer bg-orange-500 py-2 rounded-lg flex items-center justify-center hover:font-semibold text-white hover:bg-orange-600 hover:text-xl hover:scale-110 duration-300"
-                       onClick={handleClickLogout}
-                     >
-                       <BiLogOut />
-                       <p>Keluar</p>
-                     </div>
-                   </div>
+                    <div className="justify-center flex">
+                      <div
+                        className="fixed bottom-0 mb-8 px-10 gap-3 text-lg cursor-pointer bg-orange-500 py-2 rounded-lg flex items-center justify-center hover:font-semibold text-white hover:bg-orange-600 hover:text-xl hover:scale-110 duration-300"
+                        onClick={handleClickLogout}
+                      >
+                        <BiLogOut />
+                        <p>Keluar</p>
+                      </div>
+                    </div>
                   </li>
                 </>
               ) : (
                 <li>
                   <div>
                     <Link
-                      href="/login"
+                      href="login"
                       className="flex items-center gap-2 text-main-purple"
                     >
                       <BiLogIn />
