@@ -32,7 +32,7 @@ export default function AccordionHistory({ orders, loading }) {
     const minute = Math.floor(remainingSecond / 60)
     second = remainingSecond % 60
 
-    return hour + " jam " + minute + " menit "
+    return hour + "h " + minute + "m "
   }
 
   const toggleAccordion = () => {
@@ -85,8 +85,8 @@ export default function AccordionHistory({ orders, loading }) {
                       {formatTime(item.schedule.departureTime)}
                     </p>
                   </div>
-                  <span className="text-center font-normal text-sm text-gray-400">
-                    <div className="md:w-80 w-10 border-b-2 ">
+                  <span className="text-center md:font-normal font-bold md:text-sm text-[12px] text-gray-400">
+                    <div className="md:w-80 w-14 border-b-2 ">
                       {duration(item.schedule.durationInSecond)}
                     </div>
                     <div>{""}</div>

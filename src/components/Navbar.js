@@ -125,7 +125,7 @@ const Navbar = () => {
         <div
           className={`md:hidden bg-white z-50 fixed top-0 right-0 w-3/5 h-screen overflow-y-auto ease-in-out transition-all duration-300 transform ${
             isSidebarOpen
-              ? "translate-x-0 md:filter-none shadow-[0_0_500px_rgba(37,37,37,1)] border"
+              ? "translate-x-0 md:filter-none shadow-[0_0_100vw_rgba(37,37,37,1)] border"
               : "translate-x-full"
           }`}
         >
