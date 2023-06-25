@@ -1,4 +1,4 @@
-import Navbar from "@/components/Navbar"
+
 import PaymentSuccess from "@/components/payment/PaymentSucces"
 import React from "react"
 import Head from "next/head"

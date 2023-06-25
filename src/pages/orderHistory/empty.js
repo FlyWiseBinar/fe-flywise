@@ -1,6 +1,5 @@
 import React from "react"
 import Head from "next/head"
-import Navbar from "@/components/Navbar"
 import EmptyHistory from "@/components/orderHistory/EmptyHistory"
 import MainOrderHistory from "@/views/orderHistory/MainOrderHistory"
 

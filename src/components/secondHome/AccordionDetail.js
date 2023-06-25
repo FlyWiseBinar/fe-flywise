@@ -4,8 +4,6 @@ import { LuChevronDown } from "react-icons/lu"
 import { LuChevronUp } from "react-icons/lu"
 import { LuSend } from "react-icons/lu"
 import { LuBaggageClaim } from "react-icons/lu"
-import { styles } from "@/styles/styles"
-import Link from "next/link"
 
 const AccordionDetail = ({
   hourAttendate,

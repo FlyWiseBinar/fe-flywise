@@ -1,4 +1,3 @@
-import Navbar from "@/components/Navbar"
 import Payment from "@/components/payment/Payment"
 import React from "react"
 import Head from "next/head"

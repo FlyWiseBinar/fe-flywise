@@ -1,10 +1,6 @@
-import React from "react";
-import { styles } from "@/styles/styles";
-import Image from "next/image";
-import { LuPlaneTakeoff, LuPlaneLanding } from "react-icons/lu";
-import { MdDateRange, MdOutlineAirlineSeatReclineNormal } from "react-icons/md";
-import { BsRepeat } from "react-icons/bs";
-import PaymentCountdown from "./PaymentCountdown";
+import React from "react"
+import Image from "next/image"
+import PaymentCountdown from "./PaymentCountdown"
 
 const PaymentSuccess = () => {
   return (
@@ -36,7 +32,7 @@ const PaymentSuccess = () => {
         </div>
       </div>
     </>
-  );
-};
+  )
+}
 
 export default PaymentSuccess

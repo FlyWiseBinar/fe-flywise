@@ -1,5 +1,5 @@
-import React from 'react'
-import { FaArrowRight } from 'react-icons/fa'
+import React from "react"
+import { FaArrowRight } from "react-icons/fa"
 
 const CardFavorite = ({ item }) => {
 
@@ -9,12 +9,11 @@ const CardFavorite = ({ item }) => {
     }
 
     const handlerDate = (date) => {
-        const dateNow = new Date(date)
-        return new Date(date).toLocaleDateString('id-ID', { year: 'numeric', month: 'long', day: 'numeric' })
+        return new Date(date).toLocaleDateString("id-ID", { year: "numeric", month: "long", day: "numeric" })
     }
 
     const handlerIDR = (e) => {
-        return Intl.NumberFormat('id-ID', {
+        return Intl.NumberFormat("id-ID", {
             style: "currency",
             currency: "IDR"
         }).format(e)

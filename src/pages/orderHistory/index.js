@@ -1,7 +1,6 @@
 import React from "react"
 import MainOrderHistory from "@/views/orderHistory/MainOrderHistory"
 import Head from "next/head"
-import Navbar from "@/components/Navbar"
 
 const index = () => {
   return (

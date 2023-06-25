@@ -1,17 +1,17 @@
-import { styles } from '@/styles/styles'
-import { BiLogIn, BiSearchAlt2 } from 'react-icons/bi'
-import CardFavorite from './CardFavorite'
+import { styles } from "@/styles/styles"
+import { BiSearchAlt2 } from "react-icons/bi"
+import CardFavorite from "./CardFavorite"
 
 const Favorit = ({ favorite }) => {
   // console.log('favorite', favorite);
 
   const arrayContinent = [
-    'Semua',
-    'Asia',
-    'Amerika',
-    'Australia',
-    'Eropa',
-    'Afrika',
+    "Semua",
+    "Asia",
+    "Amerika",
+    "Australia",
+    "Eropa",
+    "Afrika",
   ]
 
   return (
@@ -44,10 +44,10 @@ const Favorit = ({ favorite }) => {
 
       <div className="flex gap-5 flex-wrap items-center justify-center">
         {
-          favorite?.map((item) => (
-            <>
+          favorite?.map((item, index) => (
+            <div key={index}>
               <CardFavorite item={item} />
-            </>
+            </div>
           ))
         }
       </div>

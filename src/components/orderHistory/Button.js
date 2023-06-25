@@ -1,8 +1,8 @@
-import { LuArrowLeft, LuSearch, LuFilter, LuX } from "react-icons/lu"
+import { LuArrowLeft, LuFilter, LuX } from "react-icons/lu"
 import { AiOutlineSearch } from "react-icons/ai"
-import { useState, useEffect } from "react"
+import { useState, useEffect, Fragment } from "react"
 import Datepicker from "react-tailwindcss-datepicker"
-import { Fragment } from "react"
+
 import { Dialog, Transition } from "@headlessui/react"
 
 import React from "react"

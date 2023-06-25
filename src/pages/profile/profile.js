@@ -8,7 +8,6 @@ import axios from "axios"
 import { ToastContainer, toast } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 import Head from "next/head"
-import Navbar from "@/components/Navbar"
 import Link from "next/link"
 import { api } from "@/configs/api"
 

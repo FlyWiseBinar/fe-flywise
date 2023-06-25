@@ -7,7 +7,7 @@ import { AiOutlineMinus, AiOutlinePlus, AiOutlineSearch } from "react-icons/ai"
 import { BsRepeat } from "react-icons/bs"
 import { IoMdMan, IoMdWoman } from "react-icons/io"
 import { BiChild } from "react-icons/bi"
-import Link from "next/link"
+
 
 const CardOrder = () => {
   const [departureDate, setDepartureDate] = useState(null)
@@ -28,11 +28,11 @@ const CardOrder = () => {
   const [CountBaby, setCountBaby] = useState(0)
 
   const decreaseCount = (where) => {
-    if (where === 'baby') {
+    if (where === "baby") {
       if (CountBaby > 0) {
         setCountBaby(CountBaby - 1)
       }
-    } else if (where === 'child') {
+    } else if (where === "child") {
       if (CountChild > 0) {
         setCountChild(CountChild - 1)
       }
@@ -45,11 +45,11 @@ const CardOrder = () => {
 
 
   const increaseCount = (where) => {
-    if (where === 'baby') {
+    if (where === "baby") {
       if (CountBaby >= 0) {
         setCountBaby(CountBaby + 1)
       }
-    } else if (where === 'child') {
+    } else if (where === "child") {
       if (CountChild >= 0) {
         setCountChild(CountChild + 1)
       }
@@ -98,13 +98,13 @@ const CardOrder = () => {
   }
 
   const onSubmit = () => {
-    console.log('from', from);
-    console.log('to', to);
-    console.log('deptdate', departureDate?.startDate);
-    console.log('retdate', returnDate?.startDate);
-    console.log('child', CountChild);
-    console.log('baby', CountBaby);
-    console.log('adult', CountAdult);
+    console.log("from", from)
+    console.log("to", to)
+    console.log("deptdate", departureDate?.startDate)
+    console.log("retdate", returnDate?.startDate)
+    console.log("child", CountChild)
+    console.log("baby", CountBaby)
+    console.log("adult", CountAdult)
   }
 
 
@@ -329,7 +329,7 @@ const CardOrder = () => {
                               <div className='flex px-2 gap-3 items-center'>
                                 <button
                                   className='text-purple-700 rounded-md flex items-center justify-center hover:scale-105 duration-100 border-2 border-purple-700 p-2'
-                                  onClick={() => decreaseCount('adult')}
+                                  onClick={() => decreaseCount("adult")}
                                 >
                                   <AiOutlineMinus className='text-xl' />
                                 </button>
@@ -338,7 +338,7 @@ const CardOrder = () => {
                                 </div>
                                 <button
                                   className='text-purple-700 rounded-md flex items-center justify-center hover:scale-105 duration-100 border-2 border-purple-700 p-2'
-                                  onClick={() => increaseCount('adult')}
+                                  onClick={() => increaseCount("adult")}
                                 >
                                   <AiOutlinePlus className='text-xl' />
                                 </button>
@@ -358,7 +358,7 @@ const CardOrder = () => {
                               <div className='flex px-2 gap-3 items-center'>
                                 <button
                                   className='text-purple-700 rounded-md flex items-center justify-center hover:scale-105 duration-100 border-2 border-purple-700 p-2'
-                                  onClick={() => decreaseCount('child')}
+                                  onClick={() => decreaseCount("child")}
                                 >
                                   <AiOutlineMinus className='text-xl' />
                                 </button>
@@ -367,7 +367,7 @@ const CardOrder = () => {
                                 </div>
                                 <button
                                   className='text-purple-700 rounded-md flex items-center justify-center hover:scale-105 duration-100 border-2 border-purple-700 p-2'
-                                  onClick={() => increaseCount('child')}
+                                  onClick={() => increaseCount("child")}
                                 >
                                   <AiOutlinePlus className='text-xl' />
                                 </button>
@@ -387,7 +387,7 @@ const CardOrder = () => {
                               <div className='flex px-2 gap-3 items-center'>
                                 <button
                                   className='text-purple-700 rounded-md flex items-center justify-center hover:scale-105 duration-100 border-2 border-purple-700 p-2'
-                                  onClick={() => decreaseCount('baby')}
+                                  onClick={() => decreaseCount("baby")}
                                 >
                                   <AiOutlineMinus className='text-xl' />
                                 </button>
@@ -396,7 +396,7 @@ const CardOrder = () => {
                                 </div>
                                 <button
                                   className='text-purple-700 rounded-md flex items-center justify-center hover:scale-105 duration-100 border-2 border-purple-700 p-2'
-                                  onClick={() => increaseCount('baby')}
+                                  onClick={() => increaseCount("baby")}
                                 >
                                   <AiOutlinePlus className='text-xl' />
                                 </button>
