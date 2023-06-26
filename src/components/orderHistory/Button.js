@@ -64,7 +64,7 @@ const Button = ({ onSearch, onSubmit }) => {
           <Datepicker
             inputId="datepicker"
             inputClassName={
-              "absolute flex text-[10px] bg-white focus:outline-none opacity-0 pointer-events-none"
+              "absolute flex text-[0px] bg-white focus:outline-none opacity-0 pointer-events-none"
             }
             primaryColor={"violet"}
             showFooter={true}
