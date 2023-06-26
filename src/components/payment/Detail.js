@@ -1,4 +1,4 @@
-import { styles } from "@/styles/styles"
+
 import Image from "next/image"
 import Link from "next/link"
 
@@ -69,7 +69,7 @@ const Detail = () => {
           </div>
         </div>
         <div className="flex justify-between items-center">
-          <p class="font-bold my-3">Total</p>
+          <p className="font-bold my-3">Total</p>
           <p className="font-bold text-lg text-purple-900 my-3">
             IDR 10.100.000
           </p>

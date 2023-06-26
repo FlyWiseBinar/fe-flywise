@@ -3,7 +3,6 @@ import { styles } from "@/styles/styles"
 import PaymentMethod from "./PaymentMethod"
 import PaymentCountdown from "./PaymentCountdown"
 import DetailMethod from "./DetailMethod"
-import { CountdownProvider } from "./CountdownContext"
 
 const Payment = () => {
   return (

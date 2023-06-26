@@ -1,7 +1,7 @@
-import { baseUrl } from "./baseUrl";
+import { baseUrl } from "./baseUrl"
 
 
-export const api = {
+export default {
     // auth
     apiLogin: `${baseUrl}/v1/api/auth/login`,
     apiRegister: `${baseUrl}/v1/api/auth/register`,

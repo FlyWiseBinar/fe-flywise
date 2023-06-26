@@ -4,7 +4,7 @@
 localhost:3000/home
 
 ### Pencarian Pesawat
-localhost:3000/home/search
+localhost:3000/search
 
 ### Riwayat Pemesanan
 localhost:3000/orderHistory

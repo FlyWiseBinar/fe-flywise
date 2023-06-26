@@ -1,12 +1,10 @@
 import React from "react"
 import { styles } from "@/styles/styles"
-import { Fragment, useState } from "react"
 import CardPemesan from "./CardPemesan"
 import CardPenumpang from "./CardPenumpang.js"
 import Detail from "./Detail"
 import PaymentCountdown from "./PaymentCountdown"
 import Simpan from "./Simpan"
-import { CountdownProvider } from "./CountdownContext"
 
 const Isidata = () => {
   return (

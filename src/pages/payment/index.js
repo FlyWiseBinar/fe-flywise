@@ -1,6 +1,4 @@
-import Navbar from "@/components/Navbar"
 import Isidata from "@/components/payment/Isidata"
-import Payment from "@/components/payment/Payment"
 import React from "react"
 import Head from "next/head"
 
@@ -11,7 +9,7 @@ const index = () => {
         <title>Payment | FlyWise</title>
         <link rel="icon" href="../logo.svg" />
       </Head>
-      <Navbar />
+
       <Isidata />
     </div>
   )

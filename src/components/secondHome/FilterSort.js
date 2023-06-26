@@ -1,59 +1,17 @@
 import React, { useState } from "react"
-import { styles } from "@/styles/styles"
 import { LuArrowDownUp } from "react-icons/lu"
-import { AiOutlineMinus, AiOutlinePlus, AiOutlineSearch } from "react-icons/ai"
-import { IoMdMan, IoMdWoman } from "react-icons/io"
-import { LuPlaneTakeoff, LuPlaneLanding, LuX } from "react-icons/lu"
+import { LuX } from "react-icons/lu"
 
 const FilterDate = () => {
 
-  const handleReturnToggle = () => {
-    setIsReturnActive(!isReturnActive)
-  }
-
   const [selectedOption, setSelectedOption] = useState("")
-  const [isOpenFrom, setIsOpenFrom] = useState(false)
-  const [isOpenTo, setIsOpenTo] = useState(false)
-  const [isOpenPass, setIsOpenPass] = useState(false)
   const [isOpenClass, setIsOpenClass] = useState(false)
-  const [count, setCount] = useState(0)
-
-  const handleRepeatClick = () => {
-    const temp = from
-    setFrom(to)
-    setTo(temp)
-  }
-
-  const onChangefrom = (e) => {
-    setFrom(e.target.value)
-    console.log("target", e.target.value)
-  }
-
-  const onChangeto = (e) => {
-    setTo(e.target.value)
-    console.log("target", e.target.value)
-  }
-
-  const openModalFrom = () => {
-    setIsOpenFrom(true)
-  }
-
-  const openModalTo = () => {
-    setIsOpenTo(true)
-  }
-
-  const openModalPass = () => {
-    setIsOpenPass(true)
-  }
 
   const openModalClass = () => {
     setIsOpenClass(true)
   }
 
   const closeModal = () => {
-    setIsOpenTo(false)
-    setIsOpenFrom(false)
-    setIsOpenPass(false)
     setIsOpenClass(false)
   }
 

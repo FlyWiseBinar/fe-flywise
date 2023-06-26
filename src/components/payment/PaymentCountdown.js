@@ -1,5 +1,4 @@
-import React, { useContext } from "react"
-import { CountdownContext } from "./CountdownContext"
+import React from "react"
 import { styles } from "@/styles/styles"
 
 const PaymentCountdown = () => {

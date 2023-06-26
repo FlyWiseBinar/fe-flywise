@@ -1,4 +1,4 @@
-import Navbar from "@/components/Navbar"
+
 import PaymentSuccess from "@/components/payment/PaymentSucces"
 import React from "react"
 import Head from "next/head"
@@ -10,7 +10,7 @@ const index = () => {
         <title>Payment | FlyWise</title>
         <link rel="icon" href="../logo.svg" />
       </Head>
-      <Navbar />
+
       <PaymentSuccess />
     </div>
   )
