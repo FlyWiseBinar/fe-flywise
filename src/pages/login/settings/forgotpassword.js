@@ -7,6 +7,7 @@ import { PropagateLoader } from "react-spinners"
 import { ToastContainer, toast } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 import Head from "next/head"
+import api from "@/configs/api"
 
 const Forgotpassword = () => {
   const router = useRouter()
@@ -31,7 +32,7 @@ const Forgotpassword = () => {
     setLoading(true)
     try {
       const response = await axios.put(
-        "https://be-flywise-stagging-jcbxz3zpbq-as.a.run.app/v1/api/auth/reset-password/reset",
+        api.apiResetPass,
         {
           email,
           password: form.password,
@@ -41,7 +42,7 @@ const Forgotpassword = () => {
       if (response.status == 200) {
         setLoading(false)
         setTimeout(() => {
-          router.push("login")
+          router.push("/login")
         }, 3000)
         toast.success(`${response.data.message}, redirect login in 3s...`, {
           position: "bottom-center",

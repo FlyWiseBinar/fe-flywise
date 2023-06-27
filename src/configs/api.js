@@ -13,7 +13,7 @@ export default {
     apiSendResetPassOtp: `${baseUrl}/v1/api/auth/reset-password/send-otp`,
     apiResendResetPassOtp: `${baseUrl}/v1/api/auth/reset-password/resend-otp`,
     apiVerifyResetPassOtp: `${baseUrl}/v1/api/auth/reset-password/verify-otp`,
-    apiResetPassOtp: `${baseUrl}/v1/api/auth/reset-password/reset`,
+    apiResetPass: `${baseUrl}/v1/api/auth/reset-password/reset`,
 
     // update profile
     apiUpdateProfile: `${baseUrl}/v1/api/auth/profile`,

@@ -6,6 +6,7 @@ import { useRouter } from "next/router"
 import { PropagateLoader } from "react-spinners"
 import Link from "next/link"
 import Head from "next/head"
+import api from "@/configs/api"
 
 const Register = () => {
   const router = useRouter()
@@ -32,18 +33,18 @@ const Register = () => {
     setLoading(true)
     try {
       const response = await axios.post(
-        "https://be-flywise-stagging-jcbxz3zpbq-as.a.run.app/v1/api/auth/register",
+        api.apiRegister,
         form
       )
       setForm(initialForm)
       if (response.status == 201) {
         await axios.post(
-          "https://be-flywise-stagging-jcbxz3zpbq-as.a.run.app/v1/api/auth/send-otp",
+          api.apiOtp,
           {
             email: form.email,
           }
         )
-        router.push(`otp-register?email=${form.email}`)
+        router.push(`login/settings/otp-register?email=${form.email}`)
       }
       setLoading(false)
     } catch (error) {

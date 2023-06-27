@@ -36,7 +36,7 @@ const Navbar = () => {
       theme: "colored",
     })
     setTimeout(() => {
-      router.push("login")
+      router.push("/login")
     }, 1500)
   }
   return (
@@ -111,7 +111,7 @@ const Navbar = () => {
               ) : (
                 <div>
                   <Link
-                    href="login"
+                    href="/login"
                     className="flex items-center justify-center text-black hover:text-main-purple text-2xl hover:scale-110 duration-300"
                   >
                     <BiLogIn />

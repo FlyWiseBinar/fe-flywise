@@ -6,6 +6,7 @@ import { ToastContainer, toast } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 import Head from "next/head"
 import Image from "next/image"
+import api from "@/configs/api"
 
 const Otp = () => {
   const router = useRouter()
@@ -31,7 +32,7 @@ const Otp = () => {
     e.preventDefault()
     try {
       const response = await axios.post(
-        "https://be-flywise-stagging-jcbxz3zpbq-as.a.run.app/v1/api/auth/reset-password/verify-otp",
+       api.apiVerifyResetPassOtp,
         {
           email: email,
           otp:
@@ -45,7 +46,7 @@ const Otp = () => {
       )
       if (response.status == 200) {
         setTimeout(() => {
-          router.push(`/forgotpassword?email=${email}`)
+          router.push(`forgotpassword?email=${email}`)
         }, 3000)
         toast.success(`${response.data.message}, will redirect 3s...`, {
           position: "bottom-center",
@@ -74,7 +75,7 @@ const Otp = () => {
   const handleResendOtp = async () => {
     try {
       const response = await axios.post(
-        "https://be-flywise-stagging-jcbxz3zpbq-as.a.run.app/v1/api/auth/reset-password/resend-otp",
+        api.apiResendResetPassOtp,
         {
           email,
         }

@@ -5,7 +5,7 @@ import { useSearchParams } from "next/navigation"
 import { ToastContainer, toast } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 import Head from "next/head"
-import { api } from "@/configs/api"
+import api from "@/configs/api"
 
 const Otp = () => {
 	const router = useRouter()
