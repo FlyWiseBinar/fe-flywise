@@ -1,4 +1,4 @@
-## Endpoint
+## Routes 
 
 ### beranda
 localhost:3000/home
