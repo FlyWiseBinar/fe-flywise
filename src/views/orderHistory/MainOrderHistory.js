@@ -4,7 +4,7 @@ import Link from "next/link"
 import React, {useState, useEffect, Fragment} from "react"
 import getToken from "@/utils/getToken"
 import api from "@/configs/api"
-import {LuArrowLeft, LuFilter, LuX} from "react-icons/lu"
+import {LuArrowLeft, LuFilter, LuX, LuRotateCw} from "react-icons/lu"
 import {AiOutlineSearch} from "react-icons/ai"
 import Datepicker from "react-tailwindcss-datepicker"
 import {Dialog, Transition} from "@headlessui/react"
@@ -119,7 +119,7 @@ const MainOrderHistory = () => {
 	}
 
 	const handleClickRefresh = () => {
-		setSearchQuery(false)
+		setSearchQuery("")
 		setValueDatePicker(false)
 	}
 
@@ -172,7 +172,7 @@ const MainOrderHistory = () => {
 				>
 					<AiOutlineSearch />
 				</div>
-				<button onClick={handleClickRefresh}>refresh</button>
+				<button onClick={handleClickRefresh} className="text-xl text-main-purple"><LuRotateCw/></button>
 				<Transition appear show={isOpenModal} as={Fragment}>
 					<Dialog as="div" className="relative z-10" onClose={handleClickModal}>
 						<Transition.Child
@@ -210,7 +210,7 @@ const MainOrderHistory = () => {
 												<LuX />
 											</div>
 										</Dialog.Title>
-										<form onSubmit={handleFormSubmit} className="w-full">
+										<form onSubmit={handleFormSubmit} className="w-full flex gap-2">
 											<input
 												type="text"
 												placeholder="  Masukkan Nomor Penerbangan"
@@ -219,7 +219,7 @@ const MainOrderHistory = () => {
 												onChange={handleInputChange}
 												required={true}
 											/>{" "}
-											<button type="submit" className="bg-green-300">cari</button>
+											<button type="submit" className="bg-main-purple hover:bg-second-purple text-white rounded-lg p-2 text-xl"><AiOutlineSearch/></button>
 										</form>
 									</Dialog.Panel>
 								</Transition.Child>
