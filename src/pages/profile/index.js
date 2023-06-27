@@ -1,16 +1,16 @@
-import React, {useEffect, useState} from "react"
-import {styles} from "@/styles/styles"
-import {LuArrowLeft} from "react-icons/lu"
-import {HiOutlinePencil} from "react-icons/hi"
-import {LuLogOut} from "react-icons/lu"
+import React, { useEffect, useState } from "react"
+import { styles } from "@/styles/styles"
+import { LuArrowLeft } from "react-icons/lu"
+import { HiOutlinePencil } from "react-icons/hi"
+import { LuLogOut } from "react-icons/lu"
 import axios from "axios"
-import {ToastContainer, toast} from "react-toastify"
+import { ToastContainer, toast } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 import Head from "next/head"
 import Link from "next/link"
 import api from "@/configs/api"
-import {getCookie, deleteCookie} from "cookies-next"
-import {useRouter} from "next/router"
+import { getCookie, deleteCookie } from "cookies-next"
+import { useRouter } from "next/router"
 
 const Profile = () => {
 	const router = useRouter()
@@ -65,7 +65,7 @@ const Profile = () => {
 				}
 			)
 
-			if(response.status === 200) {
+			if (response.status === 200) {
 				toast.success(response.data.message, {
 					position: "bottom-center",
 					autoClose: 2000,
@@ -77,11 +77,11 @@ const Profile = () => {
 					theme: "colored",
 				})
 			}
-		} catch(error) {
-			if(error.response.status === 400) {
+		} catch (error) {
+			if (error.response.status === 400) {
 				setErrors(error.response.data.errors)
 			}
-			if(error.response.status === 500) {
+			if (error.response.status === 500) {
 				toast.error(error.response.data.message, {
 					position: "bottom-center",
 					autoClose: 2000,
