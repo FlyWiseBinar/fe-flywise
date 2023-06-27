@@ -6,6 +6,7 @@ import Button from "@/components/orderHistory/Button"
 import AccordionHistory from "@/components/orderHistory/AccordionHistory"
 import { useState, useEffect } from "react"
 import getToken from "@/utils/getToken"
+import api from "@/configs/api"
 
 const MainOrderHistory = () => {
   const token = getToken()
