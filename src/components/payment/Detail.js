@@ -77,7 +77,7 @@ const Detail = () => {
 
         <div className="justify-center bg-red mt-5 w-full">
           <Link href={"/payment/method"}>
-            <button className="bg-red-900 text-white text-sm w-full text-base p-3 rounded-lg hover:bg-red-700">
+            <button className="bg-red-900 text-white text-sm w-full  p-3 rounded-lg hover:bg-red-700">
               Lanjut Bayar
             </button>
           </Link>

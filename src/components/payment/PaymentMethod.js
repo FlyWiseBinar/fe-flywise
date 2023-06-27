@@ -271,7 +271,7 @@ const PaymentMethod = () => {
         </Fragment>
         <div>
           <Link href={"/payment/success"}>
-            <button className="flex w-full bg-purple-900 text-white text-sm lg:text-xl md:text-base justify-center p-3 rounded-lg hover:bg-purple-700 p-3">
+            <button className="flex w-full bg-purple-900 text-white text-sm lg:text-xl md:text-base justify-center p-3 rounded-lg hover:bg-purple-700 ">
               Bayar
             </button>
           </Link>
