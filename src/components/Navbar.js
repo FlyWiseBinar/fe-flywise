@@ -17,11 +17,15 @@ const Navbar = () => {
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen)
   }
-
+  const token = getCookie("accessToken")
   useEffect(() => {
-    const token = getCookie("accessToken")
-    if (token) setIsLogin(true)
-  }, [])
+    if (token) {
+      setIsLogin(true)
+    }
+    else {
+      setIsLogin(false)
+    }
+  }, [token])
 
   const handleClickLogout = () => {
     deleteCookie("accessToken")
@@ -58,8 +62,12 @@ const Navbar = () => {
           className={` ${styles.mainRow} bg-white z-20 !justify-between px-12 lg:px-20 md:px-20`}
         >
           <div className="w-full flex-col justify-start p-3">
-            <p className="md:text-2xl text-xl font-bold text-main-purple">FlyWise</p>
-            <p className="md:text-lg text-base text-main-purple">Your Traveling Partner</p>
+            <p className="md:text-2xl text-xl font-bold text-main-purple">
+              FlyWise
+            </p>
+            <p className="md:text-lg text-base text-main-purple">
+              Your Traveling Partner
+            </p>
           </div>
 
           <div className="w-full flex justify-end items-center">
@@ -112,7 +120,7 @@ const Navbar = () => {
                 <div>
                   <Link
                     href="/login"
-                    className="flex items-center justify-center text-black hover:text-main-purple text-2xl hover:scale-110 duration-300"
+                    className="flex items-center justify-center bg-main-orange gap-1 text-white py-2 px-3 rounded-xl text-lg hover:scale-110 duration-300"
                   >
                     <BiLogIn />
                     <p>Masuk</p>
@@ -123,11 +131,11 @@ const Navbar = () => {
           </div>
         </div>
         <div
-
-          className={`md:hidden bg-white z-50 fixed top-0 right-0 w-3/5 h-screen overflow-y-auto ease-in-out transition-all duration-300 transform ${isSidebarOpen
-            ? "translate-x-0 md:filter-none shadow-[0_0_500px_rgba(37,37,37,1)] border"
-            : "translate-x-full"
-            }`}
+          className={`md:hidden bg-white z-50 fixed top-0 right-0 w-3/5 h-screen overflow-y-auto ease-in-out transition-all duration-300 transform ${
+            isSidebarOpen
+              ? "translate-x-0 md:filter-none shadow-[0_0_500px_rgba(37,37,37,1)] border"
+              : "translate-x-full"
+          }`}
         >
           <div className="flex justify-end p-4">
             <button className="focus:outline-none" onClick={toggleSidebar}>
@@ -180,7 +188,7 @@ const Navbar = () => {
                   <li>
                     <div className="justify-center flex">
                       <div
-                        className="fixed bottom-0 mb-8 px-10 gap-3 text-lg cursor-pointer bg-orange-500 py-2 rounded-lg flex items-center justify-center hover:font-semibold text-white hover:bg-orange-600 hover:text-xl hover:scale-110 duration-300"
+                        className="fixed bottom-16 px-10 gap-3 text-lg cursor-pointer bg-orange-500 py-2 rounded-lg flex items-center justify-center hover:font-semibold text-white hover:bg-orange-600 hover:text-xl hover:scale-110 duration-300"
                         onClick={handleClickLogout}
                       >
                         <BiLogOut />
@@ -194,10 +202,12 @@ const Navbar = () => {
                   <div>
                     <Link
                       href="login"
-                      className="flex items-center gap-2 text-main-purple"
+                      className="flex justify-center"
                     >
-                      <BiLogIn />
-                      <p>Masuk</p>
+                      <div className="flex items-center gap-2 text-white bg-main-orange px-4 py-2 rounded-lg">
+                        <BiLogIn />
+                        <p>Masuk</p>
+                      </div>
                     </Link>
                   </div>
                 </li>
