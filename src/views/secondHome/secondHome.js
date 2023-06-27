@@ -4,7 +4,7 @@ import FilterSort from "@/components/secondHome/FilterSort"
 import ImportAccordion from "@/components/secondHome/ImportAccordion"
 import ImportDateRow from "@/components/secondHome/ImportDateRow"
 
-const secondHome = () => {
+const secondHome = ({ data }) => {
   return (
     <>
       <div className="flex flex-col items-center">
@@ -21,7 +21,13 @@ const secondHome = () => {
         </div>
         <FilterSort />
         <div className=" flex-row justify-center items-center">
-          <ImportAccordion />
+          {
+            data?.map((item, index) => (
+              <div key={index}>
+                <ImportAccordion data={item} />
+              </div>
+            ))
+          }
         </div>
       </div>
     </>

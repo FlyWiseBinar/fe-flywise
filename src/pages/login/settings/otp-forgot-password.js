@@ -32,7 +32,7 @@ const Otp = () => {
     e.preventDefault()
     try {
       const response = await axios.post(
-       api.apiVerifyResetPassOtp,
+        api.apiVerifyResetPassOtp,
         {
           email: email,
           otp:
@@ -126,7 +126,7 @@ const Otp = () => {
           <link rel="icon" href="../logo.svg" />
         </Head>
         <div className="md:block hidden">
-		<Image src="/pesawat.png" width={70} height={70} alt="Logo" />
+          <Image src="/pesawat.png" width={70} height={70} alt="Logo" />
         </div>
       </div>
       <form onSubmit={handleSubmit}>

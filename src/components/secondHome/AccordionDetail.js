@@ -1,3 +1,6 @@
+import { convertTime } from "@/utils/convertTime"
+import { handlerDate } from "@/utils/handlerDate"
+import { handlerIDR } from "@/utils/handlerIDR"
 import React from "react"
 import { useState } from "react"
 import { LuChevronDown } from "react-icons/lu"
@@ -5,25 +8,14 @@ import { LuChevronUp } from "react-icons/lu"
 import { LuSend } from "react-icons/lu"
 import { LuBaggageClaim } from "react-icons/lu"
 
-const AccordionDetail = ({
-  hourAttendate,
-  hourTo,
-  Departure,
-  ToLocation,
-  airflight,
-  classAirflight,
-  price,
-  duration,
-  date,
-  airPortDeparture,
-  airPortTo,
-  codeAirFlight,
-}) => {
+const AccordionDetail = ({ item }) => {
   const [isOpen, setIsOpen] = useState(false)
 
   const toggleAccordion = () => {
     setIsOpen(!isOpen)
   }
+
+
   return (
     <>
       <div className='border-2 rounded-xl border-third-purple w-full'>
@@ -35,8 +27,8 @@ const AccordionDetail = ({
             onClick={toggleAccordion}
           >
             <span className="flex items-center gap-2 text-sm">
-              <LuSend />
-              {airflight} - {classAirflight}
+              <img src={`${item?.plane?.airline?.logo}`} className="w-6 h-6" alt="" />
+              {item?.plane?.airline?.airlineName} - {item?.class?.name}
             </span>
             <span className="text-gray-500">
               {isOpen ? (
@@ -50,27 +42,28 @@ const AccordionDetail = ({
               )}
             </span>
           </button>
+
           <div className="flex flex-col lg:flex-row md:flex-row sm:flex-col items-center justify-center gap-5 w-full p-4 px-10 text-lg font-medium bg-white cursor-pointer rounded-xl ">
             <div className="flex w-full gap-3">
               <span>
-                <div>{hourAttendate}</div>
-                <div>{Departure}</div>
+                <div>{item?.departureTime}</div>
+                <div>{item?.originAirport?.airportCode}</div>
               </span>
               <span className="text-center font-normal text-sm text-gray-400 flex flex-col w-full">
-                <div className=" border-b-2 ">{duration}</div>
+                <div className=" border-b-2 ">{convertTime(item?.durationInSecond)}</div>
                 <div>Direct</div>
               </span>
               <span>
-                <div>{hourTo}</div>
-                <div>{ToLocation}</div>
+                <div>{item?.arrivedTime}</div>
+                <div>{item?.destinationAirport?.airportCode}</div>
               </span>
             </div>
-            <div className="flex items-center gap-20 lg:gap-5 md:gap-3 sm:gap-20">
+            <div className="flex w-full lg:w-fit md:w-fit justify-end items-center gap-20 lg:gap-5 md:gap-3 sm:gap-20">
               <span className="text-2xl text-main-purple">
                 <LuBaggageClaim />
               </span>
               <span className="text-center">
-                <div className=" w-[100px] font-bold text-sm lg:text-lg md:text-lg sm:text-sm">IDR {price}</div>
+                <div className=" w-full font-bold text-sm lg:text-lg md:text-lg sm:text-sm">{handlerIDR(item?.provTotalPrice)}</div>
                 <div>
                   <button className="py-1 px-8 bg-main-purple hover:bg-second-purple rounded-xl font-normal text-sm lg:text-base md:text-base sm:text-sm text-white">
                     Pilih
@@ -79,35 +72,36 @@ const AccordionDetail = ({
               </span>
             </div>
           </div>
+
           {isOpen && (
             <div className="text-sm lg:text-base md:text-base sm:text-sm p-4 px-10 border-t-2 w-full border-slate-300">
               <div className="text-second-purple font-bold">
                 <p>Detail Keberangkatan</p>
               </div>
               <div className="flex justify-between font-bold">
-                <p className="text-lg">{hourAttendate}</p>
+                <p className="text-lg">{item?.departureTime}</p>
                 <p className="text-third-purple">Keberangkatan</p>
               </div>
-              <p>{date}</p>
+              <p>{handlerDate(item?.departureDate)}</p>
               <p className="flex font-semibold">
-                {airPortDeparture} - Terminal 1A Domestik
+                {item?.originAirport?.name} - Terminal 1A Domestik
               </p>
               <div className="flex justify-center pt-3">
                 <div className="w-full border-t-2 border-slate-200"></div>
               </div>
               <div className="px-9">
                 <p className="flex font-bold">
-                  {airflight} - {classAirflight}
+                  {item?.plane?.airline?.airlineName} - {item?.class?.name}
                 </p>
-                <p className="font-bold">{codeAirFlight}</p>
+                <p className="font-bold">{item?.plane?.airline?.airlineCode}</p>
                 <div className="flex pt-4 gap-2">
                   <div className="self-start pt-1">
                     <LuSend />
                   </div>
                   <div className="flex flex-col">
                     <p className="font-bold">Informasi</p>
-                    <p>Baggage 20 kg</p>
-                    <p>Cabin baggage 7 kg</p>
+                    <p>Baggage {item?.plane?.baggageMaxCapacity} kg</p>
+                    <p>Cabin baggage {item?.plane?.cabinMaxCapacity} kg</p>
                     <p>In Flight Entertainment</p>
                   </div>
                 </div>
@@ -116,12 +110,12 @@ const AccordionDetail = ({
                 <div className="w-full border-t-2 border-slate-200"></div>
               </div>
               <div className="flex justify-between font-bold">
-                <p className="text-lg">{hourTo}</p>
+                <p className="text-lg">{item?.departureTime}</p>
                 <p className="text-third-purple">Kedatangan</p>
               </div>
-              <p>{date}</p>
+              <p>{handlerDate(item?.departureDate)}</p>
               <p className="flex font-semibold mb-5">
-                {airPortTo} - Terminal 1A Domestik
+                {item?.destinationAirport?.name} - Terminal 1A Domestik
               </p>
             </div>
           )}

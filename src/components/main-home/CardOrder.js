@@ -7,6 +7,7 @@ import { AiOutlineMinus, AiOutlinePlus, AiOutlineSearch } from "react-icons/ai"
 import { BsRepeat } from "react-icons/bs"
 import { IoMdMan, IoMdWoman } from "react-icons/io"
 import { BiChild } from "react-icons/bi"
+import { useRouter } from "next/router"
 
 
 const CardOrder = () => {
@@ -26,6 +27,8 @@ const CardOrder = () => {
   const [CountAdult, setCountAdult] = useState(0)
   const [CountChild, setCountChild] = useState(0)
   const [CountBaby, setCountBaby] = useState(0)
+
+  const router = useRouter()
 
   const decreaseCount = (where) => {
     if (where === "baby") {
@@ -98,13 +101,20 @@ const CardOrder = () => {
   }
 
   const onSubmit = () => {
-    console.log("from", from)
-    console.log("to", to)
-    console.log("deptdate", departureDate?.startDate)
-    console.log("retdate", returnDate?.startDate)
-    console.log("child", CountChild)
-    console.log("baby", CountBaby)
-    console.log("adult", CountAdult)
+    const data = {
+      from: from,
+      to: to,
+      departureDate: departureDate?.startDate,
+      returnDate: returnDate?.startDate,
+      CountAdult: CountAdult,
+      CountBaby: CountBaby,
+      CountChild: CountChild
+    }
+
+    router.push({
+      pathname: `/search`,
+      query: data
+    })
   }
 
 
