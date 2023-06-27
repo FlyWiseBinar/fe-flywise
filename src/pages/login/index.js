@@ -38,7 +38,7 @@ const Login = () => {
 					password: form.password,
 				}
 			)
-			if(response.status == 200) {
+			if (response.status == 200) {
 				setCookie("accessToken", response.data.accessToken, {
 					expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 10),
 				})
@@ -57,10 +57,10 @@ const Login = () => {
 				}, 3000)
 			}
 			setLoading(false)
-		} catch(error) {
+		} catch (error) {
 			setLoading(false)
 			setErrors(error.response.data.errors)
-			if(error.response.status == 403) {
+			if (error.response.status == 403) {
 				toast.error(`${error.response.data.message}, redirect in 3s...`, {
 					position: "bottom-center",
 					autoClose: 2000,
@@ -85,7 +85,7 @@ const Login = () => {
 	}
 
 	const handleForgotPassword = async () => {
-		if(!form.email) {
+		if (!form.email) {
 			toast.error("email is required to reset password", {
 				position: "bottom-center",
 				autoClose: 2000,
@@ -104,7 +104,7 @@ const Login = () => {
 						email: form.email,
 					}
 				)
-				if(response.status == 201) {
+				if (response.status == 201) {
 					setTimeout(() => {
 						router.push(`login/settings/otp-forgot-password?email=${form.email}`)
 					}, 3000)
@@ -119,9 +119,9 @@ const Login = () => {
 						theme: "colored",
 					})
 				}
-			} catch(error) {
+			} catch (error) {
 				console.log(error)
-				if(error.response.status == 403) {
+				if (error.response.status == 403) {
 					toast.error(error.response.data.message + " with login", {
 						position: "bottom-center",
 						autoClose: 2000,

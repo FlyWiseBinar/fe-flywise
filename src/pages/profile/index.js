@@ -65,7 +65,7 @@ const Profile = () => {
 				}
 			)
 
-			if(response.status === 200) {
+			if (response.status === 200) {
 				toast.success(response.data.message, {
 					position: "bottom-center",
 					autoClose: 2000,
@@ -77,11 +77,11 @@ const Profile = () => {
 					theme: "colored",
 				})
 			}
-		} catch(error) {
-			if(error.response.status === 400) {
+		} catch (error) {
+			if (error.response.status === 400) {
 				setErrors(error.response.data.errors)
 			}
-			if(error.response.status === 500) {
+			if (error.response.status === 500) {
 				toast.error(error.response.data.message, {
 					position: "bottom-center",
 					autoClose: 2000,

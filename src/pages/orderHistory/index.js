@@ -9,7 +9,6 @@ const index = () => {
         <title>Riwayat Pemesanan | FlyWise</title>
         <link rel="icon" href="../logo.svg" />
       </Head>
-
       <MainOrderHistory />
     </>
   )
