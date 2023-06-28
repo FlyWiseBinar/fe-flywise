@@ -10,6 +10,8 @@ import Datepicker from "react-tailwindcss-datepicker"
 import {Dialog, Transition} from "@headlessui/react"
 import AccordionHistory from "@/components/orderHistory/AccordionHistory"
 import axios from "axios"
+import Loading from "@/components/Loading"
+import EmptyHistory from "@/components/orderHistory/EmptyHistory"
 
 const MainOrderHistory = () => {
 	const [isOpenModal, setIsOpenModal] = useState(false)
@@ -24,13 +26,13 @@ const MainOrderHistory = () => {
 		setSearchQuery(e.target.value)
 	}
 	useEffect(() => {
-		if (!searchQuery) {
+		if(!searchQuery) {
 			fetchData()
 			setShowAlertEmptySearch(false)
 		}
 	}, [searchQuery])
 	useEffect(() => {
-		if (!valueDatePicker) {
+		if(!valueDatePicker) {
 			fetchData()
 			setShowAlertEmptySearch(false)
 		}
@@ -44,13 +46,13 @@ const MainOrderHistory = () => {
 					Authorization: `Bearer ${token}`
 				}
 			})
-			if (response.status == 200) {
+			if(response.status == 200) {
 				setData(response.data.orders)
 				setLoading(false)
 			}
-		} catch (error) {
+		} catch(error) {
 			setLoading(false)
-			if (error.response.status == 400) {
+			if(error.response.status == 400) {
 				setShowAlertEmptySearch(true)
 				setData(false)
 			}
@@ -84,17 +86,17 @@ const MainOrderHistory = () => {
 					}
 				}
 			)
-			if (response.status == 200) {
+			if(response.status == 200) {
 				setData(response.data.orders)
 				setLoading(false)
 			}
-		} catch (error) {
+		} catch(error) {
 			setLoading(false)
 		}
 	}
 
 	const fetchDataByFilterDate = async (value) => {
-		if (value) {
+		if(value) {
 			setLoading(true)
 			try {
 				const response = await axios(`${api.apiHistoryByFilterHistory}?startDate=${value.startDate}&endDate=${value.endDate}`,
@@ -104,13 +106,13 @@ const MainOrderHistory = () => {
 						},
 					}
 				)
-				if (response.status == 200) {
+				if(response.status == 200) {
 					setLoading(false)
 					setData(response.data.orders)
 				}
-			} catch (error) {
+			} catch(error) {
 				setLoading(false)
-				if (error.response.status == 400) {
+				if(error.response.status == 400) {
 					setShowAlertEmptySearch(true)
 					setData(false)
 				}
@@ -172,7 +174,7 @@ const MainOrderHistory = () => {
 				>
 					<AiOutlineSearch />
 				</div>
-				<button onClick={handleClickRefresh} className="text-xl text-main-purple"><LuRotateCw/></button>
+				<button onClick={handleClickRefresh} className="text-xl text-main-purple"><LuRotateCw /></button>
 				<Transition appear show={isOpenModal} as={Fragment}>
 					<Dialog as="div" className="relative z-10" onClose={handleClickModal}>
 						<Transition.Child
@@ -219,7 +221,7 @@ const MainOrderHistory = () => {
 												onChange={handleInputChange}
 												required={true}
 											/>{" "}
-											<button type="submit" className="bg-main-purple hover:bg-second-purple text-white rounded-lg p-2 text-xl"><AiOutlineSearch/></button>
+											<button type="submit" className="bg-main-purple hover:bg-second-purple text-white rounded-lg p-2 text-xl"><AiOutlineSearch /></button>
 										</form>
 									</Dialog.Panel>
 								</Transition.Child>
@@ -244,9 +246,18 @@ const MainOrderHistory = () => {
 						</div>
 					</div>
 					:
-					<AccordionHistory orders={data} loading={loading} />
+					loading ?
+						<Loading />
+						:
+						data ?
+							data.map((item, index) => (
+								<div key={index}>
+									<AccordionHistory item={item} />
+								</div>
+							))
+							:
+							<EmptyHistory />
 			}
-
 		</div>
 	)
 }
