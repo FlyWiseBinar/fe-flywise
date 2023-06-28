@@ -6,7 +6,6 @@ import { LuX } from "react-icons/lu"
 
 const FilterDate = ({ setLoading, search, paginateFunc }) => {
 
-  const [selectedOption, setSelectedOption] = useState("")
   const [label, setLabel] = useState()
   const [isOpenClass, setIsOpenClass] = useState(false)
 
@@ -20,16 +19,14 @@ const FilterDate = ({ setLoading, search, paginateFunc }) => {
 
   const handleOptionChange = (option) => {
     // console.log('option', option);
-    setSelectedOption(option?.value)
+
     setLabel(option?.label)
     setIsOpenClass(false)
     // setLoading(true)
 
 
     const {
-      CountAdult,
-      CountBaby,
-      CountChild,
+
       departureDate,
       from,
       returnDate,
@@ -42,7 +39,7 @@ const FilterDate = ({ setLoading, search, paginateFunc }) => {
         setLoading(false)
         // console.log('res', result.data.data);
         paginateFunc(result.data.data)
-      }).catch((err) => {
+      }).catch(() => {
         // console.log(err);
       })
   }

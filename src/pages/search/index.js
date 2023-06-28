@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useState } from "react"
 import SecondHome from "@/views/secondHome/secondHome"
 import Head from "next/head"
 import { useRouter } from "next/router"
@@ -7,10 +7,10 @@ import api from "@/configs/api"
 import Button from "@/components/secondHome/Button"
 import ImportDateRow from "@/components/secondHome/ImportDateRow"
 
-const index = ({ schedule }) => {
+const Index = ({ schedule }) => {
   const router = useRouter()
   const [isFilter, setIsFilter] = useState(router?.query?.departureDate)
-  const [data, setData] = useState(schedule)
+  const [data] = useState(schedule)
 
   const {
     CountAdult,
@@ -74,4 +74,4 @@ export const getServerSideProps = async (context) => {
   }
 }
 
-export default index
+export default Index

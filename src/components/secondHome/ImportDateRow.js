@@ -13,7 +13,6 @@ const ImportDateRow = ({ startDate, endDate, setIsFilter }) => {
 
   const getRange = (startData, endData) => {
     const start = new Date(startData)
-    const end = new Date(endData)
     const getDay = start.toLocaleDateString("id-ID", { weekday: "long" })
     const getDate = start.getDate()
     const getMonth = start.getMonth()
