@@ -8,6 +8,7 @@ import { BsRepeat } from "react-icons/bs"
 import { IoMdMan, IoMdWoman } from "react-icons/io"
 import { BiChild } from "react-icons/bi"
 import { useRouter } from "next/router"
+import { toast } from "react-toastify"
 
 
 const CardOrder = () => {
@@ -111,10 +112,23 @@ const CardOrder = () => {
       CountChild: CountChild
     }
 
-    router.push({
-      pathname: `/search`,
-      query: data
-    })
+    if (departureDate && from) {
+      router.push({
+        pathname: `/search`,
+        query: data
+      })
+    } else {
+      toast.error("Mohon isi tanggal keberangkatan dan lokasi keberangkatan", {
+        position: "bottom-center",
+        autoClose: 2000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      })
+    }
   }
 
 

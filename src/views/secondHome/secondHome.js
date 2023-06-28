@@ -1,37 +1,116 @@
-import React from "react"
-import Button from "@/components/secondHome/Button"
+import React, { useEffect, useState } from "react"
 import FilterSort from "@/components/secondHome/FilterSort"
 import ImportAccordion from "@/components/secondHome/ImportAccordion"
-import ImportDateRow from "@/components/secondHome/ImportDateRow"
+import { Pagination } from "flowbite-react"
+import { ColorRing } from "react-loader-spinner"
+import { AiOutlineFileSearch } from "react-icons/ai"
+import { handlerDate } from "@/utils/handlerDate"
 
-const secondHome = ({ data }) => {
-  return (
-    <>
-      <div className="flex flex-col items-center">
-        <div className=" flex-col w-full flex items-start max-w-[1000px] px-5 pt-5 ">
-          <div>
-            <p className="pt-5 font-bold text-xl items-start justify-start">Pilih Penerbangan</p>
-          </div>
-        </div>
-      </div>
-      <div className="mb-16 flex flex-col">
-        <Button />
-        <div className=" relative lg:static md:relative overflow-x-scroll lg:overflow-hidden md:overflow-x-scroll ">
-          <ImportDateRow />
-        </div>
-        <FilterSort />
-        <div className=" flex-row justify-center items-center">
-          {
-            data?.map((item, index) => (
-              <div key={index}>
-                <ImportAccordion data={item} />
+const secondHome = ({ data, search, chooseDate }) => {
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const onPageChange = (page) => setCurrentPage(page);
+  const [dataPaginated, setDataPaginated] = useState([])
+  const dataPerPage = 10
+  const [loading, setLoading] = useState(false)
+  const [isFilter, setIsFilter] = useState(false)
+  const [dataFilter, setDataFilter] = useState(false)
+
+  const paginateData = (data) => {
+    let temp = []
+    let final = []
+    for (let index = 1; index <= data?.length; index++) {
+      temp.push(data[index - 1])
+      if (index % dataPerPage === 0 || index === data?.length) {
+        final.push(temp)
+        temp = []
+      }
+      // console.log('temp', temp);
+    }
+    // console.log('cecok', data?.length);
+    setDataPaginated(final)
+  }
+
+
+  useEffect(() => {
+    setLoading(false)
+    paginateData(data)
+  }, [data])
+
+  // console.log('data ', data);
+
+  // console.log('check paginate', paginateData(data));
+
+  if (!loading) {
+    if (data?.length > 0) {
+      return (
+        <>
+          <div className="flex flex-col items-center">
+            <div className=" flex-col w-full flex items-start max-w-[1000px] px-5 pt-5 ">
+              <div>
+                <p className="pt-5 font-bold text-xl items-start justify-start">Pilih Penerbangan</p>
               </div>
-            ))
-          }
+            </div>
+          </div>
+          <div className="mb-16 flex flex-col">
+
+
+
+            <FilterSort setDataFilter={setDataFilter} setIsFilter={setIsFilter} setLoading={setLoading} search={search} paginateFunc={paginateData} />
+
+            <div className="w-full">
+              {
+                data?.length > 0 && (
+                  <>
+                    {
+                      Array.isArray(dataPaginated) && dataPaginated[0]?.map((item, index) => (
+                        <div key={index}>
+                          <ImportAccordion data={item} />
+                        </div>
+                      ))
+                    }
+                  </>
+                )
+              }
+              <div className="w-full justify-center flex-col gap-4 items-center flex">
+                <Pagination
+                  className=" text-black w-full items-center justify-center flex"
+                  currentPage={currentPage}
+                  onPageChange={page => { onPageChange(page) }}
+                  totalPages={Math.ceil(data?.length / dataPerPage)}
+                />
+                {/* <p className="p-4 bg-slate-700 text-white rounded-xl">Total Pages : {Math.ceil(data?.length / dataPerPage)}</p> */}
+              </div>
+            </div>
+          </div>
+        </>
+      )
+    } else {
+      return (
+        <div className="w-full h-[50vh] flex items-center justify-center gap-4">
+          <AiOutlineFileSearch className="text-5xl" />
+          <h2 className="text-2xl font-bold">Jadwal Penerbangan di {handlerDate(chooseDate)} Tidak Ditemukan!</h2>
         </div>
+      )
+    }
+
+
+
+  } else {
+    return (
+      <div className="w-full h-screen flex justify-center items-center">
+        <ColorRing
+          visible={true}
+          height="200"
+          width="200"
+          ariaLabel="blocks-loading"
+          wrapperStyle={{}}
+          wrapperClass="blocks-wrapper"
+          colors={['#e15b64', '#f47e60', '#f8b26a', '#abbd81', '#849b87']}
+        />
       </div>
-    </>
-  )
+    )
+  }
 }
 
 export default secondHome

@@ -4,10 +4,14 @@ import Head from "next/head"
 import { useRouter } from "next/router"
 import axios from "axios"
 import api from "@/configs/api"
+import Button from "@/components/secondHome/Button"
+import ImportDateRow from "@/components/secondHome/ImportDateRow"
 
-const index = ({ }) => {
+const index = ({ schedule }) => {
   const router = useRouter()
-  // console.log('api', api.apiSearchTicket);
+  const [isFilter, setIsFilter] = useState(router?.query?.departureDate)
+  const [data, setData] = useState(schedule)
+
   const {
     CountAdult,
     CountBaby,
@@ -15,21 +19,26 @@ const index = ({ }) => {
     departureDate,
     from,
     returnDate,
-    to } = router.query
+    to
+  } = router.query
 
-  const [data, setData] = useState()
+  const dataSearch = {
+    CountAdult,
+    CountBaby,
+    CountChild,
+    departureDate,
+    from,
+    to,
+    returnDate,
+  }
 
+  const filterDate = (data) => {
+    const filterResult = data?.filter(item => item?.arrivedDate == isFilter || item?.departureDate == isFilter)
+    return filterResult
+  }
 
-  useEffect(() => {
-    axios.get(`${api.apiSearchTicket}?departureDate=${departureDate}${returnDate ? `&arrivedDate=${returnDate}` : ``}${from ? `&originAirport=${from}` : ``}${to ? `&destinationAirport=${to}` : ``}`)
-      .then((result) => {
-        console.log(result.data.data);
-        setData(result.data.data)
-      }).catch((err) => {
-        console.log(err);
-      });
-  }, [departureDate])
-
+  // console.log(filterDate(data));
+  // console.log('isfilter', isFilter);
 
   return (
     <div>
@@ -37,9 +46,35 @@ const index = ({ }) => {
         <title>Search | Flywise</title>
         <link rel="icon" href="../logo.svg" />
       </Head>
-      <SecondHome data={data} />
+      <Button />
+      <div className=" relative lg:static md:relative overflow-x-scroll lg:overflow-hidden md:overflow-x-scroll ">
+        <ImportDateRow startDate={departureDate} endDate={returnDate} setIsFilter={setIsFilter} />
+      </div>
+      <SecondHome data={filterDate(data)} search={dataSearch} chooseDate={isFilter} />
     </div>
   )
+}
+
+
+export const getServerSideProps = async (context) => {
+  const {
+    CountAdult,
+    CountBaby,
+    CountChild,
+    departureDate,
+    from,
+    returnDate,
+    to } = context.query
+
+  const response = await axios.get(`${api.apiSearchTicket}?departureDate=${departureDate}${returnDate ? `&arrivedDate=${returnDate}` : ``}${from ? `&originAirport=${from}` : ``}${to ? `&destinationAirport=${to}` : ``}`)
+
+  const data = response.data.data
+
+  return {
+    props: {
+      schedule: data
+    }
+  }
 }
 
 export default index
