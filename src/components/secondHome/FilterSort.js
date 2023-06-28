@@ -4,7 +4,7 @@ import React, { useState } from "react"
 import { LuArrowDownUp } from "react-icons/lu"
 import { LuX } from "react-icons/lu"
 
-const FilterDate = ({ setDataFilter, setIsFilter, setLoading, search, paginateFunc }) => {
+const FilterDate = ({ setLoading, search, paginateFunc }) => {
 
   const [selectedOption, setSelectedOption] = useState("")
   const [label, setLabel] = useState()
@@ -24,7 +24,7 @@ const FilterDate = ({ setDataFilter, setIsFilter, setLoading, search, paginateFu
     setLabel(option?.label)
     setIsOpenClass(false)
     // setLoading(true)
-    setIsFilter(true)
+
 
     const {
       CountAdult,
@@ -41,42 +41,42 @@ const FilterDate = ({ setDataFilter, setIsFilter, setLoading, search, paginateFu
       .then((result) => {
         setLoading(false)
         // console.log('res', result.data.data);
-        setDataFilter(paginateFunc(result.data.data))
+        paginateFunc(result.data.data)
       }).catch((err) => {
         // console.log(err);
-      });
+      })
   }
 
   // console.log('select option', label, selectedOption);
 
   const searchArray = [
     {
-      label: 'Termurah',
+      label: "Termurah",
       value: "price",
       add: "Harga"
     },
     {
-      label: 'Terpendek',
+      label: "Terpendek",
       value: "duration",
       add: "Durasi"
     },
     {
-      label: 'Paling Awal',
+      label: "Paling Awal",
       value: "departureAsc",
       add: "Keberangakatan"
     },
     {
-      label: 'Paling Akhir',
+      label: "Paling Akhir",
       value: "departureDesc",
       add: "Keberangkatan"
     },
     {
-      label: 'Paling Awal',
+      label: "Paling Awal",
       value: "arriveAsc",
       add: "Kedatangan"
     },
     {
-      label: 'Paling Akhir',
+      label: "Paling Akhir",
       value: "arriveDesc",
       add: "Kedatangan"
     },

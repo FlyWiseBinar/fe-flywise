@@ -58,15 +58,12 @@ const index = ({ schedule }) => {
 
 export const getServerSideProps = async (context) => {
   const {
-    CountAdult,
-    CountBaby,
-    CountChild,
     departureDate,
     from,
     returnDate,
     to } = context.query
 
-  const response = await axios.get(`${api.apiSearchTicket}?departureDate=${departureDate}${returnDate ? `&arrivedDate=${returnDate}` : ``}${from ? `&originAirport=${from}` : ``}${to ? `&destinationAirport=${to}` : ``}`)
+  const response = await axios.get(`${api.apiSearchTicket}?departureDate=${departureDate}${returnDate ? `&arrivedDate=${returnDate}` : ""}${from ? `&originAirport=${from}` : ""}${to ? `&destinationAirport=${to}` : ""}`)
 
   const data = response.data.data
 

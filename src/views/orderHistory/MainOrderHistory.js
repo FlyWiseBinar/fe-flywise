@@ -26,13 +26,13 @@ const MainOrderHistory = () => {
 		setSearchQuery(e.target.value)
 	}
 	useEffect(() => {
-		if(!searchQuery) {
+		if (!searchQuery) {
 			fetchData()
 			setShowAlertEmptySearch(false)
 		}
 	}, [searchQuery])
 	useEffect(() => {
-		if(!valueDatePicker) {
+		if (!valueDatePicker) {
 			fetchData()
 			setShowAlertEmptySearch(false)
 		}
@@ -46,13 +46,13 @@ const MainOrderHistory = () => {
 					Authorization: `Bearer ${token}`
 				}
 			})
-			if(response.status == 200) {
+			if (response.status == 200) {
 				setData(response.data.orders)
 				setLoading(false)
 			}
-		} catch(error) {
+		} catch (error) {
 			setLoading(false)
-			if(error.response.status == 400) {
+			if (error.response.status == 400) {
 				setShowAlertEmptySearch(true)
 				setData(false)
 			}
@@ -86,17 +86,17 @@ const MainOrderHistory = () => {
 					}
 				}
 			)
-			if(response.status == 200) {
+			if (response.status == 200) {
 				setData(response.data.orders)
 				setLoading(false)
 			}
-		} catch(error) {
+		} catch (error) {
 			setLoading(false)
 		}
 	}
 
 	const fetchDataByFilterDate = async (value) => {
-		if(value) {
+		if (value) {
 			setLoading(true)
 			try {
 				const response = await axios(`${api.apiHistoryByFilterHistory}?startDate=${value.startDate}&endDate=${value.endDate}`,
@@ -106,13 +106,13 @@ const MainOrderHistory = () => {
 						},
 					}
 				)
-				if(response.status == 200) {
+				if (response.status == 200) {
 					setLoading(false)
 					setData(response.data.orders)
 				}
-			} catch(error) {
+			} catch (error) {
 				setLoading(false)
-				if(error.response.status == 400) {
+				if (error.response.status == 400) {
 					setShowAlertEmptySearch(true)
 					setData(false)
 				}

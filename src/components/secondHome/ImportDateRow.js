@@ -8,13 +8,13 @@ const ImportDateRow = ({ startDate, endDate, setIsFilter }) => {
   const [dateRange, setDateRange] = useState([])
 
   const getDayFunc = (date) => {
-    return new Date(date).toLocaleDateString("id-ID", { weekday: 'long' })
+    return new Date(date).toLocaleDateString("id-ID", { weekday: "long" })
   }
 
   const getRange = (startData, endData) => {
-    const start = new Date(startData);
-    const end = new Date(endData);
-    const getDay = start.toLocaleDateString("id-ID", { weekday: 'long' })
+    const start = new Date(startData)
+    const end = new Date(endData)
+    const getDay = start.toLocaleDateString("id-ID", { weekday: "long" })
     const getDate = start.getDate()
     const getMonth = start.getMonth()
     const getYear = start.getFullYear()
@@ -23,10 +23,10 @@ const ImportDateRow = ({ startDate, endDate, setIsFilter }) => {
 
     if (endData) {
       // console.log('masuk end');
-      const start = new Date(startData);
-      const end = new Date(endData);
-      const range = end.getTime() - start.getTime();
-      const rangeDay = Math.floor(range / (1000 * 60 * 60 * 24));
+      const start = new Date(startData)
+      const end = new Date(endData)
+      const range = end.getTime() - start.getTime()
+      const rangeDay = Math.floor(range / (1000 * 60 * 60 * 24))
       let temp = []
       for (let index = 0; index <= rangeDay; index++) {
         temp.push(

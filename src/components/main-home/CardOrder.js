@@ -114,7 +114,7 @@ const CardOrder = () => {
 
     if (departureDate && from) {
       router.push({
-        pathname: `/search`,
+        pathname: "/search",
         query: data
       })
     } else {

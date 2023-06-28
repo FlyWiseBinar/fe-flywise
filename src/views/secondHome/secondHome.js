@@ -6,15 +6,14 @@ import { ColorRing } from "react-loader-spinner"
 import { AiOutlineFileSearch } from "react-icons/ai"
 import { handlerDate } from "@/utils/handlerDate"
 
-const secondHome = ({ data, search, chooseDate }) => {
+const SecondHome = ({ data, search, chooseDate }) => {
 
-  const [currentPage, setCurrentPage] = useState(1);
-  const onPageChange = (page) => setCurrentPage(page);
+  const [currentPage, setCurrentPage] = useState(1)
+  const onPageChange = (page) => setCurrentPage(page)
   const [dataPaginated, setDataPaginated] = useState([])
   const dataPerPage = 10
   const [loading, setLoading] = useState(false)
-  const [isFilter, setIsFilter] = useState(false)
-  const [dataFilter, setDataFilter] = useState(false)
+
 
   const paginateData = (data) => {
     let temp = []
@@ -56,7 +55,7 @@ const secondHome = ({ data, search, chooseDate }) => {
 
 
 
-            <FilterSort setDataFilter={setDataFilter} setIsFilter={setIsFilter} setLoading={setLoading} search={search} paginateFunc={paginateData} />
+            <FilterSort setLoading={setLoading} search={search} paginateFunc={paginateData} />
 
             <div className="w-full">
               {
@@ -106,11 +105,11 @@ const secondHome = ({ data, search, chooseDate }) => {
           ariaLabel="blocks-loading"
           wrapperStyle={{}}
           wrapperClass="blocks-wrapper"
-          colors={['#e15b64', '#f47e60', '#f8b26a', '#abbd81', '#849b87']}
+          colors={["#e15b64", "#f47e60", "#f8b26a", "#abbd81", "#849b87"]}
         />
       </div>
     )
   }
 }
 
-export default secondHome
+export default SecondHome
