@@ -47,8 +47,14 @@ export default function AccordionHistory({item}) {
 						className="flex items-center justify-between w-full p-4 text-lg font-medium text-left bg-white cursor-pointer rounded-xl b"
 						onClick={toggleAccordion}
 					>
-						<span className="flex items-center text-white bg-main-green lg:text-base text-sm lg:px-6 px-3 lg:py-2 py-1 rounded-full">
+						<span className="hidden flex items-center text-white bg-main-green lg:text-base text-sm lg:px-6 px-3 lg:py-2 py-1 rounded-full">
 							Issued
+						</span>
+						<span className="hidden flex items-center text-white bg-red-500 lg:text-base text-sm lg:px-6 px-3 lg:py-2 py-1 rounded-full">
+							Unpaid
+						</span>
+						<span className="flex items-center text-white bg-gray-400 lg:text-base text-sm lg:px-6 px-3 lg:py-2 py-1 rounded-full">
+							Cancelled
 						</span>
 						<span className="text-gray-500">
 							{isOpen ? (
@@ -212,8 +218,14 @@ export default function AccordionHistory({item}) {
 								</p>
 							</div>
 							<div className="flex md:justify-end justify-center mt-5">
-								<button className="px-16 py-3 rounded-2xl bg-main-purple hover:bg-second-purple text-white">
+								<button className="hidden px-16 py-3 rounded-2xl bg-main-purple hover:bg-second-purple text-white">
 									Cetak Tiket
+								</button>
+								<button className="hidden px-16 py-3 rounded-2xl bg-orange-500 hover:bg-orange-400 text-white">
+									Lanjut Bayar
+								</button>
+								<button className="disabled:cursor-not-allowed px-11 cursor-no-drop py-3 rounded-2xl bg-gray-400 text-white">
+									Pemabayaran Batal
 								</button>
 							</div>
 						</div>
