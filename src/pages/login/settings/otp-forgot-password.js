@@ -23,10 +23,11 @@ const Otp = () => {
   const [otp, setOtp] = useState(initialOtp)
 
   useEffect(() => {
-	for(let i = 0; i < 6; i++) {
-		document.getElementsByTagName('input')[i].value && document.getElementsByTagName('input')[i + 1]?.focus()
-	}
-}, [otp])
+    for (let i = 0; i < 6; i++) {
+      document.getElementsByTagName("input")[i].value &&
+        document.getElementsByTagName("input")[i + 1]?.focus()
+    }
+  }, [otp])
 
   const handleChange = (e) => {
     setOtp({
@@ -37,19 +38,16 @@ const Otp = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
-      const response = await axios.post(
-        api.apiVerifyResetPassOtp,
-        {
-          email: email,
-          otp:
-            otp.first +
-            otp.second +
-            otp.third +
-            otp.fourth +
-            otp.fifth +
-            otp.sixth,
-        }
-      )
+      const response = await axios.post(api.apiVerifyResetPassOtp, {
+        email: email,
+        otp:
+          otp.first +
+          otp.second +
+          otp.third +
+          otp.fourth +
+          otp.fifth +
+          otp.sixth,
+      })
       if (response.status == 200) {
         setTimeout(() => {
           router.push(`forgotpassword?email=${email}`)
@@ -80,12 +78,9 @@ const Otp = () => {
   }
   const handleResendOtp = async () => {
     try {
-      const response = await axios.post(
-        api.apiResendResetPassOtp,
-        {
-          email,
-        }
-      )
+      const response = await axios.post(api.apiResendResetPassOtp, {
+        email,
+      })
       if (response.status == 201) {
         toast.success(`${response.data.message}, check your email`, {
           position: "bottom-center",

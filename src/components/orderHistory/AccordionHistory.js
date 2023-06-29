@@ -218,12 +218,15 @@ export default function AccordionHistory({ item }) {
                   IDR {formatNumber(item.order.totalPrice)}
                 </p>
               </div>
-              <div className="flex md:justify-end justify-center mt-5">
+              <div className="flex md:justify-end justify-center mt-5 md:gap-6 gap-3">
                 <button className="hidden px-16 py-3 rounded-2xl bg-main-purple hover:bg-second-purple text-white">
                   Cetak Tiket
                 </button>
-                <button className="hidden px-16 py-3 rounded-2xl bg-orange-500 hover:bg-orange-400 text-white">
+                <button className="hidden md:px-16 px-7 py-3 rounded-2xl bg-main-green hover:bg-lime-600 text-white">
                   Lanjut Bayar
+                </button>
+                <button className="hidden md:px-16 px-7 py-3 rounded-2xl bg-orange-500 hover:bg-orange-400 text-white">
+                  Batal
                 </button>
                 <button className="disabled:cursor-not-allowed px-11 cursor-no-drop py-3 rounded-2xl bg-gray-400 text-white">
                   Pembayaran Batal
