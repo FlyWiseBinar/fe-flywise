@@ -1,8 +1,8 @@
-import React, { useState } from "react"
+import React, {useEffect, useState} from "react"
 import axios from "axios"
-import { useRouter } from "next/router"
-import { useSearchParams } from "next/navigation"
-import { ToastContainer, toast } from "react-toastify"
+import {useRouter} from "next/router"
+import {useSearchParams} from "next/navigation"
+import {ToastContainer, toast} from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 import Head from "next/head"
 import api from "@/configs/api"
@@ -21,6 +21,12 @@ const Otp = () => {
 	}
 	const [otp, setOtp] = useState(initialOtp)
 
+	useEffect(() => {
+		for(let i = 0; i < 6; i++) {
+			document.getElementsByTagName('input')[i].value && document.getElementsByTagName('input')[i + 1]?.focus()
+		}
+	}, [otp])
+
 	const handleChange = (e) => {
 		setOtp({
 			...otp,
@@ -34,10 +40,10 @@ const Otp = () => {
 				email: email,
 				otp: otp.first + otp.second + otp.third + otp.fourth + otp.fifth + otp.sixth
 			})
-			if (response.status == 200) {
+			if(response.status == 200) {
 				router.push("login")
 			}
-		} catch (error) {
+		} catch(error) {
 			toast.error(error.response.data.message, {
 				position: "bottom-center",
 				autoClose: 2000,
@@ -56,7 +62,7 @@ const Otp = () => {
 			const response = await axios.post(api.apiResendOtp, {
 				email: email
 			})
-			if (response.status == 200) {
+			if(response.status == 200) {
 				toast.success("Otp resent successfuly, check your email", {
 					position: "bottom-center",
 					autoClose: 2000,
@@ -68,7 +74,7 @@ const Otp = () => {
 					theme: "colored",
 				})
 			}
-		} catch (error) {
+		} catch(error) {
 			toast.error(error.response.data.message, {
 				position: "bottom-center",
 				autoClose: 2000,

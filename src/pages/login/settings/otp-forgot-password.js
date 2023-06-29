@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import axios from "axios"
 import { useRouter } from "next/router"
 import { useSearchParams } from "next/navigation"
@@ -21,6 +21,12 @@ const Otp = () => {
     sixth: "",
   }
   const [otp, setOtp] = useState(initialOtp)
+
+  useEffect(() => {
+	for(let i = 0; i < 6; i++) {
+		document.getElementsByTagName('input')[i].value && document.getElementsByTagName('input')[i + 1]?.focus()
+	}
+}, [otp])
 
   const handleChange = (e) => {
     setOtp({
