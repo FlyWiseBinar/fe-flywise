@@ -8,6 +8,7 @@ import { getCookie, deleteCookie } from "cookies-next"
 import { useRouter } from "next/router"
 import { ToastContainer, toast } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
+import Image from "next/image"
 
 const Navbar = () => {
   const router = useRouter()
@@ -21,8 +22,7 @@ const Navbar = () => {
   useEffect(() => {
     if (token) {
       setIsLogin(true)
-    }
-    else {
+    } else {
       setIsLogin(false)
     }
   }, [token])
@@ -61,8 +61,8 @@ const Navbar = () => {
         <div
           className={` ${styles.mainRow} bg-white z-20 !justify-between px-12 lg:px-20 md:px-20`}
         >
-          <div className="w-full flex-col justify-start p-3">
-            <p className="md:text-2xl text-xl font-bold text-main-purple">
+          <div className="w-full flex-col justify-start p-3 hover:animate-pulse cursor-default">
+            <p className="md:text-2xl text-xl font-extrabold text-main-purple">
               FlyWise
             </p>
             <p className="md:text-lg text-base text-main-purple">
@@ -91,7 +91,7 @@ const Navbar = () => {
             <div className="hidden md:flex gap-2 items-center">
               {isLogin ? (
                 <div className="flex gap-6">
-                  <div>
+                  <div className="hover:animate-pulse">
                     <Link
                       href="orderHistory"
                       className="flex items-center justify-center text-black hover:text-main-purple text-2xl hover:scale-110 duration-300"
@@ -99,7 +99,7 @@ const Navbar = () => {
                       <AiOutlineBars />
                     </Link>
                   </div>
-                  <div>
+                  <div className="hover:animate-pulse">
                     <Link
                       href="/profile"
                       className="flex items-center justify-center text-black hover:text-main-purple text-2xl hover:scale-110 duration-300"
@@ -107,7 +107,7 @@ const Navbar = () => {
                       <CgProfile />
                     </Link>
                   </div>
-                  <div>
+                  <div className="hover:animate-pulse">
                     <div
                       className=" cursor-pointer flex items-center justify-center text-black hover:text-main-purple text-2xl hover:scale-110 duration-300"
                       onClick={handleClickLogout}
@@ -200,10 +200,7 @@ const Navbar = () => {
               ) : (
                 <li>
                   <div>
-                    <Link
-                      href="login"
-                      className="flex justify-center"
-                    >
+                    <Link href="login" className="flex justify-center">
                       <div className="flex items-center gap-2 text-white bg-main-orange px-4 py-2 rounded-lg">
                         <BiLogIn />
                         <p>Masuk</p>
