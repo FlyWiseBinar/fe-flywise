@@ -81,7 +81,6 @@ const SecondHome = ({ data, search, chooseDate }) => {
                         onPageChange={page => { onPageChange(page) }}
                         totalPages={Math.ceil(data?.length / dataPerPage)}
                       />
-                      {/* <p className="p-4 bg-slate-700 text-white rounded-xl">Total Pages : {Math.ceil(data?.length / dataPerPage)}</p> */}
                     </div>
                   </>
                 )
