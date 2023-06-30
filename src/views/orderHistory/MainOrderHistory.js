@@ -251,8 +251,8 @@ const MainOrderHistory = () => {
 						:
 						data ?
 							data.map((item, index) => (
-								<div key={index}>
-									<AccordionHistory item={item} />
+								<div>
+									<AccordionHistory key={index} item={item} />
 								</div>
 							))
 							:
