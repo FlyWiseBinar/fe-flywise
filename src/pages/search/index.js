@@ -33,13 +33,13 @@ const Index = ({ schedule }) => {
   }
 
   const filterDate = (data) => {
-    const filterResult = data?.filter(item => item?.arrivedDate == isFilter || item?.departureDate == isFilter)
+    const filterResult = data?.filter(item => item?.departureDate == isFilter)
     return filterResult
   }
 
-  console.log(filterDate(data));
+  // console.log(filterDate(data));
   // console.log('data', data);
-  console.log('filter', isFilter);
+  // console.log('filter', isFilter);
 
   return (
     <div>

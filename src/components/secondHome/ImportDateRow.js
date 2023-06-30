@@ -39,7 +39,7 @@ const ImportDateRow = ({ startDate, endDate, setIsFilter }) => {
       }
       setDateRange(temp)
     } else {
-      setDateRange([{ date: `${getDate}-${getMonth + 1}-${getYear}`, day: getDay , search: `${getYear}-0${getMonth + 1}-0${getDate}`}])
+      setDateRange([{ date: `${getDate}-${getMonth + 1}-${getYear}`, day: getDay, search: `${getYear}-0${getMonth + 1}-0${getDate}` }])
     }
   }
 
@@ -49,21 +49,31 @@ const ImportDateRow = ({ startDate, endDate, setIsFilter }) => {
 
   const hanClick = (e) => {
     setIsFilter(e)
-    console.log("e", e)
+    // console.log("e", e)
   }
 
   return (
     <>
-      <div className={`${styles.mainRow} text-xs gap-4 lg:text-base md:text-base xstext-xs:text-sm`}>
+      <div className={`${styles.mainRow} flex gap-3 text-xs lg:text-base md:text-base xstext-xs:text-sm`}>
         {
           dateRange?.map((item, i) => (
-            <div key={i}>
-              <div>
-                <button onClick={() => hanClick(item?.search)} className="flex flex-col items-center hover:bg-orange-300 active:bg-orange-500 focus:bg-orange-500 py-2 hover:rounded-xl focus:rounded-xl focus:text-white text-black hover:text-white duration-75 px-5 ">
-                  <div className="font-bold ">{item?.day}</div>
-                  <div className="">{item.date}</div>
-                </button>
-              </div>
+            <div className="flex flex-row items-center justify-center gap-4 h-[80px]" key={i}>
+              <button onClick={() => hanClick(item?.search)} className={"flex flex-col items-center hover:bg-orange-300  active:bg-orange-500 focus:bg-orange-500 py-2 hover:rounded-xl focus:rounded-xl focus:text-white text-black hover:text-white duration-75 px-5"}>
+                <div className="font-bold ">{item?.day}</div>
+                <div className="">{item.date}</div>
+              </button>
+              {
+                i === dateRange?.length - 1 ? (
+                  <>
+                  </>
+                )
+                  :
+                  (
+                    <>
+                      <div className="h-[60px] w-[1px] bg-slate-500"></div>
+                    </>
+                  )
+              }
             </div>
           ))
         }

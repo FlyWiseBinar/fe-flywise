@@ -3,8 +3,8 @@ import FilterSort from "@/components/secondHome/FilterSort"
 import ImportAccordion from "@/components/secondHome/ImportAccordion"
 import { Pagination } from "flowbite-react"
 import { ColorRing } from "react-loader-spinner"
-import { AiOutlineFileSearch } from "react-icons/ai"
 import { handlerDate } from "@/utils/handlerDate"
+import Image from "next/image"
 
 const SecondHome = ({ data, search, chooseDate }) => {
 
@@ -26,7 +26,7 @@ const SecondHome = ({ data, search, chooseDate }) => {
       }
       // console.log('temp', temp);
     }
-    // console.log('cecok', data?.length);
+
     setDataPaginated(final)
   }
 
@@ -38,7 +38,7 @@ const SecondHome = ({ data, search, chooseDate }) => {
 
   // console.log('data ', data);
 
-  // console.log('check paginate', paginateData(data));
+  // console.log('check paginate', Math.ceil(data?.length / dataPerPage));
 
   if (!loading) {
     if (data?.length > 0) {
@@ -71,15 +71,21 @@ const SecondHome = ({ data, search, chooseDate }) => {
                   </>
                 )
               }
-              <div className="w-full justify-center flex-col gap-4 items-center flex">
-                <Pagination
-                  className=" text-black w-full items-center justify-center flex"
-                  currentPage={currentPage}
-                  onPageChange={page => { onPageChange(page) }}
-                  totalPages={Math.ceil(data?.length / dataPerPage)}
-                />
-                {/* <p className="p-4 bg-slate-700 text-white rounded-xl">Total Pages : {Math.ceil(data?.length / dataPerPage)}</p> */}
-              </div>
+              {
+                Math.ceil(data?.length / dataPerPage) > 1 && (
+                  <>
+                    <div className="w-full justify-center flex-col gap-4 items-center flex">
+                      <Pagination
+                        className=" text-black w-full items-center justify-center flex"
+                        currentPage={currentPage}
+                        onPageChange={page => { onPageChange(page) }}
+                        totalPages={Math.ceil(data?.length / dataPerPage)}
+                      />
+                      {/* <p className="p-4 bg-slate-700 text-white rounded-xl">Total Pages : {Math.ceil(data?.length / dataPerPage)}</p> */}
+                    </div>
+                  </>
+                )
+              }
             </div>
           </div>
         </>
@@ -87,8 +93,8 @@ const SecondHome = ({ data, search, chooseDate }) => {
     } else {
       return (
         <div className="w-full h-[50vh] flex items-center justify-center gap-4">
-          <AiOutlineFileSearch className="text-5xl" />
-          <h2 className="text-2xl font-bold">Jadwal Penerbangan di {handlerDate(chooseDate)} Tidak Ditemukan!</h2>
+          <Image src="../empty_history.svg" width={150} height={150} alt="empty" />
+          <p className="text-main-purple pt-3 text-sm">Oops Jadwal Penerbangan pada {handlerDate(chooseDate)} Tidak Ditemukan!</p>
         </div>
       )
     }
