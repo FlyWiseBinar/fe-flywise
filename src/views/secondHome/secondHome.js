@@ -92,9 +92,12 @@ const SecondHome = ({ data, search, chooseDate }) => {
       )
     } else {
       return (
-        <div className="w-full h-[50vh] flex items-center justify-center gap-4">
+        <div className="w-full h-[50vh] flex-col flex items-center justify-center gap-4">
           <Image src="../empty_history.svg" width={150} height={150} alt="empty" />
-          <p className="text-main-purple pt-3 text-sm">Oops Jadwal Penerbangan pada {handlerDate(chooseDate)} Tidak Ditemukan!</p>
+          <div className="text-main-purple pt-3 flex flex-col w-full gap-3 items-center justify-center text-sm">
+            <p className="font-semibold text-black">Maaf, pencarian Anda pada  {handlerDate(chooseDate)}  tidak ditemukan</p>
+            <p className="font-semibold ">Coba cari perjalanan lainnya!</p>
+          </div>
         </div>
       )
     }
