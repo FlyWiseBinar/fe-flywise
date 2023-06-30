@@ -49,7 +49,7 @@ const ImportDateRow = ({ startDate, endDate, setIsFilter }) => {
 
   const hanClick = (e) => {
     setIsFilter(e)
-    console.log('e', e);
+    console.log("e", e)
   }
 
   return (
