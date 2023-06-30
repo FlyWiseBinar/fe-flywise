@@ -1,13 +1,13 @@
 import Image from "next/image"
-import {styles} from "@/styles/styles"
+import { styles } from "@/styles/styles"
 import Link from "next/link"
-import React, {useState, useEffect, Fragment} from "react"
+import React, { useState, useEffect, Fragment } from "react"
 import getToken from "@/utils/getToken"
 import api from "@/configs/api"
-import {LuArrowLeft, LuFilter, LuX, LuRotateCw} from "react-icons/lu"
-import {AiOutlineSearch} from "react-icons/ai"
+import { LuArrowLeft, LuFilter, LuX, LuRotateCw } from "react-icons/lu"
+import { AiOutlineSearch } from "react-icons/ai"
 import Datepicker from "react-tailwindcss-datepicker"
-import {Dialog, Transition} from "@headlessui/react"
+import { Dialog, Transition } from "@headlessui/react"
 import AccordionHistory from "@/components/orderHistory/AccordionHistory"
 import axios from "axios"
 import Loading from "@/components/Loading"
@@ -250,9 +250,9 @@ const MainOrderHistory = () => {
 						<Loading />
 						:
 						data ?
-							data.map((item, index) => (
-								<div>
-									<AccordionHistory key={index} item={item} />
+							data.map((item) => (
+								<div key={item}>
+									<AccordionHistory item={item} />
 								</div>
 							))
 							:

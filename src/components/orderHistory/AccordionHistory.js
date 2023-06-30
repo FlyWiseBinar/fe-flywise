@@ -1,29 +1,29 @@
 import React from "react"
-import {useState} from "react"
-import {styles} from "@/styles/styles"
+import { useState } from "react"
+import { styles } from "@/styles/styles"
 import {
 	LuSend,
 	LuChevronDown,
 	LuChevronUp,
 	LuChevronRight,
 } from "react-icons/lu"
-import {MdLocationOn} from "react-icons/md"
+import { MdLocationOn } from "react-icons/md"
 import axios from "axios"
-import {baseUrl} from "@/configs/baseUrl.js"
-import {ToastContainer, toast} from "react-toastify"
+import { baseUrl } from "@/configs/baseUrl.js"
+import { ToastContainer, toast } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
-import {PropagateLoader} from "react-spinners"
+import { PropagateLoader } from "react-spinners"
 import getToken from "@/utils/getToken"
 import Router from "next/router"
 
 
-export default function AccordionHistory({item}) {
+export default function AccordionHistory({ item }) {
 	const token = getToken()
 	const [isOpen, setIsOpen] = useState(false)
 	const [isLoadingClickButtonBatal, setIsLoadingClickButtonBatal] = useState(false)
 
 	function formatDate(dateString) {
-		const options = {year: "numeric", month: "long", day: "numeric"}
+		const options = { year: "numeric", month: "long", day: "numeric" }
 		const date = new Date(dateString)
 		return date.toLocaleDateString("id-ID", options)
 	}
@@ -64,7 +64,7 @@ export default function AccordionHistory({item}) {
 					Authorization: `Bearer ${token}`
 				}
 			})
-			if(response.status == 201) {
+			if (response.status == 201) {
 				toast.success("order has been cancelled successfuly", {
 					position: "bottom-center",
 					autoClose: 2000,
@@ -80,10 +80,10 @@ export default function AccordionHistory({item}) {
 					Router.reload(window.location.pathname)
 				}, 1000)
 			}
-		} catch(error) {
+		} catch (error) {
 			console.log(error)
 			setIsLoadingClickButtonBatal(false)
-			if(error.response.status == 400) {
+			if (error.response.status == 400) {
 				toast.error(error.response.data.message, {
 					position: "bottom-center",
 					autoClose: 2000,
