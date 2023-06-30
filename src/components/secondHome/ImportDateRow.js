@@ -39,7 +39,7 @@ const ImportDateRow = ({ startDate, endDate, setIsFilter }) => {
       }
       setDateRange(temp)
     } else {
-      setDateRange([{ date: `${getDate}-${getMonth + 1}-${getYear}`, day: getDay }])
+      setDateRange([{ date: `${getDate}-${getMonth + 1}-${getYear}`, day: getDay , search: `${getYear}-0${getMonth + 1}-0${getDate}`}])
     }
   }
 
@@ -49,6 +49,7 @@ const ImportDateRow = ({ startDate, endDate, setIsFilter }) => {
 
   const hanClick = (e) => {
     setIsFilter(e)
+    console.log('e', e);
   }
 
   return (

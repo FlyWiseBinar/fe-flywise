@@ -37,8 +37,9 @@ const Index = ({ schedule }) => {
     return filterResult
   }
 
-  // console.log(filterDate(data));
-  // console.log('isfilter', isFilter);
+  console.log(filterDate(data));
+  console.log('data', data);
+  console.log('filter', isFilter);
 
   return (
     <div>
