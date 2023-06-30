@@ -14,7 +14,7 @@ import {ToastContainer, toast} from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 import {PropagateLoader} from "react-spinners"
 import getToken from "@/utils/getToken"
-import Router from 'next/router'
+import Router from "next/router"
 
 
 export default function AccordionHistory({item}) {
@@ -120,19 +120,19 @@ export default function AccordionHistory({item}) {
 						onClick={toggleAccordion}
 					>
 						{
-							item?.order.payment[0].status == 'Unpaid' &&
+							item?.order.payment[0].status == "Unpaid" &&
 							<span className="flex items-center text-white bg-red-500 lg:text-base text-sm lg:px-6 px-3 lg:py-2 py-1 rounded-full">
 								Unpaid
 							</span>
 						}
 						{
-							item?.order.payment[0].status == 'Cancelled' &&
+							item?.order.payment[0].status == "Cancelled" &&
 							<span className="flex items-center text-white bg-gray-400 lg:text-base text-sm lg:px-6 px-3 lg:py-2 py-1 rounded-full">
 								Cancelled
 							</span>
 						}
 						{
-							item?.order.payment[0].status == 'Issued' &&
+							item?.order.payment[0].status == "Issued" &&
 							<span className="flex items-center text-white bg-main-green lg:text-base text-sm lg:px-6 px-3 lg:py-2 py-1 rounded-full">
 								Issued
 							</span>
@@ -296,13 +296,13 @@ export default function AccordionHistory({item}) {
 							</div>
 							<div className="flex md:justify-end justify-center mt-5 md:gap-6 gap-3">
 								{
-									item?.order.payment[0].status == 'Issued' &&
+									item?.order.payment[0].status == "Issued" &&
 									<button className=" px-16 py-3 rounded-2xl bg-main-purple hover:bg-second-purple text-white">
 										Cetak Tiket
 									</button>
 								}
 								{
-									item?.order.payment[0].status == 'Unpaid' &&
+									item?.order.payment[0].status == "Unpaid" &&
 									<>
 										<button className=" md:px-16 px-7 py-3 rounded-2xl bg-main-green hover:bg-lime-600 text-white">
 											Lanjut Bayar
@@ -320,7 +320,7 @@ export default function AccordionHistory({item}) {
 									</>
 								}
 								{
-									item?.order.payment[0].status == 'Cancelled' &&
+									item?.order.payment[0].status == "Cancelled" &&
 									<button className="disabled:cursor-not-allowed px-11 cursor-no-drop py-3 rounded-2xl bg-gray-400 text-white">
 										Pembayaran Batal
 									</button>
