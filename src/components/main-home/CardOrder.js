@@ -109,16 +109,19 @@ const CardOrder = () => {
       returnDate: returnDate?.startDate,
       CountAdult: CountAdult,
       CountBaby: CountBaby,
-      CountChild: CountChild
+      CountChild: CountChild,
+      CountTotal: CountAdult + CountBaby + CountChild
     }
 
-    if (departureDate && from) {
+    const countTotal = CountAdult + CountBaby + CountChild
+
+    if (departureDate && from && countTotal > 0) {
       router.push({
         pathname: "/search",
         query: data
       })
     } else {
-      toast.error("Mohon isi tanggal keberangkatan dan lokasi keberangkatan", {
+      toast.error("Mohon isi tanggal keberangkatan, lokasi keberangkatan, dan jumlah penumpang!", {
         position: "bottom-center",
         autoClose: 2000,
         hideProgressBar: true,

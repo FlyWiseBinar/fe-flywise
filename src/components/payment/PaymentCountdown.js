@@ -42,7 +42,7 @@ const PaymentCountdown = () => {
       <div
         className={`${styles.deadline} flex justify-center items-center w-full p-5 mx-10 rounded-lg bg-red-500 text-white`}
       >
-        <p className="font-sans flex gap-1">Selesaikan Dalam 15 Menit</p>
+        <p className="font-sans font-bold text-xl flex gap-1">Selesaikan Dalam 15 Menit</p>
       </div>
     </div>
   )

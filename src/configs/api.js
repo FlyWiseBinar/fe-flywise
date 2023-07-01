@@ -21,6 +21,7 @@ export default {
     // ticket
     apiAirport: `${baseUrl}/v1/api/schedule/airport`,
     apiSearchTicket: `${baseUrl}/v1/api/schedule/search`,
+    apiSchedule: `${baseUrl}/v1/api/schedule`,
     apiScheduleFavorite: `${baseUrl}/v1/api/schedule/favorite`,
 
     // checkout

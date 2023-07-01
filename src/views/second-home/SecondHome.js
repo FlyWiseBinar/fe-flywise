@@ -36,7 +36,7 @@ const SecondHome = ({ data, search, chooseDate }) => {
     paginateData(data)
   }, [data])
 
-  // console.log('data ', data);
+  console.log("data ", search)
 
   // console.log('check paginate', Math.ceil(data?.length / dataPerPage));
 
@@ -64,7 +64,7 @@ const SecondHome = ({ data, search, chooseDate }) => {
                     {
                       Array.isArray(dataPaginated) && dataPaginated[0]?.map((item, index) => (
                         <div key={index}>
-                          <ImportAccordion data={item} />
+                          <ImportAccordion countSeat={search?.CountTotal} search={search} data={item} />
                         </div>
                       ))
                     }
@@ -92,7 +92,7 @@ const SecondHome = ({ data, search, chooseDate }) => {
     } else {
       return (
         <div className="w-full h-[50vh] flex-col flex items-center justify-center gap-4">
-          <Image src="../empty_history.svg" width={150} height={150} alt="empty" />
+          <Image src="/assets/schedule-not-found.png" width={200} height={200} alt="not-found" />
           <div className="text-main-purple pt-3 flex flex-col w-full gap-3 items-center justify-center text-sm">
             <p className="font-semibold text-black">Maaf, pencarian Anda pada  {handlerDate(chooseDate)}  tidak ditemukan</p>
             <p className="font-semibold ">Coba cari perjalanan lainnya!</p>

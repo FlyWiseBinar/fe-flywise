@@ -1,6 +1,7 @@
 import { convertTime } from "@/utils/convertTime"
 import { handlerDate } from "@/utils/handlerDate"
 import { handlerIDR } from "@/utils/handlerIDR"
+import Link from "next/link"
 import React from "react"
 import { useState } from "react"
 import { LuChevronDown } from "react-icons/lu"
@@ -8,8 +9,10 @@ import { LuChevronUp } from "react-icons/lu"
 import { LuSend } from "react-icons/lu"
 import { LuBaggageClaim } from "react-icons/lu"
 
-const AccordionDetail = ({ item }) => {
+const AccordionDetail = ({ item, countSeat, search }) => {
   const [isOpen, setIsOpen] = useState(false)
+  console.log("countSeat", search)
+  const { CountBaby, CountChild, CountAdult } = search
 
   const toggleAccordion = () => {
     setIsOpen(!isOpen)
@@ -65,9 +68,18 @@ const AccordionDetail = ({ item }) => {
               <span className="text-center">
                 <div className=" w-full font-bold text-sm lg:text-lg md:text-lg sm:text-sm">{handlerIDR(item?.provTotalPrice)}</div>
                 <div>
-                  <button className="py-1 px-8 bg-main-purple hover:bg-second-purple rounded-xl font-normal text-sm lg:text-base md:text-base sm:text-sm text-white">
+                  <Link href={{
+                    pathname: "/payment",
+                    query: {
+                      countseat: countSeat,
+                      idschedule: item?.id,
+                      adult: CountAdult,
+                      baby: CountBaby,
+                      child: CountChild
+                    }
+                  }} className="py-1 px-8 bg-main-purple hover:bg-second-purple rounded-xl font-normal text-sm lg:text-base md:text-base sm:text-sm text-white">
                     Pilih
-                  </button>
+                  </Link>
                 </div>
               </span>
             </div>

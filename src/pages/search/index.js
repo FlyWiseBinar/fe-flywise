@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import SecondHome from "@/views/secondHome/secondHome"
+import SecondHome from "@/views/second-home/SecondHome"
 import Head from "next/head"
 import { useRouter } from "next/router"
 import axios from "axios"
@@ -19,7 +19,8 @@ const Index = ({ schedule }) => {
     departureDate,
     from,
     returnDate,
-    to
+    to,
+    CountTotal
   } = router.query
 
   const dataSearch = {
@@ -30,6 +31,7 @@ const Index = ({ schedule }) => {
     from,
     to,
     returnDate,
+    CountTotal
   }
 
   const filterDate = (data) => {

@@ -61,14 +61,14 @@ const Navbar = () => {
         <div
           className={` ${styles.mainRow} bg-white z-20 !justify-between px-12 lg:px-20 md:px-20`}
         >
-          <div className="w-full flex-col justify-start p-3 hover:animate-pulse cursor-default">
+          <Link href={"/"} className="w-full  flex-col justify-start p-3 hover:scale-105 duration-300 cursor-pointer">
             <p className="md:text-2xl text-xl font-extrabold text-main-purple">
               FlyWise
             </p>
             <p className="md:text-lg text-base text-main-purple">
               Your Traveling Partner
             </p>
-          </div>
+          </Link>
 
           <div className="w-full flex justify-end items-center">
             <div className="md:hidden">
@@ -131,11 +131,10 @@ const Navbar = () => {
           </div>
         </div>
         <div
-          className={`md:hidden bg-white z-50 fixed top-0 right-0 w-3/5 h-screen overflow-y-auto ease-in-out transition-all duration-300 transform ${
-            isSidebarOpen
-              ? "translate-x-0 md:filter-none shadow-[0_0_500px_rgba(37,37,37,1)] border"
-              : "translate-x-full"
-          }`}
+          className={`md:hidden bg-white z-50 fixed top-0 right-0 w-3/5 h-screen overflow-y-auto ease-in-out transition-all duration-300 transform ${isSidebarOpen
+            ? "translate-x-0 md:filter-none shadow-[0_0_500px_rgba(37,37,37,1)] border"
+            : "translate-x-full"
+            }`}
         >
           <div className="flex justify-end p-4">
             <button className="focus:outline-none" onClick={toggleSidebar}>
