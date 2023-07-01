@@ -61,14 +61,14 @@ const Navbar = () => {
         <div
           className={` ${styles.mainRow} bg-white z-20 !justify-between px-12 lg:px-20 md:px-20`}
         >
-          <Link href={"/"} className="w-full  flex-col justify-start p-3 hover:scale-105 duration-300 cursor-pointer">
-            <p className="md:text-2xl text-xl font-extrabold text-main-purple">
+          <div className="w-full flex-col justify-start p-3 ">
+            <Link href={'/'} className="md:text-2xl text-xl font-extrabold hover:scale-105 duration-300 cursor-pointer text-main-purple">
               FlyWise
-            </p>
+            </Link>
             <p className="md:text-lg text-base text-main-purple">
               Your Traveling Partner
             </p>
-          </Link>
+          </div>
 
           <div className="w-full flex justify-end items-center">
             <div className="md:hidden">

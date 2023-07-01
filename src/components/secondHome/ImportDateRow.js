@@ -3,7 +3,6 @@ import { styles } from "@/styles/styles"
 
 const ImportDateRow = ({ startDate, endDate, setIsFilter }) => {
 
-  // console.log('start end', startDate, endDate);
 
   const [dateRange, setDateRange] = useState([])
 

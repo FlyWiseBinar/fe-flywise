@@ -24,7 +24,6 @@ const SecondHome = ({ data, search, chooseDate }) => {
         final.push(temp)
         temp = []
       }
-      // console.log('temp', temp);
     }
 
     setDataPaginated(final)

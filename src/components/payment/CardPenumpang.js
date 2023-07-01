@@ -1,16 +1,24 @@
 import React from "react"
 import { useState } from "react"
+import { useFormContext } from "react-hook-form"
 import Datepicker from "react-tailwindcss-datepicker"
 
-const CardPenumpang = () => {
+const CardPenumpang = ({ person, index }) => {
   const [value, setValue] = useState({
     startDate: null,
   })
+
+  const {
+    register,
+    formState: { errors }
+  } = useFormContext()
+  console.log('index', index);
 
   const handleValueChange = (newValue) => {
     console.log("newValue:", newValue)
     setValue(newValue)
   }
+
 
   const [showForm, setShowForm] = useState(false)
   const [inputValue, setInputValue] = useState("")
@@ -31,7 +39,7 @@ const CardPenumpang = () => {
       <div>
         <p className="font-extrabold text-2xl"> Isi Data Penumpang</p>
         <h1 className="bg-black text-white p-3 rounded-t-xl mt-5 ">
-          Data Diri Penumpang 1 - Adult
+          Data Diri Penumpang {index + 1} - {person}
         </h1>
         <form className="mx-5">
           <div className="my-6">
@@ -41,6 +49,7 @@ const CardPenumpang = () => {
             <input
               className=" p-3 border border-gray-300 text-gray-900 text-sm rounded-sm w-full"
               required
+              {...register(`passanger.${index}.name`)}
             />
           </div>
           <div>
