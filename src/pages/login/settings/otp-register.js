@@ -48,7 +48,7 @@ const Otp = () => {
           otp.sixth,
       })
       if (response.status == 200) {
-        router.push("login")
+        router.push("/login")
       }
     } catch (error) {
       toast.error(error.response.data.message, {
