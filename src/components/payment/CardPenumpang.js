@@ -18,18 +18,18 @@ const CardPenumpang = ({ person, index }) => {
   } = useFormContext()
 
 
-  console.log('index', index);
+  // console.log('index', index);
 
   const handleValueChangeBirthDate = (newValue) => {
     // console.log("newValue:", newValue)
     setBirth(newValue)
-    setValue(`passenger.${index}.birthdate`, newValue.startDate)
+    setValue(`passenger[${index}].birthdate`, newValue.startDate)
   }
 
   const handleValueChangeExpired = (newValue) => {
     // console.log("newValue:", newValue)
     setExp(newValue)
-    setValue(`passenger.${index}.expiredAt`, newValue.startDate)
+    setValue(`passenger[${index}].expiredAt`, newValue.startDate)
   }
 
 
@@ -46,6 +46,7 @@ const CardPenumpang = ({ person, index }) => {
     // console.log(inputValue)
   }
 
+  // console.log(`passenger[${index}].name`);
   return (
     <div className="flex flex-col bg-white gap-5 rounded-xl shadow-xl p-5 border-solid border-[1px] border-slate-400 ">
       <div>
@@ -63,8 +64,9 @@ const CardPenumpang = ({ person, index }) => {
             <input
               className=" p-3 border border-gray-300 text-gray-900 text-sm rounded-sm w-full"
               required
-              {...register(`passenger.${index}.name`)}
+              {...register(`passenger[${index}].name`, { required: true })}
             />
+            {errors?.passenger?.[index].name && <p className="text-sm text-red-500"> Data Nama Harus di Isi! </p>}
           </div>
           <div>
             <label
@@ -159,7 +161,7 @@ const CardPenumpang = ({ person, index }) => {
             <input
               className=" p-3 border border-gray-300 text-gray-900 text-sm rounded-sm w-full "
               required
-              {...register(`passenger.[${index}].nationality`)}
+              {...register(`passenger[${index}].nationality`, { required: true })}
             />
           </div>
 
@@ -172,7 +174,7 @@ const CardPenumpang = ({ person, index }) => {
               className=" p-3 border border-gray-300 text-gray-900 text-sm rounded-sm w-full "
               placeholder="name@flowbite.com"
               required
-              {...register(`passenger.[${index}].ktp`)}
+              {...register(`passenger[${index}].ktp`, { required: true })}
 
             />
           </div>
@@ -186,7 +188,7 @@ const CardPenumpang = ({ person, index }) => {
               className=" p-3 border border-gray-300 text-gray-900 text-sm rounded-sm w-full "
               placeholder="name@flowbite.com"
               required
-              {...register(`passenger.[${index}].passport`)}
+              {...register(`passenger[${index}].passport`, { required: true })}
 
             />
           </div>
@@ -200,7 +202,7 @@ const CardPenumpang = ({ person, index }) => {
               className=" p-3 border border-gray-300 text-gray-900 text-sm rounded-sm w-full "
               placeholder="name@flowbite.com"
               required
-              {...register(`passenger.[${index}].issuingCountry`)}
+              {...register(`passenger[${index}].issuingCountry`, { required: true })}
             />
           </div>
 

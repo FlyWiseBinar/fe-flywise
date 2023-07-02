@@ -4,7 +4,7 @@ import axios from "axios"
 import { useRouter } from "next/router"
 import { toast } from "react-toastify"
 
-const Detail = ({ dataSchedule, dataSeat, datapassenger, token }) => {
+const Detail = ({ countseat, dataSchedule, dataSeat, datapassenger, token, isPayment }) => {
   const router = useRouter()
   const handlerDate = (date) => {
     return new Date(date).toLocaleDateString("id-ID", { year: "numeric", month: "long", day: "numeric" })
@@ -12,13 +12,11 @@ const Detail = ({ dataSchedule, dataSeat, datapassenger, token }) => {
 
   const handlePay = () => {
 
-
-
     axios.post(api.apiCheckout, datapassenger, {
       headers: {
         Authorization: `Bearer ${token}`
       }
-    }).then(() => {
+    }).then((res) => {
       toast.success("Tiket Berhasil Di Pesan!", {
         position: "bottom-center",
         autoClose: 2000,
@@ -29,8 +27,17 @@ const Detail = ({ dataSchedule, dataSeat, datapassenger, token }) => {
         progress: undefined,
         theme: "colored",
       })
+      // console.log(res.data.data.payment?.paymentCode);
       router.push({
-        pathname: "/payment/method"
+        pathname: "/payment/method",
+        query: {
+          paymentCode: res.data.data.payment?.paymentCode,
+          idschedule: dataSchedule?.id,
+          adult: dataSeat?.adult,
+          child: dataSeat?.child,
+          baby: dataSeat?.baby,
+          countseat: countseat
+        }
       })
     }).catch((err) => {
       console.log(err);
@@ -147,11 +154,17 @@ const Detail = ({ dataSchedule, dataSeat, datapassenger, token }) => {
           </p>
         </div>
 
-        <div className="justify-center bg-red mt-5 w-full">
-          <button onClick={() => handlePay()} className="bg-red-900 text-white text-sm w-full  p-3 rounded-lg hover:bg-red-700">
-            Lanjut Bayar
-          </button>
-        </div>
+        {
+          !isPayment && (
+            <>
+              <div className="justify-center bg-red mt-5 w-full">
+                <button onClick={() => handlePay()} className="bg-red-900 text-white text-sm w-full  p-3 rounded-lg hover:bg-red-700">
+                  Lanjut Bayar
+                </button>
+              </div>
+            </>
+          )
+        }
       </div>
     </div>
   )

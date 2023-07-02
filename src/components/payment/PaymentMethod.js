@@ -1,5 +1,4 @@
 import React from "react"
-
 import { Fragment, useState } from "react"
 import {
   Accordion,
@@ -7,6 +6,10 @@ import {
   AccordionBody,
 } from "@material-tailwind/react"
 import Link from "next/link"
+import axios from "axios"
+import api from "@/configs/api"
+import { toast } from "react-toastify"
+import { useRouter } from "next/router"
 
 
 function Icon({ id, open }) {
@@ -25,20 +28,38 @@ function Icon({ id, open }) {
   )
 }
 
-const PaymentMethod = () => {
+const PaymentMethod = ({ code, token }) => {
   const [open, setOpen] = useState(0)
+  const [type, setType] = useState()
+  const [errorMsg, setErrorMsg] = useState()
+  const [cardNumber, setCardNumber] = useState("")
+
+  const router = useRouter()
 
   const handleOpen = (value) => {
     setOpen(open === value ? 0 : value)
   }
 
-  const [cardNumber, setCardNumber] = useState("")
+  const handleType = (e) => {
+    console.log(e);
+    setErrorMsg('')
+    if (e === 'ewallet') {
+      setType(1)
+    } else if (e === 'va') {
+      setType(2)
+    } else {
+      setType(3)
+    }
+  }
+
+  // console.log(type);
+
 
   const handleCardNumberChange = (e) => {
     if (e.target && e.target.value) {
       let formattedNumber = e.target.value.replace(/\s/g, "") // Menghapus spasi dari input
       formattedNumber = formattedNumber.replace(/(\d{4})/g, "$1 ") // Menambahkan spasi setiap 4 angka
-
+      handleType('cc')
       setCardNumber(formattedNumber)
     }
   }
@@ -67,12 +88,55 @@ const PaymentMethod = () => {
     setExpiryDate(formattedDate)
   }
 
+  const handlePay = () => {
+    if (type) {
+      const data = {
+        paymentCode: code,
+        paymentTypeId: type
+      }
+
+      axios.post(api.apiPaymentCreate, data, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      }).then((result) => {
+        toast.success(result.data.message, {
+          position: "bottom-center",
+          autoClose: 2000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        })
+
+        router.push('/payment/success')
+      }).catch((err) => {
+        console.log(err);
+        toast.error("Tiket Gagal Di Bayar!", {
+          position: "bottom-center",
+          autoClose: 2000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        })
+      });
+    } else {
+      setErrorMsg("Mohon Isi Metode Pembayaran!")
+    }
+  }
+
   return (
-    <div>
+    <div className="w-full">
       <div className="flex flex-col bg-white justify-center gap-5 p-5">
         <p className="font-bold text-xl mb-5">Isi Data Pembayaran</p>
 
         <Fragment>
+          {/* E wallet */}
           <Accordion open={open === 1} icon={<Icon id={1} open={open} />}>
             <AccordionHeader
               onClick={() => handleOpen(1)}
@@ -103,11 +167,14 @@ const PaymentMethod = () => {
                   value=""
                   name="bordered-radio"
                   className="w-6 h-6 mr-3 text-blue-600 bg-gray-100 border-gray-300 "
+                  onChange={(e) => handleType('ewallet')}
                 />
               </div>
             </AccordionBody>
           </Accordion>
 
+
+          {/* VA */}
           <Accordion open={open === 2} icon={<Icon id={2} open={open} />}>
             <AccordionHeader
               onClick={() => handleOpen(2)}
@@ -138,6 +205,7 @@ const PaymentMethod = () => {
                   value=""
                   name="bordered-radio"
                   className="w-6 h-6 mr-3 text-blue-600 bg-gray-100 border-gray-300 "
+                  onChange={(e) => handleType('va')}
                 />
               </div>
 
@@ -159,6 +227,7 @@ const PaymentMethod = () => {
                   value=""
                   name="bordered-radio"
                   className="w-6 h-6 mr-3 text-blue-600 bg-gray-100 border-gray-300 "
+                  onChange={(e) => handleType('va')}
                 />
               </div>
 
@@ -180,11 +249,13 @@ const PaymentMethod = () => {
                   value=""
                   name="bordered-radio"
                   className="w-6 h-6 mr-3 text-blue-600 bg-gray-100 border-gray-300 "
+                  onChange={(e) => handleType('va')}
                 />
               </div>
             </AccordionBody>
           </Accordion>
 
+          {/* Credit card */}
           <Accordion
             className="justify-center"
             open={open === 3}
@@ -269,12 +340,17 @@ const PaymentMethod = () => {
             </AccordionBody>
           </Accordion>
         </Fragment>
-        <div>
-          <Link href={"/payment/success"}>
-            <button className="flex w-full bg-purple-900 text-white text-sm lg:text-xl md:text-base justify-center p-3 rounded-lg hover:bg-purple-700 ">
-              Bayar
-            </button>
-          </Link>
+        <div className="w-full flex flex-col gap-4 items-center justify-center">
+          {
+            errorMsg?.length > 0 && (
+              <p className="text-red-500 text-xs">
+                {errorMsg}
+              </p>
+            )
+          }
+          <button onClick={() => handlePay()} className="flex w-full bg-purple-900 text-white text-sm lg:text-xl md:text-base justify-center p-3 rounded-lg hover:bg-purple-700 ">
+            Bayar
+          </button>
         </div>
       </div>
     </div>

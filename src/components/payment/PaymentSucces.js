@@ -1,11 +1,10 @@
 import React from "react"
 import Image from "next/image"
-import PaymentCountdown from "./PaymentCountdown"
+import Link from "next/link"
 
 const PaymentSuccess = () => {
   return (
     <>
-      <PaymentCountdown />
       <div className="py-5">
         <div className="flex justify-center items-center mb-5">
           <Image
@@ -26,9 +25,9 @@ const PaymentSuccess = () => {
           </button>
         </div>
         <div className="flex justify-center items-center mb-5">
-          <button className="mx-5 bg-white text-purple-900 border border-solid-2 border-purple-900 w-80 font-semibold text-xl  p-3 rounded-lg hover:bg-purple-700 hover:text-white transition-colors duration-300 ease-in-out">
+          <Link href={'/'} className="mx-5 text-center bg-white text-purple-900 border border-solid-2 border-purple-900 w-80 font-semibold text-xl  p-3 rounded-lg hover:bg-purple-700 hover:text-white transition-colors duration-300 ease-in-out">
             Cari Penerbangan Lain
-          </button>
+          </Link>
         </div>
       </div>
     </>

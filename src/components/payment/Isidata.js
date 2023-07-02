@@ -8,7 +8,7 @@ import { FormProvider, useFieldArray, useForm } from "react-hook-form"
 import { toast } from "react-toastify"
 // import Simpan from "./Simpan"
 
-const Isidata = ({ dataSchedule, dataSeat , token}) => {
+const Isidata = ({ countseat, dataSchedule, dataSeat, token }) => {
   // console.log('data schedule', dataSeat);
   // console.log("data seat", dataSeat)
 
@@ -74,19 +74,20 @@ const Isidata = ({ dataSchedule, dataSeat , token}) => {
     control,
     register,
     handleSubmit,
-    setValue, 
+    setValue,
     formState: { errors }
-  } = useForm({ defaultValues })
+  } = useForm({ defaultValues, mode: "onChange" })
 
   const {
     fields,
   } = useFieldArray({
     control,
+    rules: { required: true },
     name: 'passenger'
   })
 
   const onSubmit = (data) => {
-    if(data){
+    if (data) {
       console.log('submit', data)
       toast.success("Data Berhasil di Simpan!", {
         position: "bottom-center",
@@ -134,7 +135,7 @@ const Isidata = ({ dataSchedule, dataSeat , token}) => {
                 Simpan
               </button>
             </form>
-            <Detail dataSchedule={dataSchedule} dataSeat={dataSeat} datapassenger={datapassenger} token={token}/>
+            <Detail countseat={countseat} dataSchedule={dataSchedule} dataSeat={dataSeat} datapassenger={datapassenger} token={token} />
           </div>
         </div>
       </FormProvider>
