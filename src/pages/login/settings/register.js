@@ -32,19 +32,13 @@ const Register = () => {
     e.preventDefault()
     setLoading(true)
     try {
-      const response = await axios.post(
-        api.apiRegister,
-        form
-      )
+      const response = await axios.post(api.apiRegister, form)
       setForm(initialForm)
       if (response.status == 201) {
-        await axios.post(
-          api.apiOtp,
-          {
-            email: form.email,
-          }
-        )
-        router.push(`login/settings/otp-register?email=${form.email}`)
+        await axios.post(api.apiOtp, {
+          email: form.email,
+        })
+        router.push(`/login/settings/otp-register?email=${form.email}`)
       }
       setLoading(false)
     } catch (error) {

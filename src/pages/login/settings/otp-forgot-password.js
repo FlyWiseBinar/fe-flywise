@@ -50,8 +50,8 @@ const Otp = () => {
       })
       if (response.status == 200) {
         setTimeout(() => {
-          router.push(`forgotpassword?email=${email}`)
-        }, 3000)
+          router.push(`/login/settings/forgotpassword?email=${email}`)
+        }, 2000)
         toast.success(`${response.data.message}, will redirect 3s...`, {
           position: "bottom-center",
           autoClose: 2000,

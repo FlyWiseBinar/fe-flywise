@@ -31,19 +31,16 @@ const Forgotpassword = () => {
     e.preventDefault()
     setLoading(true)
     try {
-      const response = await axios.put(
-        api.apiResetPass,
-        {
-          email,
-          password: form.password,
-          confirm_password: form.confirm_password,
-        }
-      )
+      const response = await axios.put(api.apiResetPass, {
+        email,
+        password: form.password,
+        confirm_password: form.confirm_password,
+      })
       if (response.status == 200) {
         setLoading(false)
         setTimeout(() => {
           router.push("/login")
-        }, 3000)
+        }, 2000)
         toast.success(`${response.data.message}, redirect login in 3s...`, {
           position: "bottom-center",
           autoClose: 2000,
