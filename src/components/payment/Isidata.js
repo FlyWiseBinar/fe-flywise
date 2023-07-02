@@ -5,17 +5,21 @@ import CardPenumpang from "./CardPenumpang.js"
 import Detail from "./Detail"
 import PaymentCountdown from "./PaymentCountdown"
 import { FormProvider, useFieldArray, useForm } from "react-hook-form"
+import { toast } from "react-toastify"
 // import Simpan from "./Simpan"
 
-const Isidata = ({ countseat, dataSchedule, dataSeat }) => {
-  console.log('data schedule', dataSeat);
-  console.log("data seat", dataSeat)
+const Isidata = ({ dataSchedule, dataSeat , token}) => {
+  // console.log('data schedule', dataSeat);
+  // console.log("data seat", dataSeat)
 
-  const passanger = []
+
+  const [datapassenger, setDatapassenger] = useState()
+
+  const passenger = []
   {
     if (dataSeat?.adult) {
       for (let index = 0; index < dataSeat?.adult; index++) {
-        passanger.push({
+        passenger.push({
           name: "",
           birthdate: "",
           nationality: "",
@@ -29,7 +33,7 @@ const Isidata = ({ countseat, dataSchedule, dataSeat }) => {
     }
     if (dataSeat?.child) {
       for (let index = 0; index < dataSeat?.child; index++) {
-        passanger.push({
+        passenger.push({
           name: "",
           birthdate: "",
           nationality: "",
@@ -43,7 +47,7 @@ const Isidata = ({ countseat, dataSchedule, dataSeat }) => {
     }
     if (dataSeat?.baby) {
       for (let index = 0; index < dataSeat?.baby; index++) {
-        passanger.push({
+        passenger.push({
           name: "",
           birthdate: "",
           nationality: "",
@@ -61,30 +65,44 @@ const Isidata = ({ countseat, dataSchedule, dataSeat }) => {
     schedule: [
       { id: dataSchedule.id }
     ],
-    passanger: passanger
+    passenger: passenger
   }
 
-  // console.log('pass', passanger)
+  // console.log('pass', passenger)
 
   const {
     control,
     register,
     handleSubmit,
+    setValue, 
     formState: { errors }
   } = useForm({ defaultValues })
 
   const {
-    fields
+    fields,
   } = useFieldArray({
     control,
-    name: 'passanger'
+    name: 'passenger'
   })
 
   const onSubmit = (data) => {
-    console.log('submit', data)
+    if(data){
+      console.log('submit', data)
+      toast.success("Data Berhasil di Simpan!", {
+        position: "bottom-center",
+        autoClose: 2000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      })
+      setDatapassenger(data)
+    }
   }
 
-  console.log('fields', fields);
+  // console.log('fields', fields);
 
 
 
@@ -94,6 +112,7 @@ const Isidata = ({ countseat, dataSchedule, dataSeat }) => {
       <FormProvider
         register={register}
         control={control}
+        setValue={setValue}
         formState={errors}
         handleSubmit={handleSubmit}
       >
@@ -115,7 +134,7 @@ const Isidata = ({ countseat, dataSchedule, dataSeat }) => {
                 Simpan
               </button>
             </form>
-            <Detail dataSchedule={dataSchedule} dataSeat={dataSeat} />
+            <Detail dataSchedule={dataSchedule} dataSeat={dataSeat} datapassenger={datapassenger} token={token}/>
           </div>
         </div>
       </FormProvider>

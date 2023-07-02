@@ -1,13 +1,55 @@
+import api from "@/configs/api"
 import { handlerIDR } from "@/utils/handlerIDR"
-import Link from "next/link"
+import axios from "axios"
+import { useRouter } from "next/router"
+import { toast } from "react-toastify"
 
-const Detail = ({ dataSchedule, dataSeat }) => {
-
+const Detail = ({ dataSchedule, dataSeat, datapassenger, token }) => {
+  const router = useRouter()
   const handlerDate = (date) => {
     return new Date(date).toLocaleDateString("id-ID", { year: "numeric", month: "long", day: "numeric" })
   }
 
-  console.log("data schedule", dataSeat, dataSchedule)
+  const handlePay = () => {
+
+
+
+    axios.post(api.apiCheckout, datapassenger, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    }).then(() => {
+      toast.success("Tiket Berhasil Di Pesan!", {
+        position: "bottom-center",
+        autoClose: 2000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      })
+      router.push({
+        pathname: "/payment/method"
+      })
+    }).catch((err) => {
+      console.log(err);
+      toast.error("Tiket Gagal Di Pesan!", {
+        position: "bottom-center",
+        autoClose: 2000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      })
+    });
+    console.log("data order", datapassenger)
+
+
+  }
+
   return (
     <div className=" flex flex-col bg-white rounded-xl justify-center items-center content-start p-5 lg:mt-0 md:mt-0 mt-10">
       <div className="w-[200px] lg:w-[400px] md:w-[400px] sm:w-[400px]">
@@ -106,11 +148,9 @@ const Detail = ({ dataSchedule, dataSeat }) => {
         </div>
 
         <div className="justify-center bg-red mt-5 w-full">
-          <Link href={"/payment/method"}>
-            <button className="bg-red-900 text-white text-sm w-full  p-3 rounded-lg hover:bg-red-700">
-              Lanjut Bayar
-            </button>
-          </Link>
+          <button onClick={() => handlePay()} className="bg-red-900 text-white text-sm w-full  p-3 rounded-lg hover:bg-red-700">
+            Lanjut Bayar
+          </button>
         </div>
       </div>
     </div>

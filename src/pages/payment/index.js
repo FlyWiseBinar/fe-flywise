@@ -43,7 +43,7 @@ const index = ({ data }) => {
           <title>Payment | FlyWise</title>
           <link rel="icon" href="../logo.svg" />
         </Head>
-        <Isidata countseat={data?.countseat} dataSchedule={data?.dataSchedule} dataSeat={data?.dataSeat} />
+        <Isidata token={token} countseat={data?.countseat} dataSchedule={data?.dataSchedule} dataSeat={data?.dataSeat} />
       </div>
     )
   }else{

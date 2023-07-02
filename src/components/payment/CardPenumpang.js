@@ -4,19 +4,32 @@ import { useFormContext } from "react-hook-form"
 import Datepicker from "react-tailwindcss-datepicker"
 
 const CardPenumpang = ({ person, index }) => {
-  const [value, setValue] = useState({
+  const [birth, setBirth] = useState({
+    startDate: null,
+  })
+  const [exp, setExp] = useState({
     startDate: null,
   })
 
   const {
     register,
+    setValue,
     formState: { errors }
   } = useFormContext()
+
+
   console.log('index', index);
 
-  const handleValueChange = (newValue) => {
-    console.log("newValue:", newValue)
-    setValue(newValue)
+  const handleValueChangeBirthDate = (newValue) => {
+    // console.log("newValue:", newValue)
+    setBirth(newValue)
+    setValue(`passenger.${index}.birthdate`, newValue.startDate)
+  }
+
+  const handleValueChangeExpired = (newValue) => {
+    // console.log("newValue:", newValue)
+    setExp(newValue)
+    setValue(`passenger.${index}.expiredAt`, newValue.startDate)
   }
 
 
@@ -30,8 +43,7 @@ const CardPenumpang = ({ person, index }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    // Lakukan logika atau tindakan yang Anda inginkan dengan nilai input
-    console.log(inputValue)
+    // console.log(inputValue)
   }
 
   return (
@@ -42,6 +54,8 @@ const CardPenumpang = ({ person, index }) => {
           Data Diri Penumpang {index + 1} - {person}
         </h1>
         <form className="mx-5">
+
+          {/* Full Name */}
           <div className="my-6">
             <label className="block mb-2 font-semibold text-purple-500">
               Nama Lengkap
@@ -49,7 +63,7 @@ const CardPenumpang = ({ person, index }) => {
             <input
               className=" p-3 border border-gray-300 text-gray-900 text-sm rounded-sm w-full"
               required
-              {...register(`passanger.${index}.name`)}
+              {...register(`passenger.${index}.name`)}
             />
           </div>
           <div>
@@ -90,6 +104,8 @@ const CardPenumpang = ({ person, index }) => {
               </form>
             )}
           </div>
+
+          {/* phoneNumber */}
           <div className="mb-6 mt-5">
             <label className="block mb-2 font-semibold text-purple-500">
               Nomor Telepon
@@ -99,6 +115,8 @@ const CardPenumpang = ({ person, index }) => {
               required
             />
           </div>
+
+          {/* birthdate */}
           <div className="mb-6">
             <label className="block mb-2 font-semibold text-purple-500">
               Tanggal Lahir
@@ -126,12 +144,14 @@ const CardPenumpang = ({ person, index }) => {
                   inputClassName={"bg-white w-full p-3 border border-gray-300"}
                   useRange={false}
                   asSingle={true}
-                  value={value}
-                  onChange={handleValueChange}
+                  value={birth}
+                  onChange={handleValueChangeBirthDate}
                 />
               </div>
             </div>
           </div>
+
+          {/* nationality */}
           <div className="mb-6">
             <label className="block mb-2 font-semibold text-purple-500">
               Kewarganegaraan
@@ -139,18 +159,39 @@ const CardPenumpang = ({ person, index }) => {
             <input
               className=" p-3 border border-gray-300 text-gray-900 text-sm rounded-sm w-full "
               required
+              {...register(`passenger.[${index}].nationality`)}
             />
           </div>
+
+          {/* KTP */}
           <div className="mb-6">
             <label className="block mb-2 font-semibold text-purple-500">
-              KTP / Paspor
+              KTP
             </label>
             <input
               className=" p-3 border border-gray-300 text-gray-900 text-sm rounded-sm w-full "
               placeholder="name@flowbite.com"
               required
+              {...register(`passenger.[${index}].ktp`)}
+
             />
           </div>
+
+          {/* Pasport */}
+          <div className="mb-6">
+            <label className="block mb-2 font-semibold text-purple-500">
+              Pasport
+            </label>
+            <input
+              className=" p-3 border border-gray-300 text-gray-900 text-sm rounded-sm w-full "
+              placeholder="name@flowbite.com"
+              required
+              {...register(`passenger.[${index}].passport`)}
+
+            />
+          </div>
+
+          {/* IssuingCountry */}
           <div className="mb-6">
             <label className="block mb-2 font-semibold text-purple-500">
               Negara Penerbit
@@ -159,8 +200,11 @@ const CardPenumpang = ({ person, index }) => {
               className=" p-3 border border-gray-300 text-gray-900 text-sm rounded-sm w-full "
               placeholder="name@flowbite.com"
               required
+              {...register(`passenger.[${index}].issuingCountry`)}
             />
           </div>
+
+          {/* ExpiredAt */}
           <div className="mb-6">
             <label className="block mb-2 font-semibold text-purple-500">
               Berlaku Sampai
@@ -188,8 +232,8 @@ const CardPenumpang = ({ person, index }) => {
                   inputClassName={"bg-white w-full p-3 border border-gray-300"}
                   useRange={false}
                   asSingle={true}
-                  value={value}
-                  onChange={handleValueChange}
+                  value={exp}
+                  onChange={handleValueChangeExpired}
                 />
               </div>
             </div>
