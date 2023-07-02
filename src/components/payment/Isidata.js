@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useState } from "react"
 import { styles } from "@/styles/styles"
 import CardPemesan from "./CardPemesan"
 import CardPenumpang from "./CardPenumpang.js"
@@ -83,12 +83,12 @@ const Isidata = ({ countseat, dataSchedule, dataSeat, token }) => {
   } = useFieldArray({
     control,
     rules: { required: true },
-    name: 'passenger'
+    name: "passenger"
   })
 
   const onSubmit = (data) => {
     if (data) {
-      console.log('submit', data)
+      console.log("submit", data)
       toast.success("Data Berhasil di Simpan!", {
         position: "bottom-center",
         autoClose: 2000,

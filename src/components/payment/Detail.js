@@ -40,7 +40,7 @@ const Detail = ({ countseat, dataSchedule, dataSeat, datapassenger, token, isPay
         }
       })
     }).catch((err) => {
-      console.log(err);
+      console.log(err)
       toast.error("Tiket Gagal Di Pesan!", {
         position: "bottom-center",
         autoClose: 2000,
@@ -51,7 +51,7 @@ const Detail = ({ countseat, dataSchedule, dataSeat, datapassenger, token, isPay
         progress: undefined,
         theme: "colored",
       })
-    });
+    })
     console.log("data order", datapassenger)
 
 

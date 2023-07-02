@@ -34,11 +34,9 @@ const CardPenumpang = ({ person, index }) => {
 
 
   const [showForm, setShowForm] = useState(false)
-  const [inputValue, setInputValue] = useState("")
 
   const handleToggle = () => {
     setShowForm(!showForm)
-    setInputValue("")
   }
 
   const handleSubmit = (e) => {

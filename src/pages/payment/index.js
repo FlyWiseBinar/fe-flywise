@@ -1,3 +1,4 @@
+/* eslint-disable */
 import Isidata from "@/components/payment/Isidata"
 import React, { useEffect, useState } from "react"
 import Head from "next/head"
@@ -12,9 +13,9 @@ const index = ({ data }) => {
 
   const token = getCookie("accessToken")
   const [isLogin, setIsLogin] = useState(token)
-  console.log('cookie', token);
+  console.log("cookie", token)
   const router = useRouter()
-  
+
 
   useEffect(() => {
     axios.get(api.apiWhoAmI, {
@@ -23,13 +24,13 @@ const index = ({ data }) => {
       }
     })
       .then((result) => {
-        console.log('result', result);
+        console.log("result", result)
         setIsLogin({ status: true, data: result?.data?.data })
-      }).catch((err) => {
-        router.push('/login')
+      }).catch(() => {
+        router.push("/login")
       })
 
-      
+
   }, [])
 
 
@@ -46,14 +47,14 @@ const index = ({ data }) => {
         <Isidata token={token} countseat={data?.countseat} dataSchedule={data?.dataSchedule} dataSeat={data?.dataSeat} />
       </div>
     )
-  }else{
-    return(
+  } else {
+    return (
       <div className="h-screen w-full items-center justify-center flex flex-col gap-4">
         <img src="/assets/schedule-not-found.png" height={200} width={200} alt="not login" />
         <p className="text-2xl font-semibold">
           Silahkan Login Terlebih Dahulu!
         </p>
-        <Link href={'/login'} className='p-5 bg-main-purple rounded-xl hover:scale-110 duration-300 text-white'>
+        <Link href={"/login"} className='p-5 bg-main-purple rounded-xl hover:scale-110 duration-300 text-white'>
           Menu Login
         </Link>
       </div>

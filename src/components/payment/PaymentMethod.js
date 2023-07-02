@@ -5,7 +5,6 @@ import {
   AccordionHeader,
   AccordionBody,
 } from "@material-tailwind/react"
-import Link from "next/link"
 import axios from "axios"
 import api from "@/configs/api"
 import { toast } from "react-toastify"
@@ -41,11 +40,11 @@ const PaymentMethod = ({ code, token }) => {
   }
 
   const handleType = (e) => {
-    console.log(e);
-    setErrorMsg('')
-    if (e === 'ewallet') {
+    console.log(e)
+    setErrorMsg("")
+    if (e === "ewallet") {
       setType(1)
-    } else if (e === 'va') {
+    } else if (e === "va") {
       setType(2)
     } else {
       setType(3)
@@ -59,7 +58,7 @@ const PaymentMethod = ({ code, token }) => {
     if (e.target && e.target.value) {
       let formattedNumber = e.target.value.replace(/\s/g, "") // Menghapus spasi dari input
       formattedNumber = formattedNumber.replace(/(\d{4})/g, "$1 ") // Menambahkan spasi setiap 4 angka
-      handleType('cc')
+      handleType("cc")
       setCardNumber(formattedNumber)
     }
   }
@@ -111,9 +110,9 @@ const PaymentMethod = ({ code, token }) => {
           theme: "colored",
         })
 
-        router.push('/payment/success')
+        router.push("/payment/success")
       }).catch((err) => {
-        console.log(err);
+        console.log(err)
         toast.error("Tiket Gagal Di Bayar!", {
           position: "bottom-center",
           autoClose: 2000,
@@ -124,7 +123,7 @@ const PaymentMethod = ({ code, token }) => {
           progress: undefined,
           theme: "colored",
         })
-      });
+      })
     } else {
       setErrorMsg("Mohon Isi Metode Pembayaran!")
     }
@@ -167,7 +166,7 @@ const PaymentMethod = ({ code, token }) => {
                   value=""
                   name="bordered-radio"
                   className="w-6 h-6 mr-3 text-blue-600 bg-gray-100 border-gray-300 "
-                  onChange={(e) => handleType('ewallet')}
+                  onChange={() => handleType("ewallet")}
                 />
               </div>
             </AccordionBody>
@@ -205,7 +204,7 @@ const PaymentMethod = ({ code, token }) => {
                   value=""
                   name="bordered-radio"
                   className="w-6 h-6 mr-3 text-blue-600 bg-gray-100 border-gray-300 "
-                  onChange={(e) => handleType('va')}
+                  onChange={() => handleType("va")}
                 />
               </div>
 
@@ -227,7 +226,7 @@ const PaymentMethod = ({ code, token }) => {
                   value=""
                   name="bordered-radio"
                   className="w-6 h-6 mr-3 text-blue-600 bg-gray-100 border-gray-300 "
-                  onChange={(e) => handleType('va')}
+                  onChange={() => handleType("va")}
                 />
               </div>
 
@@ -249,7 +248,7 @@ const PaymentMethod = ({ code, token }) => {
                   value=""
                   name="bordered-radio"
                   className="w-6 h-6 mr-3 text-blue-600 bg-gray-100 border-gray-300 "
-                  onChange={(e) => handleType('va')}
+                  onChange={() => handleType("va")}
                 />
               </div>
             </AccordionBody>
