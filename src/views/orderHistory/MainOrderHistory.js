@@ -122,7 +122,7 @@ const MainOrderHistory = () => {
 
 	const handleClickRefresh = () => {
 		setSearchQuery("")
-		setValueDatePicker(false)
+		setValueDatePicker("")
 	}
 
 	return (
