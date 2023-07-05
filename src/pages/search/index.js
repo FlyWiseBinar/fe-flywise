@@ -6,6 +6,7 @@ import axios from "axios"
 import api from "@/configs/api"
 import Button from "@/components/secondHome/Button"
 import ImportDateRow from "@/components/secondHome/ImportDateRow"
+import Navbar from "@/components/Navbar"
 
 const Index = ({ schedule }) => {
   const router = useRouter()
@@ -20,7 +21,7 @@ const Index = ({ schedule }) => {
     from,
     returnDate,
     to,
-    CountTotal
+    CountTotal,
   } = router.query
 
   const dataSearch = {
@@ -31,11 +32,11 @@ const Index = ({ schedule }) => {
     from,
     to,
     returnDate,
-    CountTotal
+    CountTotal,
   }
 
   const filterDate = (data) => {
-    const filterResult = data?.filter(item => item?.departureDate == isFilter)
+    const filterResult = data?.filter((item) => item?.departureDate == isFilter)
     return filterResult
   }
 
@@ -49,31 +50,41 @@ const Index = ({ schedule }) => {
         <title>Search | Flywise</title>
         <link rel="icon" href="../logo.svg" />
       </Head>
+      <Navbar />
       <Button />
       <div className=" relative lg:static md:relative overflow-x-scroll lg:overflow-hidden md:overflow-x-scroll ">
-        <ImportDateRow startDate={departureDate} endDate={returnDate} setIsFilter={setIsFilter} />
+        <ImportDateRow
+          startDate={departureDate}
+          endDate={returnDate}
+          setIsFilter={setIsFilter}
+        />
       </div>
-      <SecondHome data={filterDate(data)} search={dataSearch} chooseDate={isFilter} />
+      <SecondHome
+        data={filterDate(data)}
+        search={dataSearch}
+        chooseDate={isFilter}
+      />
     </div>
   )
 }
 
-
 export const getServerSideProps = async (context) => {
-  const {
-    departureDate,
-    from,
-    returnDate,
-    to } = context.query
+  const { departureDate, from, returnDate, to } = context.query
 
-  const response = await axios.get(`${api.apiSearchTicket}?departureDate=${departureDate}${returnDate ? `&arrivedDate=${returnDate}` : ""}${from ? `&originAirport=${from}` : ""}${to ? `&destinationAirport=${to}` : ""}`)
+  const response = await axios.get(
+    `${api.apiSearchTicket}?departureDate=${departureDate}${
+      returnDate ? `&arrivedDate=${returnDate}` : ""
+    }${from ? `&originAirport=${from}` : ""}${
+      to ? `&destinationAirport=${to}` : ""
+    }`
+  )
 
   const data = response.data.data
 
   return {
     props: {
-      schedule: data
-    }
+      schedule: data,
+    },
   }
 }
 

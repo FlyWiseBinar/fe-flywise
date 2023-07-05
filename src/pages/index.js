@@ -4,6 +4,7 @@ import Head from "next/head"
 
 import api from "@/configs/api"
 import axios from "axios"
+import Navbar from "@/components/Navbar"
 
 const index = ({ favorite }) => {
   // console.log('data favorit', favorite);
@@ -14,6 +15,7 @@ const index = ({ favorite }) => {
         <title>Homepage | FlyWise</title>
         <link rel="icon" href="../logo.svg" />
       </Head>
+      <Navbar />
       <MainHome favorite={favorite} />
     </div>
   )

@@ -14,9 +14,8 @@ const CardPenumpang = ({ person, index }) => {
   const {
     register,
     setValue,
-    formState: { errors }
+    formState: { errors },
   } = useFormContext()
-
 
   // console.log('index', index);
 
@@ -31,7 +30,6 @@ const CardPenumpang = ({ person, index }) => {
     setExp(newValue)
     setValue(`passenger[${index}].expiredAt`, newValue.startDate)
   }
-
 
   const [showForm, setShowForm] = useState(false)
 
@@ -53,7 +51,6 @@ const CardPenumpang = ({ person, index }) => {
           Data Diri Penumpang {index + 1} - {person}
         </h1>
         <form className="mx-5">
-
           {/* Full Name */}
           <div className="my-6">
             <label className="block mb-2 font-semibold text-purple-500">
@@ -63,8 +60,11 @@ const CardPenumpang = ({ person, index }) => {
               className=" p-3 border border-gray-300 text-gray-900 text-sm rounded-sm w-full"
               required
               {...register(`passenger[${index}].name`, { required: true })}
+              placeholder="Nama Lengkap"
             />
-            {errors?.passenger?.[index].name && <p className="text-sm text-red-500"> Data Nama Harus di Isi! </p>}
+            {errors?.passenger?.[index].name && (
+              <p className="text-sm text-red-500"> Data Nama Harus di Isi! </p>
+            )}
           </div>
           <div>
             <label
@@ -84,8 +84,9 @@ const CardPenumpang = ({ person, index }) => {
                 />
                 <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
                 <div
-                  className={`dot absolute transition transform ${showForm ? "translate-x-6" : ""
-                    }`}
+                  className={`dot absolute transition transform ${
+                    showForm ? "translate-x-6" : ""
+                  }`}
                 ></div>
               </div>
             </label>
@@ -99,6 +100,7 @@ const CardPenumpang = ({ person, index }) => {
                   <input
                     className=" p-3 border border-gray-300 text-gray-900 text-sm rounded-sm w-full"
                     required
+                    placeholder="Nama Keluarga"
                   />
                 </div>
               </form>
@@ -113,6 +115,7 @@ const CardPenumpang = ({ person, index }) => {
             <input
               className=" p-3 border border-gray-300 text-gray-900 text-sm rounded-sm w-full"
               required
+              placeholder="Nomor Telepon"
             />
           </div>
 
@@ -159,7 +162,10 @@ const CardPenumpang = ({ person, index }) => {
             <input
               className=" p-3 border border-gray-300 text-gray-900 text-sm rounded-sm w-full "
               required
-              {...register(`passenger[${index}].nationality`, { required: true })}
+              {...register(`passenger[${index}].nationality`, {
+                required: true,
+              })}
+              placeholder="Kewarganegaraan"
             />
           </div>
 
@@ -170,10 +176,9 @@ const CardPenumpang = ({ person, index }) => {
             </label>
             <input
               className=" p-3 border border-gray-300 text-gray-900 text-sm rounded-sm w-full "
-              placeholder="name@flowbite.com"
+              placeholder="KTP"
               required
               {...register(`passenger[${index}].ktp`, { required: true })}
-
             />
           </div>
 
@@ -184,10 +189,9 @@ const CardPenumpang = ({ person, index }) => {
             </label>
             <input
               className=" p-3 border border-gray-300 text-gray-900 text-sm rounded-sm w-full "
-              placeholder="name@flowbite.com"
+              placeholder="Pasport"
               required
               {...register(`passenger[${index}].passport`, { required: true })}
-
             />
           </div>
 
@@ -198,9 +202,11 @@ const CardPenumpang = ({ person, index }) => {
             </label>
             <input
               className=" p-3 border border-gray-300 text-gray-900 text-sm rounded-sm w-full "
-              placeholder="name@flowbite.com"
+              placeholder="Negara Penerbit"
               required
-              {...register(`passenger[${index}].issuingCountry`, { required: true })}
+              {...register(`passenger[${index}].issuingCountry`, {
+                required: true,
+              })}
             />
           </div>
 

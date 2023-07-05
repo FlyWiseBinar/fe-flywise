@@ -1,7 +1,23 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
 import { styles } from "@/styles/styles"
 
 const PaymentCountdown = () => {
+  const [countdown, setCountdown] = useState(900)
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCountdown((prevCountdown) => prevCountdown - 1)
+    }, 1000)
+
+    // Membersihkan interval saat komponen di-unmount
+    return () => clearInterval(interval)
+  }, [])
+
+  const formatTime = (time) => {
+    const minutes = Math.floor(time / 60)
+    const seconds = time % 60
+    return `${minutes} : ${seconds}`
+  }
   return (
     <div className={`${styles.mainCol} py-5 shadow-md px-5`}>
       <div
@@ -42,7 +58,9 @@ const PaymentCountdown = () => {
       <div
         className={`${styles.deadline} flex justify-center items-center w-full p-5 mx-10 rounded-lg bg-red-500 text-white`}
       >
-        <p className="font-sans font-bold text-xl flex gap-1">Selesaikan Dalam 15 Menit</p>
+        <p className="font-sans font-bold text-xl flex gap-1">
+          Selesaikan Dalam {formatTime(countdown)}
+        </p>
       </div>
     </div>
   )

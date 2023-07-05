@@ -7,35 +7,31 @@ import axios from "axios"
 import api from "@/configs/api"
 import { useRouter } from "next/router"
 import Link from "next/link"
+import Navbar from "@/components/Navbar"
 
 const index = ({ data }) => {
-
-
   const token = getCookie("accessToken")
   const [isLogin, setIsLogin] = useState(token)
   console.log("cookie", token)
   const router = useRouter()
 
-
   useEffect(() => {
-    axios.get(api.apiWhoAmI, {
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
-    })
+    axios
+      .get(api.apiWhoAmI, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then((result) => {
         console.log("result", result)
         setIsLogin({ status: true, data: result?.data?.data })
-      }).catch(() => {
+      })
+      .catch(() => {
         router.push("/login")
       })
-
-
   }, [])
 
-
   // console.log('islogin', isLogin);
-
 
   if (isLogin?.status) {
     return (
@@ -44,17 +40,32 @@ const index = ({ data }) => {
           <title>Payment | FlyWise</title>
           <link rel="icon" href="../logo.svg" />
         </Head>
-        <Isidata token={token} countseat={data?.countseat} dataSchedule={data?.dataSchedule} dataSeat={data?.dataSeat} />
+        <Navbar />
+        <Isidata
+          token={token}
+          countseat={data?.countseat}
+          dataSchedule={data?.dataSchedule}
+          dataSeat={data?.dataSeat}
+        />
       </div>
     )
   } else {
     return (
       <div className="h-screen w-full items-center justify-center flex flex-col gap-4">
-        <img src="/assets/schedule-not-found.png" height={200} width={200} alt="not login" />
+        <Navbar />
+        <img
+          src="/assets/schedule-not-found.png"
+          height={200}
+          width={200}
+          alt="not login"
+        />
         <p className="text-2xl font-semibold">
           Silahkan Login Terlebih Dahulu!
         </p>
-        <Link href={"/login"} className='p-5 bg-main-purple rounded-xl hover:scale-110 duration-300 text-white'>
+        <Link
+          href={"/login"}
+          className="p-5 bg-main-purple rounded-xl hover:scale-110 duration-300 text-white"
+        >
           Menu Login
         </Link>
       </div>
@@ -75,10 +86,10 @@ export const getServerSideProps = async (context) => {
         dataSeat: {
           adult: parseInt(adult),
           baby: parseInt(baby),
-          child: parseInt(child)
-        }
-      }
-    }
+          child: parseInt(child),
+        },
+      },
+    },
   }
 }
 
