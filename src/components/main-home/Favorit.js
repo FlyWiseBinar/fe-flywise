@@ -8,13 +8,13 @@ import axios from "axios"
 
 const Favorit = ({ favorite }) => {
   const [filter, setFilter] = useState(favorite)
-  const [value, setValue] = useState("")
+ 
 
   const handleClick = async (event) => {
     const value = event.currentTarget.value
-    setValue(value)
+    
     try {
-      console.log(value)
+      
       const response = await axios.get(
         `${api.apiScheduleFavorite}?continent=${value}`
       )

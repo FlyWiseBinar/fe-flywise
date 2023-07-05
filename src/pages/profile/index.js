@@ -150,7 +150,7 @@ const Profile = () => {
         <div className="flex justify-center">
           <ul className="flex flex-col ml-5">
             <li className="flex items-center gap-3 cursor-pointer hover:scale-105">
-              <Link href="profile/profile" className="flex items-center gap-2">
+              <Link href="/profile" className="flex items-center gap-2">
                 <div className="text-main-purple text-lg">
                   <HiOutlinePencil />
                 </div>
