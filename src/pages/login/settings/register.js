@@ -1,5 +1,5 @@
 import Image from "next/image"
-import React from "react"
+import React, {useEffect} from "react"
 import axios from "axios"
 import { useState } from "react"
 import { useRouter } from "next/router"
@@ -7,9 +7,20 @@ import { PropagateLoader } from "react-spinners"
 import Link from "next/link"
 import Head from "next/head"
 import api from "@/configs/api"
+import getToken from "@/utils/getToken"
 
 const Register = () => {
   const router = useRouter()
+  const token = getToken()
+	const [isLogin, setIsLogin] = useState(false)
+
+  useEffect(()=>{
+	if(token) {
+		router.push('/')
+	} else {
+		setIsLogin(true)
+	}
+	},[token])
   const [errors, setErrors] = useState([])
   const [loading, setLoading] = useState(false)
 
@@ -48,7 +59,10 @@ const Register = () => {
   }
 
   return (
-    <div className="flex flex-col md:flex-row h-screen">
+    <>
+	 {
+		isLogin && 
+		<div className="flex flex-col md:flex-row h-screen">
       <Head>
         <title>Register | FlyWise</title>
         <link rel="icon" href="../logo.svg" />
@@ -217,6 +231,8 @@ const Register = () => {
         </div>
       </div>
     </div>
+	 }
+	 </>
   )
 }
 

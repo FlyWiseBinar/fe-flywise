@@ -7,8 +7,6 @@ import axios from "axios"
 import Navbar from "@/components/Navbar"
 
 const index = ({ favorite }) => {
-  // console.log('data favorit', favorite);
-
   return (
     <div>
       <Head>
