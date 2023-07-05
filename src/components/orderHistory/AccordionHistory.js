@@ -1,29 +1,31 @@
 import React from "react"
-import { useState } from "react"
-import { styles } from "@/styles/styles"
+import {useState} from "react"
+import {styles} from "@/styles/styles"
 import {
 	LuSend,
 	LuChevronDown,
 	LuChevronUp,
 	LuChevronRight,
 } from "react-icons/lu"
-import { MdLocationOn } from "react-icons/md"
+import {MdLocationOn} from "react-icons/md"
 import axios from "axios"
-import { baseUrl } from "@/configs/baseUrl.js"
-import { ToastContainer, toast } from "react-toastify"
+import {baseUrl} from "@/configs/baseUrl.js"
+import {ToastContainer, toast} from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
-import { PropagateLoader } from "react-spinners"
+import {PropagateLoader} from "react-spinners"
 import getToken from "@/utils/getToken"
 import Router from "next/router"
+import Swal from "sweetalert2"
+import api from "@/configs/api"
 
 
-export default function AccordionHistory({ item }) {
+export default function AccordionHistory({item}) {
 	const token = getToken()
 	const [isOpen, setIsOpen] = useState(false)
 	const [isLoadingClickButtonBatal, setIsLoadingClickButtonBatal] = useState(false)
 
 	function formatDate(dateString) {
-		const options = { year: "numeric", month: "long", day: "numeric" }
+		const options = {year: "numeric", month: "long", day: "numeric"}
 		const date = new Date(dateString)
 		return date.toLocaleDateString("id-ID", options)
 	}
@@ -54,48 +56,94 @@ export default function AccordionHistory({ item }) {
 	}
 
 	const handleClickButtonBatal = async () => {
-		setIsLoadingClickButtonBatal(true)
 		const paymentCode = item.order.payment[0].paymentCode
-		try {
-			const response = await axios.put(`${baseUrl}/v1/api/order/cancel-payment`, {
-				paymentCode: paymentCode
-			}, {
-				headers: {
-					Authorization: `Bearer ${token}`
+		setIsLoadingClickButtonBatal(true)
+		Swal.fire({
+			title: "Ingin membatalkan pesanan tiket?",
+			showCancelButton: true,
+			confirmButtonText: "Ya",
+			cancelButtonText: "Tidak",
+			confirmButtonColor: "#",
+			cancelButtonColor: "#"
+		}).then(async (result) => {
+			if (result.isConfirmed) {
+				try {
+					const response = await axios.put(`${baseUrl}/v1/api/order/cancel-payment`, {
+						paymentCode: paymentCode
+					}, {
+						headers: {
+							Authorization: `Bearer ${token}`
+						}
+					})
+					if (response.status == 201) {
+						toast.success("order has been cancelled successfuly", {
+							position: "bottom-center",
+							autoClose: 2000,
+							hideProgressBar: true,
+							closeOnClick: true,
+							pauseOnHover: true,
+							draggable: true,
+							progress: undefined,
+							theme: "colored",
+						})
+						setIsLoadingClickButtonBatal(false)
+						setTimeout(() => {
+							Router.reload(window.location.pathname)
+						}, 1000)
+					}
+				} catch (error) {
+					console.log(error)
+					setIsLoadingClickButtonBatal(false)
+					if (error.response.status == 400) {
+						toast.error(error.response.data.message, {
+							position: "bottom-center",
+							autoClose: 2000,
+							hideProgressBar: true,
+							closeOnClick: true,
+							pauseOnHover: true,
+							draggable: true,
+							progress: undefined,
+							theme: "colored",
+						})
+					}
 				}
-			})
-			if (response.status == 201) {
-				toast.success("order has been cancelled successfuly", {
-					position: "bottom-center",
-					autoClose: 2000,
-					hideProgressBar: true,
-					closeOnClick: true,
-					pauseOnHover: true,
-					draggable: true,
-					progress: undefined,
-					theme: "colored",
-				})
+			} else {
 				setIsLoadingClickButtonBatal(false)
-				setTimeout(() => {
-					Router.reload(window.location.pathname)
-				}, 1000)
 			}
-		} catch (error) {
-			console.log(error)
-			setIsLoadingClickButtonBatal(false)
-			if (error.response.status == 400) {
-				toast.error(error.response.data.message, {
-					position: "bottom-center",
-					autoClose: 2000,
-					hideProgressBar: true,
-					closeOnClick: true,
-					pauseOnHover: true,
-					draggable: true,
-					progress: undefined,
-					theme: "colored",
-				})
+		})
+
+	}
+
+	const handleClickLanjutBayar = async (orderId) => {
+		Swal.fire({
+			title: "Lanjut pembayaran pesanan?",
+			showCancelButton: true,
+			confirmButtonText: "Ya",
+			cancelButtonText: "Tidak",
+			confirmButtonColor: "#",
+			cancelButtonColor: "#"
+		}).then(async (result) => {
+			if (result.isConfirmed) {
+				try {
+					const response = await axios.post(api.apiPaymentInvoice, {
+						orderId: orderId
+					}, {
+						headers: {
+							Authorization: `Bearer ${token}`
+						}
+					})
+					if (response.status == 201) {
+						Swal.fire(response.data.message, "", "success")
+					}
+				} catch (error) {
+					Swal.fire({
+						icon: "error",
+						title: "Oops...",
+						text: "Internal Server Error",
+					})
+				}
 			}
-		}
+		})
 	}
 	return (
 		<>
@@ -302,9 +350,10 @@ export default function AccordionHistory({ item }) {
 									</button>
 								}
 								{
+									
 									item?.order.payment[0].status == "Unpaid" &&
 									<>
-										<button className=" md:px-16 px-7 py-3 rounded-2xl bg-main-green hover:bg-lime-600 text-white">
+										<button onClick={()=>handleClickLanjutBayar(item.order.id)} className=" md:px-16 px-7 py-3 rounded-2xl bg-main-green hover:bg-lime-600 text-white">
 											Lanjut Bayar
 										</button>
 										{
