@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { styles } from "@/styles/styles"
 import { BiSearchAlt2 } from "react-icons/bi"
 import CardFavorite from "./CardFavorite"
