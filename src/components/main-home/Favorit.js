@@ -24,19 +24,6 @@ const Favorit = ({ favorite }) => {
     }
   }
 
-  const handleFilterFavorite = async () => {
-    try {
-      console.log(value)
-      const response = await axios.get(
-        `${api.apiScheduleFavorite}?continent=${value}`
-      )
-      const result = await response.data.data
-      setFilter(result)
-    } catch (error) {
-      console.error(error)
-    }
-  }
-
   return (
     <div className={`${styles.mainCol} pb-20 `}>
       <div
@@ -63,7 +50,6 @@ const Favorit = ({ favorite }) => {
                   className="flex items-center justify-start bg-main-orange p-4 rounded-xl text-white hover:scale-110 duration-300"
                   value="asia"
                   onClick={handleClick}
-                  onChange={handleFilterFavorite}
                 >
                   <BiSearchAlt2 />
                   <p> Asia </p>
@@ -74,7 +60,6 @@ const Favorit = ({ favorite }) => {
                   className="flex items-center justify-start bg-main-orange p-4 rounded-xl text-white hover:scale-110 duration-300"
                   value="america"
                   onClick={handleClick}
-                  onChange={handleFilterFavorite}
                 >
                   <BiSearchAlt2 />
                   <p> Amerika </p>
@@ -85,7 +70,6 @@ const Favorit = ({ favorite }) => {
                   className="flex items-center justify-start bg-main-orange p-4 rounded-xl text-white hover:scale-110 duration-300"
                   value="oceania"
                   onClick={handleClick}
-                  onChange={handleFilterFavorite}
                 >
                   <BiSearchAlt2 />
                   <p> Oceania </p>
@@ -96,7 +80,6 @@ const Favorit = ({ favorite }) => {
                   className="flex items-center justify-start bg-main-orange p-4 rounded-xl text-white hover:scale-110 duration-300"
                   value="europe"
                   onClick={handleClick}
-                  onChange={handleFilterFavorite}
                 >
                   <BiSearchAlt2 />
                   <p> Eropa </p>
@@ -107,7 +90,6 @@ const Favorit = ({ favorite }) => {
                   className="flex items-center justify-start bg-main-orange p-4 rounded-xl text-white hover:scale-110 duration-300"
                   value="africa"
                   onClick={handleClick}
-                  onChange={handleFilterFavorite}
                 >
                   <BiSearchAlt2 />
                   <p> Afrika </p>
