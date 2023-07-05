@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { styles } from "@/styles/styles"
 import Datepicker from "react-tailwindcss-datepicker"
 import { LuPlaneTakeoff, LuPlaneLanding, LuX } from "react-icons/lu"
@@ -9,6 +9,8 @@ import { IoMdMan, IoMdWoman } from "react-icons/io"
 import { BiChild, BiSearch } from "react-icons/bi"
 import { useRouter } from "next/router"
 import { toast } from "react-toastify"
+import api from "@/configs/api"
+import axios from "axios"
 
 const CardOrder = () => {
   const [departureDate, setDepartureDate] = useState(null)
@@ -28,7 +30,64 @@ const CardOrder = () => {
   const [CountChild, setCountChild] = useState(0)
   const [CountBaby, setCountBaby] = useState(0)
 
+  const [options, setOptions] = useState([])
+
+
   const router = useRouter()
+
+  useEffect(() => {
+    if (from) {
+      fetchOptionsFrom()
+    } else {
+      setOptions([])
+    }
+  }, [from])
+
+  useEffect(() => {
+    if (to) {
+      fetchOptionsTo()
+    } else {
+      setOptions([])
+    }
+  }, [to])
+
+  const fetchOptionsFrom = async () => {
+    try {
+      const response = await axios.get(`${api.apiAirport}?search=${from}`)
+      const result = await response.data.data
+      setOptions(result)
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  const fetchOptionsTo = async () => {
+    try {
+      const response = await axios.get(`${api.apiAirport}?search=${to}`)
+      const result = await response.data.data
+      setOptions(result)
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  const handleChangeFrom = (event) => {
+    const { value } = event.target
+    setFrom(value)
+  }
+
+  const handleOptionClickFrom = (options) => {
+    setFrom(options.city)
+  }
+
+  const handleChangeTo = (event) => {
+    const { value } = event.target
+    setTo(value)
+  }
+
+  const handleOptionClickTo = (options) => {
+    setTo(options.city)
+  }
 
   const decreaseCount = (where) => {
     if (where === "baby") {
@@ -158,6 +217,7 @@ const CardOrder = () => {
                       className=" hover:bg-slate-50 focus:outline-none w-full bg-transparent hover:bg-transparent"
                       onClick={openModalFrom}
                       value={from}
+                      onChange={handleChangeFrom}
                       placeholder="Jakarta (JKT)"
                     />
                     <hr className="w-full" />
@@ -193,9 +253,11 @@ const CardOrder = () => {
                             </div>
                           </div>
                           <hr className="bg-black" />
-                          <div className="flex px-4 py-2">
-                            <p>Jakarta</p>
-                          </div>
+                          {options.map((option, index) => (
+                            <div className="px-4 py-2 overflow-y-auto">
+                              <button onClickCapture={() => handleOptionClickFrom(option)} onClick={closeModal} key={index}>{option.city}</button>
+                            </div>
+                          ))}
                         </div>
                       </div>
                     )}
@@ -287,6 +349,7 @@ const CardOrder = () => {
                       className=" hover:bg-slate-50 focus:outline-none w-full bg-transparent hover:bg-transparent"
                       onClick={openModalTo}
                       value={to}
+                      onChange={handleChangeTo}
                       placeholder="Melbourne (MLB)"
                     />
                     <hr className="w-full" />
@@ -322,9 +385,11 @@ const CardOrder = () => {
                             </div>
                           </div>
                           <hr className="bg-black" />
-                          <div className="flex justify px-4 py-2">
-                            <p>Melbourne</p>
-                          </div>
+                          {options.map((option, index) => (
+                            <div className="px-4 py-2 overflow-y-auto">
+                              <button onClickCapture={() => handleOptionClickTo(option)} onClick={closeModal} key={index}>{option.city}</button>
+                            </div>
+                          ))}
                         </div>
                       </div>
                     )}
