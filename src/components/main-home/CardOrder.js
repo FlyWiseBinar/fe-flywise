@@ -3,7 +3,7 @@ import { styles } from "@/styles/styles"
 import Datepicker from "react-tailwindcss-datepicker"
 import { LuPlaneTakeoff, LuPlaneLanding, LuX } from "react-icons/lu"
 import { MdDateRange, MdOutlineAirlineSeatReclineNormal } from "react-icons/md"
-import { AiOutlineMinus, AiOutlinePlus} from "react-icons/ai"
+import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai"
 import { BsRepeat } from "react-icons/bs"
 import { IoMdMan, IoMdWoman } from "react-icons/io"
 import { BiChild, BiSearch } from "react-icons/bi"
@@ -301,7 +301,7 @@ const CardOrder = () => {
                                   className="text-2xl hover:text-gray-400"
                                   onClick={closeModal}
                                 >
-                                  <LuX/>
+                                  <LuX />
                                 </div>
                               </div>
                               <div className="relative flex items-center gap-2">
@@ -311,7 +311,7 @@ const CardOrder = () => {
                                   onChange={(e) => onChangeto(e)}
                                   className="py-1 pl-2 pr-3 border-2 w-full rounded-lg border-gray-300"
                                 />
-                                
+
                                 <div
                                   className="text-2xl text-white hover:text-white bg-blue-500 p-1.5 rounded-lg"
                                   onClick={closeModal}
