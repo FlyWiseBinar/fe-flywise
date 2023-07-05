@@ -16,7 +16,7 @@ const PaymentCountdown = () => {
   const formatTime = (time) => {
     const minutes = Math.floor(time / 60)
     const seconds = time % 60
-    return `${minutes} : ${seconds}`
+    return `${minutes} Menit ${seconds} Detik`
   }
   return (
     <div className={`${styles.mainCol} py-5 shadow-md px-5`}>

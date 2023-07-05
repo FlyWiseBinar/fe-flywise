@@ -15,8 +15,8 @@ const Register = () => {
 	const [isLogin, setIsLogin] = useState(false)
 
   useEffect(()=>{
-	if(token) {
-		router.push('/')
+	if (token) {
+		router.push("/")
 	} else {
 		setIsLogin(true)
 	}
