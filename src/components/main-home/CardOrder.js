@@ -397,14 +397,15 @@ const CardOrder = () => {
                           <div>
                             {options.map((option, index) => (
                               <div className="px-4 py-2" key={index}>
-                                <button
+                                <div
                                   onClickCapture={() =>
                                     handleOptionClickTo(option)
                                   }
                                   onClick={closeModal}
+                                  className="flex"
                                 >
-                                  {option.city}
-                                </button>
+                                  <div>{option.city}</div>
+                                </div>
                               </div>
                             ))}
                           </div>
