@@ -12,7 +12,6 @@ import Navbar from "@/components/Navbar"
 const index = ({ data }) => {
   const token = getCookie("accessToken")
   const [isLogin, setIsLogin] = useState(token)
-  console.log("cookie", token)
   const router = useRouter()
 
   useEffect(() => {
@@ -23,7 +22,6 @@ const index = ({ data }) => {
         },
       })
       .then((result) => {
-        console.log("result", result)
         setIsLogin({ status: true, data: result?.data?.data })
       })
       .catch(() => {

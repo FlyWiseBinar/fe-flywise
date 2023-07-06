@@ -43,13 +43,13 @@ const Button = ({ onSearch, onSubmit }) => {
   return (
     <>
       <div className="flex flex-row justify-center items-center md:w-full w-full md:gap-3 gap-2">
-          <Link
-            href="/"
-            className="flex gap-5 md:justify-end items-center bg-third-purple p-3 rounded-xl text-white hover:bg-main-purple lg:pr-100 md:pr-96 pr-24 duration-75"
-          >
-            {" "}
-            <LuArrowLeft /> Beranda
-          </Link>
+        <Link
+          href="/"
+          className="flex gap-5 md:justify-end items-center bg-third-purple p-3 rounded-xl text-white hover:bg-main-purple lg:pr-100 md:pr-96 pr-24 duration-75"
+        >
+          {" "}
+          <LuArrowLeft /> Beranda
+        </Link>
         <div>
           <button
             className="flex gap-2 md:justify-end items-center border border-main-purple py-1 rounded-full duration-75 md:px-5 px-3"

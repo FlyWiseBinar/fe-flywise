@@ -23,15 +23,18 @@ const FilterDate = ({ setLoading, search, paginateFunc }) => {
     setIsOpenClass(false)
     // setLoading(true)
 
-    const { departureDate, from, returnDate, to } = search
+
+    const { departureDate, from, returnDate, to, seatClassId } = search
 
     axios
       .get(
-        `${api.apiSearchTicket}?departureDate=${departureDate}${
-          returnDate && `&arrivedDate=${returnDate}`
-        }${from && `&originAirport=${from}`}${
-          to && `&destinationAirport=${to}`
-        }${option && `&order=${option?.value}`}`
+        `${api.apiSearchTicket}?${returnDate && `arrivedDate=${returnDate}`}${
+          from && `&originAirport=${from}`
+        }${to && `&destinationAirport=${to}`}${
+          option && `&order=${option?.value}`
+        }${seatClassId ? `&seatClassId=${seatClassId}` : ""}${
+          departureDate ? `&departureDate=${departureDate}` : ""
+        }`
       )
       .then((result) => {
         setLoading(false)

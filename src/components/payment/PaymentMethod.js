@@ -10,13 +10,13 @@ import api from "@/configs/api"
 import { toast } from "react-toastify"
 import { useRouter } from "next/router"
 
-
 function Icon({ id, open }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      className={`${id === open ? "rotate-180" : ""
-        } h-5 w-5 transition-transform mr-3 `}
+      className={`${
+        id === open ? "rotate-180" : ""
+      } h-5 w-5 transition-transform mr-3 `}
       fill="none"
       viewBox="0 0 24 24"
       stroke="white"
@@ -40,7 +40,6 @@ const PaymentMethod = ({ code, token }) => {
   }
 
   const handleType = (e) => {
-    console.log(e)
     setErrorMsg("")
     if (e === "ewallet") {
       setType(1)
@@ -52,7 +51,6 @@ const PaymentMethod = ({ code, token }) => {
   }
 
   // console.log(type);
-
 
   const handleCardNumberChange = (e) => {
     if (e.target && e.target.value) {
@@ -91,39 +89,42 @@ const PaymentMethod = ({ code, token }) => {
     if (type) {
       const data = {
         paymentCode: code,
-        paymentTypeId: type
+        paymentTypeId: type,
       }
 
-      axios.post(api.apiPaymentCreate, data, {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      }).then((result) => {
-        toast.success(result.data.message, {
-          position: "bottom-center",
-          autoClose: 2000,
-          hideProgressBar: true,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
+      axios
+        .post(api.apiPaymentCreate, data, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         })
+        .then((result) => {
+          toast.success(result.data.message, {
+            position: "bottom-center",
+            autoClose: 2000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          })
 
-        router.push("/payment/success")
-      }).catch((err) => {
-        console.log(err)
-        toast.error("Tiket Gagal Di Bayar!", {
-          position: "bottom-center",
-          autoClose: 2000,
-          hideProgressBar: true,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
+          router.push("/payment/success")
         })
-      })
+        .catch((err) => {
+          console.log(err)
+          toast.error("Tiket Gagal Di Bayar!", {
+            position: "bottom-center",
+            autoClose: 2000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          })
+        })
     } else {
       setErrorMsg("Mohon Isi Metode Pembayaran!")
     }
@@ -139,10 +140,11 @@ const PaymentMethod = ({ code, token }) => {
           <Accordion open={open === 1} icon={<Icon id={1} open={open} />}>
             <AccordionHeader
               onClick={() => handleOpen(1)}
-              className={`transition-colors ${open === 1
-                ? "bg-purple-900 hover:!bg-purple-800 rounded-lg mb-2 "
-                : "bg-gray-900 hover:!bg-gray-800 rounded-lg mb-2 "
-                }`}
+              className={`transition-colors ${
+                open === 1
+                  ? "bg-purple-900 hover:!bg-purple-800 rounded-lg mb-2 "
+                  : "bg-gray-900 hover:!bg-gray-800 rounded-lg mb-2 "
+              }`}
             >
               <p className="text-white ml-5">E-Wallet</p>
             </AccordionHeader>
@@ -172,15 +174,15 @@ const PaymentMethod = ({ code, token }) => {
             </AccordionBody>
           </Accordion>
 
-
           {/* VA */}
           <Accordion open={open === 2} icon={<Icon id={2} open={open} />}>
             <AccordionHeader
               onClick={() => handleOpen(2)}
-              className={`transition-colors ${open === 2
-                ? "bg-purple-900 hover:!bg-purple-800 rounded-lg mb-2 "
-                : "bg-gray-900 hover:!bg-gray-800 rounded-lg mb-2 "
-                }`}
+              className={`transition-colors ${
+                open === 2
+                  ? "bg-purple-900 hover:!bg-purple-800 rounded-lg mb-2 "
+                  : "bg-gray-900 hover:!bg-gray-800 rounded-lg mb-2 "
+              }`}
             >
               <p className="text-white ml-5">Virtual Account</p>
             </AccordionHeader>
@@ -262,10 +264,11 @@ const PaymentMethod = ({ code, token }) => {
           >
             <AccordionHeader
               onClick={() => handleOpen(3)}
-              className={`transition-colors ${open === 3
-                ? "bg-purple-900 hover:!bg-purple-800 rounded-lg mb-2 "
-                : "bg-gray-900 hover:!bg-gray-800 rounded-lg mb-2 "
-                }`}
+              className={`transition-colors ${
+                open === 3
+                  ? "bg-purple-900 hover:!bg-purple-800 rounded-lg mb-2 "
+                  : "bg-gray-900 hover:!bg-gray-800 rounded-lg mb-2 "
+              }`}
             >
               <p className="text-white ml-5">Credit Card</p>
             </AccordionHeader>
@@ -340,14 +343,13 @@ const PaymentMethod = ({ code, token }) => {
           </Accordion>
         </Fragment>
         <div className="w-full flex flex-col gap-4 items-center justify-center">
-          {
-            errorMsg?.length > 0 && (
-              <p className="text-red-500 text-xs">
-                {errorMsg}
-              </p>
-            )
-          }
-          <button onClick={() => handlePay()} className="flex w-full bg-purple-900 text-white text-sm lg:text-xl md:text-base justify-center p-3 rounded-lg hover:bg-purple-700 ">
+          {errorMsg?.length > 0 && (
+            <p className="text-red-500 text-xs">{errorMsg}</p>
+          )}
+          <button
+            onClick={() => handlePay()}
+            className="flex w-full bg-purple-900 text-white text-sm lg:text-xl md:text-base justify-center p-3 rounded-lg hover:bg-purple-700 "
+          >
             Bayar
           </button>
         </div>

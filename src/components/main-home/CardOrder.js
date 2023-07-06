@@ -16,7 +16,7 @@ const CardOrder = () => {
   const [departureDate, setDepartureDate] = useState(null)
   const [returnDate, setReturnDate] = useState(null)
   const [isReturnActive, setIsReturnActive] = useState(false)
-  const [selectedOption, setSelectedOption] = useState("")
+  const [selectedOption, setSelectedOption] = useState("1")
   const handleReturnToggle = () => {
     setIsReturnActive(!isReturnActive)
   }
@@ -151,7 +151,6 @@ const CardOrder = () => {
     setIsOpenFrom(false)
     setIsOpenPass(false)
   }
-
   const handleOptionChange = (option) => {
     setSelectedOption(option)
   }
@@ -166,29 +165,27 @@ const CardOrder = () => {
       CountBaby: CountBaby,
       CountChild: CountChild,
       CountTotal: CountAdult + CountBaby + CountChild,
+      seatClassId: selectedOption,
     }
 
     const countTotal = CountAdult + CountBaby + CountChild
 
-    if (departureDate && from && countTotal > 0) {
+    if (from && countTotal > 0) {
       router.push({
         pathname: "/search",
         query: data,
       })
     } else {
-      toast.error(
-        "Mohon isi tanggal keberangkatan, lokasi keberangkatan, dan jumlah penumpang!",
-        {
-          position: "bottom-center",
-          autoClose: 2000,
-          hideProgressBar: true,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
-        }
-      )
+      toast.error("Mohon isi lokasi keberangkatan dan jumlah penumpang!", {
+        position: "bottom-center",
+        autoClose: 2000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      })
     }
   }
 
@@ -552,9 +549,9 @@ const CardOrder = () => {
                       onChange={(e) => handleOptionChange(e.target.value)}
                       className="border-none hover:border-none"
                     >
-                      <option value="Ekonomi">Ekonomi</option>
-                      <option value="Business">Business</option>
-                      <option value="First Class">First Class</option>
+                      <option value="1">Ekonomi</option>
+                      <option value="2">Business</option>
+                      <option value="3">First Class</option>
                     </select>
                     <hr className="w-full" />
                   </div>
@@ -564,7 +561,7 @@ const CardOrder = () => {
           </div>
           <div className="flex w-full justify-center">
             <button
-              onClick={() => onSubmit()}
+              onClick={onSubmit}
               className="w-full flex items-center justify-center"
             >
               <span className="text-lg bg-purple-800 text-white w-[95%] flex rounded-xl items-center justify-center py-3 hover:scale-105 duration-300">

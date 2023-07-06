@@ -32,8 +32,6 @@ const SecondHome = ({ data, search, chooseDate }) => {
     paginateData(data)
   }, [data])
 
-  console.log("data ", search)
-
   // console.log('check paginate', Math.ceil(data?.length / dataPerPage));
 
   if (!loading) {

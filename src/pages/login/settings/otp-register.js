@@ -48,7 +48,19 @@ const Otp = () => {
           otp.sixth,
       })
       if (response.status == 200) {
-        router.push("/login")
+        toast.success(response.data.message, {
+          position: "bottom-center",
+          autoClose: 2000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        })
+        setTimeout(() => {
+          router.push("/login")
+        }, 2000)
       }
     } catch (error) {
       toast.error(error.response.data.message, {

@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from "react"
 import { useState } from "react"
 
@@ -13,7 +14,6 @@ const CardPemesan = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
     // Lakukan logika atau tindakan yang Anda inginkan dengan nilai input
-    console.log(inputValue)
   }
 
   return (

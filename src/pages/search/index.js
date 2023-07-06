@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useState } from "react"
 import SecondHome from "@/views/second-home/SecondHome"
 import Head from "next/head"
@@ -10,9 +11,8 @@ import Navbar from "@/components/Navbar"
 
 const Index = ({ schedule }) => {
   const router = useRouter()
-  const [isFilter, setIsFilter] = useState(router?.query?.departureDate)
+  const [isFilter, setIsFilter] = useState(router?.query?.departureDate || null)
   const [data] = useState(schedule)
-
   const {
     CountAdult,
     CountBaby,
@@ -22,6 +22,7 @@ const Index = ({ schedule }) => {
     returnDate,
     to,
     CountTotal,
+    seatClassId,
   } = router.query
 
   const dataSearch = {
@@ -33,13 +34,18 @@ const Index = ({ schedule }) => {
     to,
     returnDate,
     CountTotal,
+    seatClassId,
   }
 
   const filterDate = (data) => {
-    const filterResult = data?.filter((item) => item?.departureDate == isFilter)
-    return filterResult
+    if (isFilter) {
+      const filterResult = data?.filter(
+        (item) => item?.departureDate == isFilter
+      )
+      return filterResult
+    }
+    return data
   }
-
   return (
     <div>
       <Head>
@@ -47,7 +53,11 @@ const Index = ({ schedule }) => {
         <link rel="icon" href="../logo.svg" />
       </Head>
       <Navbar />
-      <Button />
+      <Button
+        airportButton={data[0]}
+        classButton={data[0].class.name}
+        countPassengerButton={CountTotal}
+      />
       <div className=" relative lg:static md:relative overflow-x-scroll lg:overflow-hidden md:overflow-x-scroll ">
         <ImportDateRow
           startDate={departureDate}
@@ -65,18 +75,16 @@ const Index = ({ schedule }) => {
 }
 
 export const getServerSideProps = async (context) => {
-  const { departureDate, from, returnDate, to } = context.query
+  const { departureDate, from, returnDate, to, seatClassId } = context.query
 
   const response = await axios.get(
-    `${api.apiSearchTicket}?departureDate=${departureDate}${
-      returnDate ? `&arrivedDate=${returnDate}` : ""
-    }${from ? `&originAirport=${from}` : ""}${
-      to ? `&destinationAirport=${to}` : ""
-    }`
+    `${api.apiSearchTicket}?${returnDate ? `arrivedDate=${returnDate}` : ""}${
+      from ? `originAirport=${from}` : ""
+    }${to ? `&destinationAirport=${to}` : ""}${
+      seatClassId ? `&seatClassId=${seatClassId}` : ""
+    }${departureDate ? `&departureDate=${departureDate}` : ""}`
   )
-
   const data = response.data.data
-
   return {
     props: {
       schedule: data,

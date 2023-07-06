@@ -11,17 +11,15 @@ import { LuBaggageClaim } from "react-icons/lu"
 
 const AccordionDetail = ({ item, countSeat, search }) => {
   const [isOpen, setIsOpen] = useState(false)
-  console.log("countSeat", search)
   const { CountBaby, CountChild, CountAdult } = search
 
   const toggleAccordion = () => {
     setIsOpen(!isOpen)
   }
 
-
   return (
     <>
-      <div className='border-2 rounded-xl border-third-purple w-full'>
+      <div className="border-2 rounded-xl border-third-purple w-full">
         <div>
           <button
             className={
@@ -30,7 +28,11 @@ const AccordionDetail = ({ item, countSeat, search }) => {
             onClick={toggleAccordion}
           >
             <span className="flex items-center gap-2 text-sm">
-              <img src={`${item?.plane?.airline?.logo}`} className="w-6 h-6" alt="" />
+              <img
+                src={`${item?.plane?.airline?.logo}`}
+                className="w-6 h-6"
+                alt=""
+              />
               {item?.plane?.airline?.airlineName} - {item?.class?.name}
             </span>
             <span className="text-gray-500">
@@ -53,7 +55,9 @@ const AccordionDetail = ({ item, countSeat, search }) => {
                 <div>{item?.originAirport?.airportCode}</div>
               </span>
               <span className="text-center font-normal text-sm text-gray-400 flex flex-col w-full">
-                <div className=" border-b-2 ">{convertTime(item?.durationInSecond)}</div>
+                <div className=" border-b-2 ">
+                  {convertTime(item?.durationInSecond)}
+                </div>
                 <div>Direct</div>
               </span>
               <span>
@@ -66,18 +70,23 @@ const AccordionDetail = ({ item, countSeat, search }) => {
                 <LuBaggageClaim />
               </span>
               <span className="text-center">
-                <div className=" w-full font-bold text-sm lg:text-lg md:text-lg sm:text-sm">{handlerIDR(item?.provTotalPrice)}</div>
+                <div className=" w-full font-bold text-sm lg:text-lg md:text-lg sm:text-sm">
+                  {handlerIDR(item?.provTotalPrice)}
+                </div>
                 <div>
-                  <Link href={{
-                    pathname: "/payment",
-                    query: {
-                      countseat: countSeat,
-                      idschedule: item?.id,
-                      adult: CountAdult,
-                      baby: CountBaby,
-                      child: CountChild
-                    }
-                  }} className="py-1 px-8 bg-main-purple hover:bg-second-purple rounded-xl font-normal text-sm lg:text-base md:text-base sm:text-sm text-white">
+                  <Link
+                    href={{
+                      pathname: "/payment",
+                      query: {
+                        countseat: countSeat,
+                        idschedule: item?.id,
+                        adult: CountAdult,
+                        baby: CountBaby,
+                        child: CountChild,
+                      },
+                    }}
+                    className="py-1 px-8 bg-main-purple hover:bg-second-purple rounded-xl font-normal text-sm lg:text-base md:text-base sm:text-sm text-white"
+                  >
                     Pilih
                   </Link>
                 </div>
