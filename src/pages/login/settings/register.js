@@ -8,11 +8,17 @@ import Link from "next/link"
 import Head from "next/head"
 import api from "@/configs/api"
 import getToken from "@/utils/getToken"
+import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai"
 
 const Register = () => {
   const router = useRouter()
   const token = getToken()
   const [isLogin, setIsLogin] = useState(false)
+  const [showPassword, setShowPassword] = useState(false)
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword)
+  }
 
   useEffect(() => {
     if (token) {
@@ -68,7 +74,7 @@ const Register = () => {
           </Head>
           <div className="md:flex hidden w-full md:w-1/2 bg-orange-400 justify-around items-center">
             <div className="flex items-center justify-center py-2 px-5">
-              <Image src="/pesawat.png" width={70} height={70} alt="Logo" />
+              <Image src="/logo-2.svg" width={70} height={70} alt="Logo" />
               <div className="ml-5 flex flex-col">
                 <span className="text-5xl text-white font-bold font-sans italic">
                   FlyWise
@@ -182,15 +188,25 @@ const Register = () => {
                   >
                     Buat Password
                   </label>
-                  <div className="mt-2">
+                  <div className="mt-2 flex items-center ">
                     <input
                       id="buatpass"
                       name="password"
-                      type="password"
+                      type={showPassword ? "text" : "password"}
                       className="block w-full rounded-2xl border-0 py-1.5 pl-4  text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:outline-none  focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                       value={form.password}
                       onChange={handleChange}
                     />
+                    <div
+                      onClick={togglePasswordVisibility}
+                      className="cursor-pointer absolute xl:right-52 right-12 text-xl"
+                    >
+                      {showPassword ? (
+                        <AiOutlineEyeInvisible />
+                      ) : (
+                        <AiOutlineEye />
+                      )}
+                    </div>
                     {errors &&
                       errors.map(
                         (err, index) =>
