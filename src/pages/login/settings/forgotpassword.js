@@ -8,6 +8,7 @@ import { ToastContainer, toast } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 import Head from "next/head"
 import api from "@/configs/api"
+import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai"
 
 const Forgotpassword = () => {
   const router = useRouter()
@@ -20,6 +21,15 @@ const Forgotpassword = () => {
   const [form, setForm] = useState(initialForm)
   const [errors, setErrors] = useState([])
   const [loading, setLoading] = useState(false)
+  const [showPassword, setShowPassword] = useState(false)
+  const [showPassword2, setShowPassword2] = useState(false)
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword)
+  }
+  const togglePasswordVisibility2 = () => {
+    setShowPassword2(!showPassword2)
+  }
 
   const handleChange = (e) => {
     setForm({
@@ -77,12 +87,12 @@ const Forgotpassword = () => {
       </Head>
       <div className="md:flex hidden w-full md:w-1/2 bg-orange-400 justify-around items-center">
         <div className="flex items-center justify-center py-2 px-5">
-          <Image src="/pesawat.png" width={70} height={70} alt="Logo" />
+          <Image src="/logo-2.svg" width={70} height={70} alt="Logo" />
           <div className="ml-5 flex flex-col">
             <span className="text-5xl text-white font-bold font-sans italic">
               FlyWise
             </span>
-            <span className="font-sans text-indigo-600 mt-1">
+            <span className="text-white text-lg font-sans mt-1">
               {"Choose Smarter Fly Further"}
             </span>
           </div>
@@ -104,15 +114,21 @@ const Forgotpassword = () => {
               >
                 Masukkan Password Baru
               </label>
-              <div className="mt-2">
+              <div className="mt-2 flex items-center">
                 <input
                   id="password"
                   name="password"
-                  type="password"
+                  type={showPassword ? "text" : "password"}
                   className="block w-full rounded-2xl border-0 py-1.5 pl-4  text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:outline-none  focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   value={form.password}
                   onChange={handleChange}
                 />
+                <div
+                  onClick={togglePasswordVisibility}
+                  className="cursor-pointer absolute xl:right-52 right-12 text-xl"
+                >
+                  {showPassword ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
+                </div>
                 {errors &&
                   errors.map(
                     (err, index) =>
@@ -134,25 +150,31 @@ const Forgotpassword = () => {
                   Ulangi Password Baru
                 </label>
               </div>
-              <div className="mt-2">
+              <div className="mt-2 flex items-center">
                 <input
                   id="confirm_password"
                   name="confirm_password"
-                  type="password"
+                  type={showPassword2 ? "text" : "password"}
                   className="block w-full rounded-2xl border-0 py-1.5 pl-4  text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:outline-none  focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   value={form.confirm_password}
                   onChange={handleChange}
                 />
-                {errors &&
-                  errors.map(
-                    (err, index) =>
-                      err.field == "confirm_password" && (
-                        <p key={index} className="text-red-500">
-                          {err.message}
-                        </p>
-                      )
-                  )}
+                <div
+                  onClick={togglePasswordVisibility2}
+                  className="cursor-pointer absolute xl:right-52 right-12 text-xl"
+                >
+                  {showPassword2 ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
+                </div>
               </div>
+              {errors &&
+                errors.map(
+                  (err, index) =>
+                    err.field == "confirm_password" && (
+                      <p key={index} className="text-red-500">
+                        {err.message}
+                      </p>
+                    )
+                )}
             </div>
 
             <div>

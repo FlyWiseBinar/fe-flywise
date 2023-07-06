@@ -127,7 +127,7 @@ const Otp = () => {
           <link rel="icon" href="../logo.svg" />
         </Head>
         <div className="md:block hidden">
-          <Image src="/pesawat.png" width={70} height={70} alt="Logo" />
+          <Image src="/logo-2.svg" width={70} height={70} alt="Logo" />
         </div>
       </div>
       <form onSubmit={handleSubmit}>

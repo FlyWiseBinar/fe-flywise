@@ -1,120 +1,125 @@
-import React, {useEffect, useState} from "react"
-import {styles} from "@/styles/styles"
-import {LuArrowLeft} from "react-icons/lu"
-import {HiOutlinePencil} from "react-icons/hi"
-import {LuLogOut} from "react-icons/lu"
+import React, { useEffect, useState } from "react"
+import { styles } from "@/styles/styles"
+import { LuArrowLeft } from "react-icons/lu"
+import { HiOutlinePencil } from "react-icons/hi"
+import { LuLogOut } from "react-icons/lu"
 import axios from "axios"
-import {ToastContainer, toast} from "react-toastify"
+import { ToastContainer, toast } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 import Head from "next/head"
 import Link from "next/link"
 import api from "@/configs/api"
-import {getCookie, deleteCookie} from "cookies-next"
-import {useRouter} from "next/router"
+import { getCookie, deleteCookie } from "cookies-next"
+import { useRouter } from "next/router"
 import Navbar from "@/components/Navbar"
 import Swal from "sweetalert2"
 
 const Profile = () => {
-	const router = useRouter()
-	const token = getCookie("accessToken")
-	const [errors, setErrors] = useState([])
-	const [form, setForm] = useState({
-		fullName: "",
-		telephone: "",
-		email: "",
-	})
+  const router = useRouter()
+  const token = getCookie("accessToken")
+  const [errors, setErrors] = useState([])
+  const [form, setForm] = useState({
+    fullName: "",
+    telephone: "",
+    email: "",
+  })
 
-	useEffect(() => {
-		axios
-			.get(api.apiWhoAmI, {
-				headers: {
-					Authorization: `Bearer ${token}`,
-				},
-			})
-			.then((res) => {
-				setForm({
-					email: res.data.data.email,
-					fullName: res.data.data.fullName,
-					telephone: res.data.data.telephone,
-				})
-			})
-	}, [])
+  useEffect(() => {
+    axios
+      .get(api.apiWhoAmI, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        setForm({
+          email: res.data.data.email,
+          fullName: res.data.data.fullName,
+          telephone: res.data.data.telephone,
+        })
+      })
+  }, [])
 
-	const handleChange = (e) => {
-		setForm({
-			...form,
-			[e.target.name]: e.target.value,
-		})
-	}
+  const handleChange = (e) => {
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value,
+    })
+  }
 
-	const handleSubmit = async (e) => {
-		e.preventDefault() // untuk menghindari refresh laman
-		Swal.fire({
-			title: "Simpan perubahan?",
-			showCancelButton: true,
-			confirmButtonText: "Simpan",
-			denyButtonText: "Batal",
-		}).then(async (result) => {
-			if (result.isConfirmed) {
-				try {
-					const response = await axios.put(
-						api.apiUpdateProfile,
-						{
-							fullName: form.fullName,
-							telephone: form.telephone,
-							email: form.email,
-						},
-						{
-							headers: {
-								Authorization: `Bearer ${token}`,
-							},
-						}
-					)
-					if (response.status === 200) {
-						Swal.fire("Data berhasil disimpan!", "", "success")
-					}
-				} catch (error) {
-					if (error.response.status === 400) {
-						setErrors(error.response.data.errors)
-					}
-					if (error.response.status === 500) {
-						Swal.fire({
-							icon: "error",
-							title: "Internal server error",
-							text: error.response.data.message,
-						})
-					}
-				}
-			}
-		})
+  const handleSubmit = async (e) => {
+    e.preventDefault() // untuk menghindari refresh laman
+    Swal.fire({
+      title: "Perbarui Profil",
+      text: "Apakah anda yakin ingin menyimpan perubahan?",
+      showCancelButton: true,
+      confirmButtonText: "Ya",
+      cancelButtonText: "Tidak",
+      confirmButtonColor: "#16a34a",
+      cancelButtonColor: "#dc2626",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          const response = await axios.put(
+            api.apiUpdateProfile,
+            {
+              fullName: form.fullName,
+              telephone: form.telephone,
+              email: form.email,
+            },
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            }
+          )
+          if (response.status === 200) {
+            Swal.fire("Data berhasil disimpan!", "", "success")
+          }
+        } catch (error) {
+          if (error.response.status === 400) {
+            setErrors(error.response.data.errors)
+          }
+          if (error.response.status === 500) {
+            Swal.fire({
+              icon: "error",
+              title: "Internal server error",
+              text: error.response.data.message,
+            })
+          }
+        }
+      }
+    })
+  }
 
-	}
-
-	const handleClickLogout = () => {
-		Swal.fire({
-			title: "Anda akan logout?",
-			showCancelButton: true,
-			confirmButtonText: "Ya",
-			cancelButtonText: "Tidak",
-		}).then((result) => {
-			if (result.isConfirmed) {
-				deleteCookie("accessToken")
-				toast.success("logout success", {
-					position: "bottom-center",
-					autoClose: 2000,
-					hideProgressBar: true,
-					closeOnClick: true,
-					pauseOnHover: true,
-					draggable: true,
-					progress: undefined,
-					theme: "colored",
-				})
-				setTimeout(() => {
-					router.push("/login")
-				}, 1500)
-			}
-		})
-	}
+  const handleClickLogout = () => {
+    Swal.fire({
+      title: "Keluar",
+      text: "Apakah Anda yakin ingin keluar?",
+      showCancelButton: true,
+      confirmButtonText: "Ya",
+      cancelButtonText: "Tidak",
+      confirmButtonColor: "#dc2626",
+      cancelButtonColor: "#16a34a",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        deleteCookie("accessToken")
+        toast.success("logout success", {
+          position: "bottom-center",
+          autoClose: 2000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        })
+        setTimeout(() => {
+          router.push("/login")
+        }, 1500)
+      }
+    })
+  }
 
   return (
     <>

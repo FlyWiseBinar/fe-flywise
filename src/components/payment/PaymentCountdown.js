@@ -58,7 +58,7 @@ const PaymentCountdown = () => {
       <div
         className={`${styles.deadline} flex justify-center items-center w-full p-5 mx-10 rounded-lg bg-red-500 text-white`}
       >
-        <p className="font-sans font-bold text-xl flex gap-1">
+        <p className="font-sans font-bold xl:text-xl flex gap-1">
           Selesaikan Dalam {formatTime(countdown)}
         </p>
       </div>

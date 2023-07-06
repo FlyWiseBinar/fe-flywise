@@ -32,7 +32,6 @@ const CardOrder = () => {
 
   const [options, setOptions] = useState([])
 
-
   const router = useRouter()
 
   useEffect(() => {
@@ -225,7 +224,7 @@ const CardOrder = () => {
                     <hr className="w-full" />
                     {isOpenFrom && (
                       <div className="fixed z-20 inset-0 bg-opacity-70 bg-black flex items-center justify-center">
-                        <div className="absolute bg-white rounded-lg shadow-2xl w-96 h-auto">
+                        <div className="absolute bg-white rounded-lg shadow-2xl w-96 h-auto max-h-80 overflow-auto">
                           <div className="flex gap-3 items-center p-4 ">
                             <div className="flex flex-col gap-2 w-full">
                               <div className="justify-between flex">
@@ -256,8 +255,18 @@ const CardOrder = () => {
                           </div>
                           <hr className="bg-black" />
                           {options.map((option, index) => (
-                            <div className="px-4 py-2 overflow-y-auto">
-                              <button onClickCapture={() => handleOptionClickFrom(option)} onClick={closeModal} key={index}>{option.city}</button>
+                            <div
+                              className="px-4 py-2 overflow-y-auto"
+                              key={index}
+                            >
+                              <button
+                                onClickCapture={() =>
+                                  handleOptionClickFrom(option)
+                                }
+                                onClick={closeModal}
+                              >
+                                {option.city}
+                              </button>
                             </div>
                           ))}
                         </div>
@@ -357,7 +366,7 @@ const CardOrder = () => {
                     <hr className="w-full" />
                     {isOpenTo && (
                       <div className="fixed z-20 inset-0 bg-opacity-70 bg-black flex items-center justify-center">
-                        <div className="absolute bg-white rounded-lg shadow-2xl w-96 h-auto">
+                        <div className="absolute bg-white rounded-lg shadow-2xl w-96 h-auto max-h-80 overflow-auto">
                           <div className="flex gap-3 items-center p-4 ">
                             <div className="flex flex-col gap-2 w-full">
                               <div className="justify-between flex">
@@ -387,11 +396,21 @@ const CardOrder = () => {
                             </div>
                           </div>
                           <hr className="bg-black" />
-                          {options.map((option, index) => (
-                            <div className="px-4 py-2 overflow-y-auto">
-                              <button onClickCapture={() => handleOptionClickTo(option)} onClick={closeModal} key={index}>{option.city}</button>
-                            </div>
-                          ))}
+                          <div>
+                            {options.map((option, index) => (
+                              <div className="px-4 py-2" key={index}>
+                                <div
+                                  onClickCapture={() =>
+                                    handleOptionClickTo(option)
+                                  }
+                                  onClick={closeModal}
+                                  className="flex"
+                                >
+                                  <div>{option.city}</div>
+                                </div>
+                              </div>
+                            ))}
+                          </div>
                         </div>
                       </div>
                     )}
