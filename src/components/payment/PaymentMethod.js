@@ -9,6 +9,7 @@ import axios from "axios"
 import api from "@/configs/api"
 import { toast } from "react-toastify"
 import { useRouter } from "next/router"
+import Swal from "sweetalert2"
 
 function Icon({ id, open }) {
   return (
@@ -86,48 +87,53 @@ const PaymentMethod = ({ code, token }) => {
   }
 
   const handlePay = () => {
-    if (type) {
-      const data = {
-        paymentCode: code,
-        paymentTypeId: type,
-      }
-
-      axios
-        .post(api.apiPaymentCreate, data, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        })
-        .then((result) => {
-          toast.success(result.data.message, {
-            position: "bottom-center",
-            autoClose: 2000,
-            hideProgressBar: true,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "colored",
-          })
-
-          router.push("/payment/success")
-        })
-        .catch((err) => {
-          console.log(err)
-          toast.error("Tiket Gagal Di Bayar!", {
-            position: "bottom-center",
-            autoClose: 2000,
-            hideProgressBar: true,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "colored",
-          })
-        })
-    } else {
-      setErrorMsg("Mohon Isi Metode Pembayaran!")
-    }
+	Swal.fire({
+		title: 'Konfirmasi Pembayaran',
+		text: 'Bayar pesananmu sekarang?',
+		showCancelButton: true,
+		confirmButtonText: 'Ya',
+		cancelButtonText: `Tidak`,
+		confirmButtonColor: "#16a34a",
+      cancelButtonColor: "#dc2626",
+	 }).then((result) => {
+		if (result.isConfirmed) {
+			if (type) {
+				const data = {
+				  paymentCode: code,
+				  paymentTypeId: type,
+				}
+		
+				axios
+				  .post(api.apiPaymentCreate, data, {
+					 headers: {
+						Authorization: `Bearer ${token}`,
+					 },
+				  })
+				  .then((result) => {
+					Swal.fire({title:'Pesanan Berhasil', text:'Pesananmu berhasil dipesan, periksa emailmu dan lakukan pembayaran!'},'','success')
+					setTimeout(()=>{
+						router.push("/payment/success")
+					},2000)
+				  })
+				  .catch((err) => {
+					 console.log(err)
+					 toast.error("Tiket Gagal Di Bayar!", {
+						position: "bottom-center",
+						autoClose: 2000,
+						hideProgressBar: true,
+						closeOnClick: true,
+						pauseOnHover: true,
+						draggable: true,
+						progress: undefined,
+						theme: "colored",
+					 })
+				  })
+			 } else {
+				setErrorMsg("Mohon Isi Metode Pembayaran!")
+			 }
+		} 
+	 })
+    
   }
 
   return (

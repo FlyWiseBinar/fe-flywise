@@ -108,7 +108,7 @@ const Navbar = () => {
                 <div className="flex gap-6">
                   <div className="hover:animate-pulse">
                     <Link
-                      href="orderHistory"
+                      href="/orderHistory"
                       className="flex items-center justify-center text-black hover:text-main-purple text-2xl hover:scale-110 duration-300"
                     >
                       <AiOutlineBars />

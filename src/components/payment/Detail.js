@@ -3,6 +3,7 @@ import { handlerIDR } from "@/utils/handlerIDR"
 import axios from "axios"
 import { useRouter } from "next/router"
 import { toast } from "react-toastify"
+import Swal from "sweetalert2"
 
 const Detail = ({
   countseat,
@@ -22,7 +23,17 @@ const Detail = ({
   }
 
   const handlePay = () => {
-    axios
+	Swal.fire({
+		title: 'Pemesanan Tiket',
+		text:'Apakah anda yakin melanjutkan ke pembayaran tiket?',
+		showCancelButton: true,
+		confirmButtonText: 'Ya',
+		cancelButtonText: `Tidak`,
+		confirmButtonColor: "#16a34a",
+      cancelButtonColor: "#dc2626",
+	 }).then((result) => {
+		if (result.isConfirmed) {
+			axios
       .post(api.apiCheckout, datapassenger, {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -65,6 +76,9 @@ const Detail = ({
           theme: "colored",
         })
       })
+		} 
+	 })
+    
     console.log("data order", datapassenger)
   }
 
