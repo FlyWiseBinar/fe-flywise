@@ -1,10 +1,25 @@
 /* eslint-disable */
-import React from "react"
+import React, { useEffect } from "react"
 import { useState } from "react"
+import getToken from "@/utils/getToken"
+import api from "@/configs/api"
+import axios from "axios"
 
 const CardPemesan = () => {
   const [showForm, setShowForm] = useState(false)
   const [inputValue, setInputValue] = useState("")
+  const [user, setUser] = useState({})
+  const token = getToken()
+
+  useEffect(() => {
+    axios(api.apiWhoAmI, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }).then((res) => {
+      setUser(res.data.data)
+    })
+  }, [])
 
   const handleToggle = () => {
     setShowForm(!showForm)
@@ -30,8 +45,9 @@ const CardPemesan = () => {
             </label>
             <input
               className=" p-3 border border-gray-300 text-gray-900 text-sm rounded-sm w-full"
-              required
               placeholder="Nama Lengkap"
+              value={user.fullName}
+              readOnly={true}
             />
           </div>
           <div>
@@ -80,8 +96,9 @@ const CardPemesan = () => {
             </label>
             <input
               className=" p-3 border border-gray-300 text-gray-900 text-sm rounded-sm w-full"
-              required
               placeholder="Nomor Telepon"
+              value={user.telephone}
+              readOnly={true}
             />
           </div>
           <div className="mb-6">
@@ -91,7 +108,8 @@ const CardPemesan = () => {
             <input
               className=" p-3 border border-gray-300 text-gray-900 text-sm rounded-sm w-full "
               placeholder="Email"
-              required
+              value={user.email}
+              readOnly={true}
             />
           </div>
         </form>

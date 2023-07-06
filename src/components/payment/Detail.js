@@ -1,8 +1,10 @@
+/* eslint-disable */
 import api from "@/configs/api"
 import { handlerIDR } from "@/utils/handlerIDR"
 import axios from "axios"
 import { useRouter } from "next/router"
 import { toast } from "react-toastify"
+import Swal from "sweetalert2"
 
 const Detail = ({
   countseat,
@@ -22,49 +24,62 @@ const Detail = ({
   }
 
   const handlePay = () => {
-    axios
-      .post(api.apiCheckout, datapassenger, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then((res) => {
-        toast.success("Tiket Berhasil Di Pesan!", {
-          position: "bottom-center",
-          autoClose: 2000,
-          hideProgressBar: true,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
-        })
-        // console.log(res.data.data.payment?.paymentCode);
-        router.push({
-          pathname: "/payment/method",
-          query: {
-            paymentCode: res.data.data.payment?.paymentCode,
-            idschedule: dataSchedule?.id,
-            adult: dataSeat?.adult,
-            child: dataSeat?.child,
-            baby: dataSeat?.baby,
-            countseat: countseat,
-          },
-        })
-      })
-      .catch((err) => {
-        console.log(err)
-        toast.error("Tiket Gagal Di Pesan!", {
-          position: "bottom-center",
-          autoClose: 2000,
-          hideProgressBar: true,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
-        })
-      })
+    Swal.fire({
+      title: "Pemesanan Tiket",
+      text: "Apakah anda yakin melanjutkan ke pembayaran tiket?",
+      showCancelButton: true,
+      confirmButtonText: "Ya",
+      cancelButtonText: `Tidak`,
+      confirmButtonColor: "#16a34a",
+      cancelButtonColor: "#dc2626",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios
+          .post(api.apiCheckout, datapassenger, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          })
+          .then((res) => {
+            toast.success("Tiket Berhasil Di Pesan!", {
+              position: "bottom-center",
+              autoClose: 2000,
+              hideProgressBar: true,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "colored",
+            })
+            // console.log(res.data.data.payment?.paymentCode);
+            router.push({
+              pathname: "/payment/method",
+              query: {
+                paymentCode: res.data.data.payment?.paymentCode,
+                idschedule: dataSchedule?.id,
+                adult: dataSeat?.adult,
+                child: dataSeat?.child,
+                baby: dataSeat?.baby,
+                countseat: countseat,
+              },
+            })
+          })
+          .catch((err) => {
+            console.log(err)
+            toast.error("Tiket Gagal Di Pesan!", {
+              position: "bottom-center",
+              autoClose: 2000,
+              hideProgressBar: true,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "colored",
+            })
+          })
+      }
+    })
+
     console.log("data order", datapassenger)
   }
 
