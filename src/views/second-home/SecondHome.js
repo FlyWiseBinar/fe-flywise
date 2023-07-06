@@ -7,7 +7,6 @@ import { handlerDate } from "@/utils/handlerDate"
 import Image from "next/image"
 
 const SecondHome = ({ data, search, chooseDate }) => {
-console.log(data)
 
   const [currentPage, setCurrentPage] = useState(1)
   const onPageChange = (page) => setCurrentPage(page)
@@ -35,8 +34,6 @@ console.log(data)
     setLoading(false)
     paginateData(data)
   }, [data])
-
-  console.log("data ", search)
 
   // console.log('check paginate', Math.ceil(data?.length / dataPerPage));
 

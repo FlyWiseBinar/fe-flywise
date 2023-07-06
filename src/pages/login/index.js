@@ -35,7 +35,6 @@ const Login = () => {
     password: "",
   }
   const [form, setForm] = useState(initialForm)
-  console.log(form)
   const handleChange = (e) => {
     setForm({
       ...form,

@@ -168,8 +168,6 @@ const CardOrder = () => {
 		seatClassId: selectedOption
     }
 
-	 console.log("dataquery", data)
-
     const countTotal = CountAdult + CountBaby + CountChild
 
     if (from && countTotal > 0) {

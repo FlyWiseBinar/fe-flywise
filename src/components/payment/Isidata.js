@@ -88,7 +88,6 @@ const Isidata = ({ countseat, dataSchedule, dataSeat, token }) => {
 
   const onSubmit = (data) => {
     if (data) {
-      console.log("submit", data)
       toast.success("Data Berhasil di Simpan!", {
         position: "bottom-center",
         autoClose: 2000,

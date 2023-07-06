@@ -12,7 +12,6 @@ const Index = ({schedule}) => {
 	const router = useRouter()
 	const [isFilter, setIsFilter] = useState(router?.query?.departureDate || null)
 	const [data] = useState(schedule)
-
 	const {
 		CountAdult,
 		CountBaby,
@@ -44,9 +43,7 @@ const Index = ({schedule}) => {
 		}
 		return data
 	}
-
-	console.log("router query", router.query)
-
+console.log(data[0])
 	return (
 		<div>
 			<Head>
@@ -54,7 +51,7 @@ const Index = ({schedule}) => {
 				<link rel="icon" href="../logo.svg" />
 			</Head>
 			<Navbar />
-			<Button />
+			<Button airportButton={data[0]} classButton={data[0].class.name} countPassengerButton={CountTotal} />
 			<div className=" relative lg:static md:relative overflow-x-scroll lg:overflow-hidden md:overflow-x-scroll ">
 				<ImportDateRow
 					startDate={departureDate}
@@ -72,27 +69,20 @@ const Index = ({schedule}) => {
 }
 
 export const getServerSideProps = async (context) => {
-	console.log("seatclass", context.query.seatClassId)
+	
 	const {departureDate, from, returnDate, to, seatClassId} = context.query
 
-	try {
 		const response = await axios.get(
 			`${api.apiSearchTicket}?${returnDate ? `arrivedDate=${returnDate}` : ""
 			}${from ? `originAirport=${from}` : ""}${to ? `&destinationAirport=${to}` : ""
 			}${seatClassId ? `&seatClassId=${seatClassId}` : ""}${departureDate ? `&departureDate=${departureDate}` : ""}`
 		)
-		console.log("response", response.data.data)
 		const data = response.data.data
 		return {
 			props: {
 				schedule: data,
 			},
 		}
-	} catch (error) {
-		console.log(error)
-	}
-
-
 }
 
 export default Index

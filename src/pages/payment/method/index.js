@@ -25,7 +25,6 @@ const index = ({ code, data }) => {
         },
       })
       .then((result) => {
-        console.log("result", result)
         setIsLogin({ status: true, data: result?.data?.data })
       })
       .catch(() => {

@@ -40,7 +40,6 @@ const PaymentMethod = ({ code, token }) => {
   }
 
   const handleType = (e) => {
-    console.log(e)
     setErrorMsg("")
     if (e === "ewallet") {
       setType(1)

@@ -11,7 +11,6 @@ import { LuBaggageClaim } from "react-icons/lu"
 
 const AccordionDetail = ({ item, countSeat, search }) => {
   const [isOpen, setIsOpen] = useState(false)
-  console.log("countSeat", search)
   const { CountBaby, CountChild, CountAdult } = search
 
   const toggleAccordion = () => {
