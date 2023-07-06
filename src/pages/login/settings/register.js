@@ -79,7 +79,7 @@ const Register = () => {
                 <span className="text-5xl text-white font-bold font-sans italic">
                   FlyWise
                 </span>
-                <span className="font-sans text-indigo-600 mt-1">
+                <span className="text-white text-lg font-sans mt-1">
                   {"Choose Smarter Fly Further"}
                 </span>
               </div>
