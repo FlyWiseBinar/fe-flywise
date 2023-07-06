@@ -126,7 +126,7 @@ const Otp = () => {
         theme="light"
       />
       <div className="container flex z-50 mx-28">
-        <img src="/logo.png" alt="logo" />
+        <img src="/logo.svg" alt="logo" />
       </div>
       <form onSubmit={handleSubmit}>
         <div className="h-screen bg-slate-50 py-20 px-3">
