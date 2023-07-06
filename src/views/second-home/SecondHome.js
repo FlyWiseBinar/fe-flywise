@@ -7,6 +7,7 @@ import { handlerDate } from "@/utils/handlerDate"
 import Image from "next/image"
 
 const SecondHome = ({ data, search, chooseDate }) => {
+console.log(data)
 
   const [currentPage, setCurrentPage] = useState(1)
   const onPageChange = (page) => setCurrentPage(page)
@@ -93,7 +94,7 @@ const SecondHome = ({ data, search, chooseDate }) => {
         <div className="w-full h-[50vh] flex-col flex items-center justify-center gap-4">
           <Image src="/assets/schedule-not-found.png" width={200} height={200} alt="not-found" />
           <div className="text-main-purple pt-3 flex flex-col w-full gap-3 items-center justify-center text-sm">
-            <p className="font-semibold text-black">Maaf, pencarian Anda pada  {handlerDate(chooseDate)}  tidak ditemukan</p>
+            <p className="font-semibold text-black">Maaf, pencarian Anda pada  {chooseDate ? handlerDate(chooseDate) : "tanggal tersebut"}  tidak ditemukan</p>
             <p className="font-semibold ">Coba cari perjalanan lainnya!</p>
           </div>
         </div>
