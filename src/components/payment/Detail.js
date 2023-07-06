@@ -1,3 +1,4 @@
+/* eslint-disable */
 import api from "@/configs/api"
 import { handlerIDR } from "@/utils/handlerIDR"
 import axios from "axios"
@@ -23,62 +24,62 @@ const Detail = ({
   }
 
   const handlePay = () => {
-	Swal.fire({
-		title: 'Pemesanan Tiket',
-		text:'Apakah anda yakin melanjutkan ke pembayaran tiket?',
-		showCancelButton: true,
-		confirmButtonText: 'Ya',
-		cancelButtonText: `Tidak`,
-		confirmButtonColor: "#16a34a",
+    Swal.fire({
+      title: "Pemesanan Tiket",
+      text: "Apakah anda yakin melanjutkan ke pembayaran tiket?",
+      showCancelButton: true,
+      confirmButtonText: "Ya",
+      cancelButtonText: `Tidak`,
+      confirmButtonColor: "#16a34a",
       cancelButtonColor: "#dc2626",
-	 }).then((result) => {
-		if (result.isConfirmed) {
-			axios
-      .post(api.apiCheckout, datapassenger, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then((res) => {
-        toast.success("Tiket Berhasil Di Pesan!", {
-          position: "bottom-center",
-          autoClose: 2000,
-          hideProgressBar: true,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
-        })
-        // console.log(res.data.data.payment?.paymentCode);
-        router.push({
-          pathname: "/payment/method",
-          query: {
-            paymentCode: res.data.data.payment?.paymentCode,
-            idschedule: dataSchedule?.id,
-            adult: dataSeat?.adult,
-            child: dataSeat?.child,
-            baby: dataSeat?.baby,
-            countseat: countseat,
-          },
-        })
-      })
-      .catch((err) => {
-        console.log(err)
-        toast.error("Tiket Gagal Di Pesan!", {
-          position: "bottom-center",
-          autoClose: 2000,
-          hideProgressBar: true,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
-        })
-      })
-		} 
-	 })
-    
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios
+          .post(api.apiCheckout, datapassenger, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          })
+          .then((res) => {
+            toast.success("Tiket Berhasil Di Pesan!", {
+              position: "bottom-center",
+              autoClose: 2000,
+              hideProgressBar: true,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "colored",
+            })
+            // console.log(res.data.data.payment?.paymentCode);
+            router.push({
+              pathname: "/payment/method",
+              query: {
+                paymentCode: res.data.data.payment?.paymentCode,
+                idschedule: dataSchedule?.id,
+                adult: dataSeat?.adult,
+                child: dataSeat?.child,
+                baby: dataSeat?.baby,
+                countseat: countseat,
+              },
+            })
+          })
+          .catch((err) => {
+            console.log(err)
+            toast.error("Tiket Gagal Di Pesan!", {
+              position: "bottom-center",
+              autoClose: 2000,
+              hideProgressBar: true,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "colored",
+            })
+          })
+      }
+    })
+
     console.log("data order", datapassenger)
   }
 

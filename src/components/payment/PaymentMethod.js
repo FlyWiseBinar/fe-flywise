@@ -87,53 +87,59 @@ const PaymentMethod = ({ code, token }) => {
   }
 
   const handlePay = () => {
-	Swal.fire({
-		title: 'Konfirmasi Pembayaran',
-		text: 'Bayar pesananmu sekarang?',
-		showCancelButton: true,
-		confirmButtonText: 'Ya',
-		cancelButtonText: `Tidak`,
-		confirmButtonColor: "#16a34a",
+    Swal.fire({
+      title: "Konfirmasi Pembayaran",
+      text: "Bayar pesananmu sekarang?",
+      showCancelButton: true,
+      confirmButtonText: "Ya",
+      cancelButtonText: "Tidak",
+      confirmButtonColor: "#16a34a",
       cancelButtonColor: "#dc2626",
-	 }).then((result) => {
-		if (result.isConfirmed) {
-			if (type) {
-				const data = {
-				  paymentCode: code,
-				  paymentTypeId: type,
-				}
-		
-				axios
-				  .post(api.apiPaymentCreate, data, {
-					 headers: {
-						Authorization: `Bearer ${token}`,
-					 },
-				  })
-				  .then((result) => {
-					Swal.fire({title:'Pesanan Berhasil', text:'Pesananmu berhasil dipesan, periksa emailmu dan lakukan pembayaran!'},'','success')
-					setTimeout(()=>{
-						router.push("/payment/success")
-					},2000)
-				  })
-				  .catch((err) => {
-					 console.log(err)
-					 toast.error("Tiket Gagal Di Bayar!", {
-						position: "bottom-center",
-						autoClose: 2000,
-						hideProgressBar: true,
-						closeOnClick: true,
-						pauseOnHover: true,
-						draggable: true,
-						progress: undefined,
-						theme: "colored",
-					 })
-				  })
-			 } else {
-				setErrorMsg("Mohon Isi Metode Pembayaran!")
-			 }
-		} 
-	 })
-    
+    }).then((result) => {
+      if (result.isConfirmed) {
+        if (type) {
+          const data = {
+            paymentCode: code,
+            paymentTypeId: type,
+          }
+
+          axios
+            .post(api.apiPaymentCreate, data, {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            })
+            .then(() => {
+              Swal.fire(
+                {
+                  title: "Pesanan Berhasil",
+                  text: "Pesananmu berhasil dipesan, periksa emailmu dan lakukan pembayaran!",
+                },
+                "",
+                "success"
+              )
+              setTimeout(() => {
+                router.push("/payment/success")
+              }, 2000)
+            })
+            .catch((err) => {
+              console.log(err)
+              toast.error("Tiket Gagal Di Bayar!", {
+                position: "bottom-center",
+                autoClose: 2000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+              })
+            })
+        } else {
+          setErrorMsg("Mohon Isi Metode Pembayaran!")
+        }
+      }
+    })
   }
 
   return (

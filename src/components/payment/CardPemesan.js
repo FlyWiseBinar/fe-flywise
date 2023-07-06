@@ -1,5 +1,5 @@
 /* eslint-disable */
-import React, {useEffect} from "react"
+import React, { useEffect } from "react"
 import { useState } from "react"
 import getToken from "@/utils/getToken"
 import api from "@/configs/api"
@@ -8,17 +8,17 @@ import axios from "axios"
 const CardPemesan = () => {
   const [showForm, setShowForm] = useState(false)
   const [inputValue, setInputValue] = useState("")
-  const [user,setUser] = useState({})
+  const [user, setUser] = useState({})
   const token = getToken()
 
   useEffect(() => {
-		axios(api.apiWhoAmI,{
-			headers:{
-				Authorization: `Bearer ${token}`
-			}
-		}).then(res=>{
-			setUser(res.data.data)
-		})
+    axios(api.apiWhoAmI, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }).then((res) => {
+      setUser(res.data.data)
+    })
   }, [])
 
   const handleToggle = () => {
@@ -46,8 +46,8 @@ const CardPemesan = () => {
             <input
               className=" p-3 border border-gray-300 text-gray-900 text-sm rounded-sm w-full"
               placeholder="Nama Lengkap"
-				  value={user.fullName}
-				  readOnly={true}
+              value={user.fullName}
+              readOnly={true}
             />
           </div>
           <div>
@@ -97,8 +97,8 @@ const CardPemesan = () => {
             <input
               className=" p-3 border border-gray-300 text-gray-900 text-sm rounded-sm w-full"
               placeholder="Nomor Telepon"
-				  value={user.telephone}
-				  readOnly={true}
+              value={user.telephone}
+              readOnly={true}
             />
           </div>
           <div className="mb-6">
@@ -109,7 +109,7 @@ const CardPemesan = () => {
               className=" p-3 border border-gray-300 text-gray-900 text-sm rounded-sm w-full "
               placeholder="Email"
               value={user.email}
-				  readOnly={true}
+              readOnly={true}
             />
           </div>
         </form>
