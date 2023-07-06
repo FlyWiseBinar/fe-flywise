@@ -207,16 +207,16 @@ const Register = () => {
                         <AiOutlineEye />
                       )}
                     </div>
-                    {errors &&
-                      errors.map(
-                        (err, index) =>
-                          err.field == "password" && (
-                            <p key={index} className="text-red-500">
-                              {err.message}
-                            </p>
-                          )
-                      )}
                   </div>
+                  {errors &&
+                    errors.map(
+                      (err, index) =>
+                        err.field == "password" && (
+                          <p key={index} className="text-red-500">
+                            {err.message}
+                          </p>
+                        )
+                    )}
                 </div>
 
                 <div>

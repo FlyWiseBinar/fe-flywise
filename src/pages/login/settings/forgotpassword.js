@@ -22,9 +22,13 @@ const Forgotpassword = () => {
   const [errors, setErrors] = useState([])
   const [loading, setLoading] = useState(false)
   const [showPassword, setShowPassword] = useState(false)
+  const [showPassword2, setShowPassword2] = useState(false)
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword)
+  }
+  const togglePasswordVisibility2 = () => {
+    setShowPassword2(!showPassword2)
   }
 
   const handleChange = (e) => {
@@ -146,25 +150,31 @@ const Forgotpassword = () => {
                   Ulangi Password Baru
                 </label>
               </div>
-              <div className="mt-2">
+              <div className="mt-2 flex items-center">
                 <input
                   id="confirm_password"
                   name="confirm_password"
-                  type="password"
+                  type={showPassword2 ? "text" : "password"}
                   className="block w-full rounded-2xl border-0 py-1.5 pl-4  text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:outline-none  focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   value={form.confirm_password}
                   onChange={handleChange}
                 />
-                {errors &&
-                  errors.map(
-                    (err, index) =>
-                      err.field == "confirm_password" && (
-                        <p key={index} className="text-red-500">
-                          {err.message}
-                        </p>
-                      )
-                  )}
+                <div
+                  onClick={togglePasswordVisibility2}
+                  className="cursor-pointer absolute xl:right-52 right-12 text-xl"
+                >
+                  {showPassword2 ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
+                </div>
               </div>
+              {errors &&
+                errors.map(
+                  (err, index) =>
+                    err.field == "confirm_password" && (
+                      <p key={index} className="text-red-500">
+                        {err.message}
+                      </p>
+                    )
+                )}
             </div>
 
             <div>
