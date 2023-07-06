@@ -125,8 +125,8 @@ const Otp = () => {
         pauseOnHover
         theme="light"
       />
-      <div className="container flex z-50 mx-28">
-        <img src="/logo.png" alt="logo" />
+      <div className="container flex z-50 xl:mx-28 mx-10 ">
+        <img src="/logo.svg" alt="logo" className="h-10 w-10" />
       </div>
       <form onSubmit={handleSubmit}>
         <div className="h-screen bg-slate-50 py-20 px-3">
