@@ -7,13 +7,11 @@ import { handlerDate } from "@/utils/handlerDate"
 import Image from "next/image"
 
 const SecondHome = ({ data, search, chooseDate }) => {
-
   const [currentPage, setCurrentPage] = useState(1)
   const onPageChange = (page) => setCurrentPage(page)
   const [dataPaginated, setDataPaginated] = useState([])
   const dataPerPage = 10
   const [loading, setLoading] = useState(false)
-
 
   const paginateData = (data) => {
     let temp = []
@@ -28,7 +26,6 @@ const SecondHome = ({ data, search, chooseDate }) => {
 
     setDataPaginated(final)
   }
-
 
   useEffect(() => {
     setLoading(false)
@@ -46,44 +43,48 @@ const SecondHome = ({ data, search, chooseDate }) => {
           <div className="flex flex-col items-center">
             <div className=" flex-col w-full flex items-start max-w-[1000px] px-5 pt-5 ">
               <div>
-                <p className="pt-5 font-bold text-xl items-start justify-start">Pilih Penerbangan</p>
+                <p className="pt-5 font-bold text-xl items-start justify-start">
+                  Pilih Penerbangan
+                </p>
               </div>
             </div>
           </div>
           <div className="mb-16 flex flex-col">
-
-
-
-            <FilterSort setLoading={setLoading} search={search} paginateFunc={paginateData} />
+            <FilterSort
+              setLoading={setLoading}
+              search={search}
+              paginateFunc={paginateData}
+            />
 
             <div className="w-full">
-              {
-                data?.length > 0 && (
-                  <>
-                    {
-                      Array.isArray(dataPaginated) && dataPaginated[0]?.map((item, index) => (
-                        <div key={index}>
-                          <ImportAccordion countSeat={search?.CountTotal} search={search} data={item} />
-                        </div>
-                      ))
-                    }
-                  </>
-                )
-              }
-              {
-                Math.ceil(data?.length / dataPerPage) > 1 && (
-                  <>
-                    <div className="w-full justify-center flex-col gap-4 items-center flex">
-                      <Pagination
-                        className=" text-black w-full items-center justify-center flex"
-                        currentPage={currentPage}
-                        onPageChange={page => { onPageChange(page) }}
-                        totalPages={Math.ceil(data?.length / dataPerPage)}
-                      />
-                    </div>
-                  </>
-                )
-              }
+              {data?.length > 0 && (
+                <>
+                  {Array.isArray(dataPaginated) &&
+                    dataPaginated[0]?.map((item, index) => (
+                      <div key={index}>
+                        <ImportAccordion
+                          countSeat={search?.CountTotal}
+                          search={search}
+                          data={item}
+                        />
+                      </div>
+                    ))}
+                </>
+              )}
+              {Math.ceil(data?.length / dataPerPage) > 1 && (
+                <>
+                  <div className="w-full justify-center flex-col gap-4 items-center flex">
+                    <Pagination
+                      className=" text-black w-full items-center justify-center flex"
+                      currentPage={currentPage}
+                      onPageChange={(page) => {
+                        onPageChange(page)
+                      }}
+                      totalPages={Math.ceil(data?.length / dataPerPage)}
+                    />
+                  </div>
+                </>
+              )}
             </div>
           </div>
         </>
@@ -91,17 +92,22 @@ const SecondHome = ({ data, search, chooseDate }) => {
     } else {
       return (
         <div className="w-full h-[50vh] flex-col flex items-center justify-center gap-4">
-          <Image src="/assets/schedule-not-found.png" width={200} height={200} alt="not-found" />
+          <Image
+            src="/assets/schedule-not-found.png"
+            width={200}
+            height={200}
+            alt="not-found"
+          />
           <div className="text-main-purple pt-3 flex flex-col w-full gap-3 items-center justify-center text-sm">
-            <p className="font-semibold text-black">Maaf, pencarian Anda pada  {handlerDate(chooseDate)}  tidak ditemukan</p>
+            <p className="font-semibold text-black">
+              Maaf, pencarian Anda pada {handlerDate(chooseDate)} tidak
+              ditemukan
+            </p>
             <p className="font-semibold ">Coba cari perjalanan lainnya!</p>
           </div>
         </div>
       )
     }
-
-
-
   } else {
     return (
       <div className="w-full h-screen flex justify-center items-center">
