@@ -165,10 +165,10 @@ const CardOrder = () => {
       CountBaby: CountBaby,
       CountChild: CountChild,
       CountTotal: CountAdult + CountBaby + CountChild,
-		seatClassId: selectedOption
+      seatClassId: selectedOption,
     }
 
-	 console.log("dataquery", data)
+    console.log("dataquery", data)
 
     const countTotal = CountAdult + CountBaby + CountChild
 
@@ -178,19 +178,16 @@ const CardOrder = () => {
         query: data,
       })
     } else {
-      toast.error(
-        "Mohon isi lokasi keberangkatan dan jumlah penumpang!",
-        {
-          position: "bottom-center",
-          autoClose: 2000,
-          hideProgressBar: true,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
-        }
-      )
+      toast.error("Mohon isi lokasi keberangkatan dan jumlah penumpang!", {
+        position: "bottom-center",
+        autoClose: 2000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      })
     }
   }
 
