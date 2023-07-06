@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useState } from "react"
 import SecondHome from "@/views/second-home/SecondHome"
 import Head from "next/head"
