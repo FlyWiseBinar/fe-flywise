@@ -8,13 +8,11 @@ import axios from "axios"
 
 const Favorit = ({ favorite }) => {
   const [filter, setFilter] = useState(favorite)
- 
 
   const handleClick = async (event) => {
     const value = event.currentTarget.value
-    
+
     try {
-      
       const response = await axios.get(
         `${api.apiScheduleFavorite}?continent=${value}`
       )
@@ -38,7 +36,7 @@ const Favorit = ({ favorite }) => {
             <>
               <div className="flex items-center">
                 <button
-                  className="flex items-center justify-start bg-main-orange p-4 rounded-xl text-white hover:scale-110 duration-300"
+                  className="flex items-center justify-start bg-main-orange xl:p-4 p-2 rounded-xl text-white hover:scale-110 duration-300"
                   value=""
                   onClick={handleClick}
                 >
@@ -48,7 +46,7 @@ const Favorit = ({ favorite }) => {
               </div>
               <div className="flex items-center">
                 <button
-                  className="flex items-center justify-start bg-main-orange p-4 rounded-xl text-white hover:scale-110 duration-300"
+                  className="flex items-center justify-start bg-main-orange xl:p-4 p-2 rounded-xl text-white hover:scale-110 duration-300"
                   value="asia"
                   onClick={handleClick}
                 >
@@ -58,7 +56,7 @@ const Favorit = ({ favorite }) => {
               </div>
               <div className="flex items-center">
                 <button
-                  className="flex items-center justify-start bg-main-orange p-4 rounded-xl text-white hover:scale-110 duration-300"
+                  className="flex items-center justify-start bg-main-orange xl:p-4 p-2 rounded-xl text-white hover:scale-110 duration-300"
                   value="america"
                   onClick={handleClick}
                 >
@@ -68,7 +66,7 @@ const Favorit = ({ favorite }) => {
               </div>
               <div className="flex items-center">
                 <button
-                  className="flex items-center justify-start bg-main-orange p-4 rounded-xl text-white hover:scale-110 duration-300"
+                  className="flex items-center justify-start bg-main-orange xl:p-4 p-2 rounded-xl text-white hover:scale-110 duration-300"
                   value="oceania"
                   onClick={handleClick}
                 >
@@ -78,7 +76,7 @@ const Favorit = ({ favorite }) => {
               </div>
               <div className="flex items-center">
                 <button
-                  className="flex items-center justify-start bg-main-orange p-4 rounded-xl text-white hover:scale-110 duration-300"
+                  className="flex items-center justify-start bg-main-orange xl:p-4 p-2 rounded-xl text-white hover:scale-110 duration-300"
                   value="europe"
                   onClick={handleClick}
                 >
@@ -88,7 +86,7 @@ const Favorit = ({ favorite }) => {
               </div>
               <div className="flex items-center">
                 <button
-                  className="flex items-center justify-start bg-main-orange p-4 rounded-xl text-white hover:scale-110 duration-300"
+                  className="flex items-center justify-start bg-main-orange xl:p-4 p-2 rounded-xl text-white hover:scale-110 duration-300"
                   value="africa"
                   onClick={handleClick}
                 >

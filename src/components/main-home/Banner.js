@@ -4,7 +4,7 @@ import { styles } from "@/styles/styles"
 const Banner = () => {
   return (
     <div className={`${styles.mainCol} py-5`}>
-      <div className="w-full bg-main-orange opacity-60 h-[150px] absolute z-0 top-52"></div>
+      <div className="w-full bg-main-orange h-[150px] absolute z-0 top-52"></div>
       <div
         className={`${styles.mainMaxWidth} flex justify-between items-center absolute h-[232px] z-10 top-44 lg:w-[90%] w-[80%] rounded-3xl bg-main-purple`}
       >
