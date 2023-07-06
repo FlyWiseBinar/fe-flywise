@@ -25,7 +25,10 @@ const PaymentSuccess = () => {
           </button>
         </div>
         <div className="flex justify-center items-center mb-5">
-          <Link href={"/"} className="mx-5 text-center bg-white text-purple-900 border border-solid-2 border-purple-900 w-80 font-semibold text-xl  p-3 rounded-lg hover:bg-purple-700 hover:text-white transition-colors duration-300 ease-in-out">
+          <Link
+            href={"/"}
+            className="mx-5 text-center bg-white text-purple-900 border border-solid-2 border-purple-900 w-80 font-semibold text-xl  p-3 rounded-lg hover:bg-purple-700 hover:text-white transition-colors duration-300 ease-in-out"
+          >
             Cari Penerbangan Lain
           </Link>
         </div>

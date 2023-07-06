@@ -25,12 +25,7 @@ export default function Custom404() {
   return (
     <div className="justify-center container flex text-black md:py-16 py-48">
       <div className="space-y-4">
-        <Image
-          src="./500.svg"
-          height={500}
-          width={500}
-
-        />
+        <Image src="./500.svg" height={500} width={500} />
         <div className="font-semibold hover:text-text-200 text-center">
           <div>Internal Server Error</div>
 

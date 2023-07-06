@@ -12,7 +12,6 @@ const Isidata = ({ countseat, dataSchedule, dataSeat, token }) => {
   // console.log('data schedule', dataSeat);
   // console.log("data seat", dataSeat)
 
-
   const [datapassenger, setDatapassenger] = useState()
 
   const passenger = []
@@ -27,7 +26,7 @@ const Isidata = ({ countseat, dataSchedule, dataSeat, token }) => {
           passport: "",
           issuingCountry: "",
           expiredAt: "",
-          ageType: "adult"
+          ageType: "adult",
         })
       }
     }
@@ -41,7 +40,7 @@ const Isidata = ({ countseat, dataSchedule, dataSeat, token }) => {
           passport: "",
           issuingCountry: "",
           expiredAt: "",
-          ageType: "child"
+          ageType: "child",
         })
       }
     }
@@ -55,17 +54,15 @@ const Isidata = ({ countseat, dataSchedule, dataSeat, token }) => {
           passport: "",
           issuingCountry: "",
           expiredAt: "",
-          ageType: "baby"
+          ageType: "baby",
         })
       }
     }
   }
 
   const defaultValues = {
-    schedule: [
-      { id: dataSchedule.id }
-    ],
-    passenger: passenger
+    schedule: [{ id: dataSchedule.id }],
+    passenger: passenger,
   }
 
   // console.log('pass', passenger)
@@ -75,15 +72,13 @@ const Isidata = ({ countseat, dataSchedule, dataSeat, token }) => {
     register,
     handleSubmit,
     setValue,
-    formState: { errors }
+    formState: { errors },
   } = useForm({ defaultValues, mode: "onChange" })
 
-  const {
-    fields,
-  } = useFieldArray({
+  const { fields } = useFieldArray({
     control,
     rules: { required: true },
-    name: "passenger"
+    name: "passenger",
   })
 
   const onSubmit = (data) => {
@@ -104,9 +99,6 @@ const Isidata = ({ countseat, dataSchedule, dataSeat, token }) => {
 
   // console.log('fields', fields);
 
-
-
-
   return (
     <>
       <FormProvider
@@ -121,20 +113,36 @@ const Isidata = ({ countseat, dataSchedule, dataSeat, token }) => {
           <div
             className={`${styles.deadline} justify-center lg:items-start w-full md:items-center p-5 flex flex-col lg:flex-row md:flex-col`}
           >
-            <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col w-full gap-10 px-5">
-
+            <form
+              onSubmit={handleSubmit(onSubmit)}
+              className="flex flex-col w-full gap-10 px-5"
+            >
               <CardPemesan />
 
-              {fields && fields.map((item, index) => (
-                <CardPenumpang key={item.id} person={item.ageType} index={index} />
-              ))}
+              {fields &&
+                fields.map((item, index) => (
+                  <CardPenumpang
+                    key={item.id}
+                    person={item.ageType}
+                    index={index}
+                  />
+                ))}
 
               {/* <Simpan /> */}
-              <button type="submit" className="bg-purple-900 text-white text-sm w-full p-3 rounded-lg hover:bg-purple-700 mb-5">
+              <button
+                type="submit"
+                className="bg-purple-900 text-white text-sm w-full p-3 rounded-lg hover:bg-purple-700 mb-5"
+              >
                 Simpan
               </button>
             </form>
-            <Detail countseat={countseat} dataSchedule={dataSchedule} dataSeat={dataSeat} datapassenger={datapassenger} token={token} />
+            <Detail
+              countseat={countseat}
+              dataSchedule={dataSchedule}
+              dataSeat={dataSeat}
+              datapassenger={datapassenger}
+              token={token}
+            />
           </div>
         </div>
       </FormProvider>

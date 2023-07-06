@@ -1,7 +1,7 @@
-import React, {useState} from "react"
+import React, { useState } from "react"
 import SecondHome from "@/views/second-home/SecondHome"
 import Head from "next/head"
-import {useRouter} from "next/router"
+import { useRouter } from "next/router"
 import axios from "axios"
 import api from "@/configs/api"
 import Button from "@/components/secondHome/Button"
@@ -24,17 +24,17 @@ const Index = ({schedule}) => {
 		seatClassId,
 	} = router.query
 
-	const dataSearch = {
-		CountAdult,
-		CountBaby,
-		CountChild,
-		departureDate,
-		from,
-		to,
-		returnDate,
-		CountTotal,
-		seatClassId
-	}
+  const dataSearch = {
+    CountAdult,
+    CountBaby,
+    CountChild,
+    departureDate,
+    from,
+    to,
+    returnDate,
+    CountTotal,
+    seatClassId,
+  }
 
 	const filterDate = (data) => {
 		if (isFilter) {
@@ -43,7 +43,6 @@ const Index = ({schedule}) => {
 		}
 		return data
 	}
-console.log(data[0])
 	return (
 		<div>
 			<Head>
