@@ -23,7 +23,6 @@ const FilterDate = ({ setLoading, search, paginateFunc }) => {
     setIsOpenClass(false)
     // setLoading(true)
 
-
     const { departureDate, from, returnDate, to, seatClassId } = search
 
     axios
