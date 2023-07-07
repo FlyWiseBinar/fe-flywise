@@ -239,12 +239,12 @@ const CardOrder = () => {
                                   className="py-1 pl-2 pr-3 border-2 w-full rounded-lg border-gray-300"
                                 />
                                 <div className="absolute top-2 left-2"></div>
-                                <div
-                                  className="text-2xl text-white hover:text-white bg-blue-500 p-1.5 rounded-lg"
+                                <button
+                                  className="text-2xl text-white hover:text-white bg-blue-500 p-1.5 rounded-lg cursor-pointer"
                                   onClick={closeModal}
                                 >
                                   <BiSearch />
-                                </div>
+                                </button>
                               </div>
                             </div>
                           </div>
@@ -365,7 +365,7 @@ const CardOrder = () => {
                           <div className="flex gap-3 items-center p-4 ">
                             <div className="flex flex-col gap-2 w-full">
                               <div className="justify-between flex">
-                                <div>Masukkan Asal Penerbangan</div>
+                                <div>Masukkan Tujuan Penerbangan</div>
                                 <button
                                   className="text-2xl hover:text-gray-400"
                                   onClick={closeModal}
@@ -401,7 +401,7 @@ const CardOrder = () => {
                                   onClick={closeModal}
                                   className="flex"
                                 >
-                                  <div>{option.city}</div>
+                                  <button>{option.city}</button>
                                 </div>
                               </div>
                             ))}
