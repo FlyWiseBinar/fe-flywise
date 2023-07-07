@@ -5,7 +5,7 @@ import Favorit from "@/components/main-home/Favorit"
 
 const MainHome = ({ favorite }) => {
   return (
-    <div className="">
+    <div>
       <Banner />
       <div className="mt-[360px] absolute inset-0 z-30 flex flex-col gap-20">
         <CardOrder />

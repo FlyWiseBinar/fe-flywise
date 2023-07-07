@@ -366,12 +366,12 @@ const CardOrder = () => {
                             <div className="flex flex-col gap-2 w-full">
                               <div className="justify-between flex">
                                 <div>Masukkan Asal Penerbangan</div>
-                                <div
+                                <button
                                   className="text-2xl hover:text-gray-400"
                                   onClick={closeModal}
                                 >
-                                  <LuX />
-                                </div>
+                                  <LuX className="cursor-pointer" />
+                                </button>
                               </div>
                               <div className="relative flex items-center gap-2">
                                 <input

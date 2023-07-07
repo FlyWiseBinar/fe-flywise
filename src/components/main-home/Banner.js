@@ -2,6 +2,7 @@ import React from "react"
 import { styles } from "@/styles/styles"
 
 const Banner = () => {
+  const randomNumber = Math.floor(Math.random() * 100)
   return (
     <div className={`${styles.mainCol} py-5`}>
       <div className="w-full bg-main-orange h-[150px] absolute z-0 top-52"></div>
@@ -10,7 +11,7 @@ const Banner = () => {
       >
         <div className="text-4xl font-bold px-[5%] py-5 w-full flex flex-col text-white  gap-5 ">
           <i className="font-bold">Diskon Hari Ini</i>
-          <p className="text-main-orange">{"85%"}</p>
+          <div className="text-main-orange">{randomNumber}%</div>
         </div>
 
         <div
